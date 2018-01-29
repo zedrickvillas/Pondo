@@ -21,6 +21,10 @@
                 margin: 0;
             }
 
+            .welcome-logo {
+                height: 200px;
+            }
+
             .full-height {
                 height: 100vh;
             }
@@ -78,16 +82,13 @@
             @endif
 
             <div class="content">
+                <img class="welcome-logo" src="{{ asset('Pondo.png') }}"/>
                 <div class="title m-b-md">
                     Pondo
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <p>Under Construction...</p>
                 </div>
             </div>
         </div>
