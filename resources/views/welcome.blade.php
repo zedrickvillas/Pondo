@@ -29,6 +29,13 @@
                 height: 100vh;
             }
 
+            .animated-logo {
+              display: block;
+              width: 100px;
+              margin:auto;
+              transform-origin: bottom;
+            }
+
             .flex-center {
                 align-items: center;
                 display: flex;
@@ -66,6 +73,49 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            /* all other browsers */
+           @keyframes grow {
+             0% {
+               opacity: 0.1;
+               -moz-transform: scale(0.3);
+               -ms-transform: scale(0.3);
+                 transform: scale(0.3);
+             }
+             50% {
+               opacity: 0.9;
+               -moz-transform: scale(.6);
+               -ms-transform: scale(.6);
+                 transform: scale(.6);
+             }
+             100% {
+               -moz-transform: scale(1);
+               -ms-transform: scale(1);
+                 transform: scale(1);
+                 opacity: 1;
+             }
+           }
+
+          .pondo-plant {
+             -webkit-animation-name: grow;
+             -webkit-animation-timing-function: linear;
+             -webkit-animation-iteration-count: 1;
+             -webkit-animation-duration: 2s;
+
+             animation-name: grow;
+             animation-timing-function: linear;
+             animation-iteration-count: 1;
+             animation-duration: 2s;
+
+             -webkit-transform-style: preserve-3d;
+             -moz-transform-style: preserve-3d;
+             -ms-transform-style: preserve-3d;
+             transform-style: preserve-3d;
+           }
+
+           #spinner:hover {
+             -webkit-animation-play-state: paused;
+             animation-play-state: paused;
+           }
         </style>
     </head>
     <body>
@@ -82,7 +132,8 @@
             @endif
 
             <div class="content">
-                <img class="welcome-logo" src="{{ asset('Pondo.png') }}"/>
+                <img class="pondo-plant animated-logo" src="{{ asset('PondoPlant.png') }}"/>
+                <img class="pondo-pot animated-logo" src="{{ asset('PondoPot.png') }}"/>
                 <div class="title m-b-md">
                     Pondo
                 </div>
