@@ -1,3 +1,5 @@
+// Colors
+$white: #ffffff;
 
 // Body
 $body-bg: #f5f8fa;
@@ -24,7 +26,7 @@ $line-height-base: 1.6;
 $text-color: #636b6f;
 
 // Navbar
-$navbar-default-bg: #fff;
+$navbar-default-bg: $white;
 
 // Buttons
 $btn-default-color: $text-color;
@@ -35,4 +37,35 @@ $input-border-focus: lighten($brand-primary, 25%);
 $input-color-placeholder: lighten($text-color, 30%);
 
 // Panels
-$panel-default-heading-bg: #fff;
+$panel-default-heading-bg: $white;
+
+// Transitions
+$transitionSpeed: 0.35s;
+
+// Social Media
+$facebook: #4863ae;
+$twitter: #46c0fb;
+$google: #DD4B39;
+$github: #4183C4;
+
+// MQ's
+$mq-tiny: 320px;
+$phone: 480px;
+$tablet: 767px;
+$desktop: 992px;
+$lg-desktop: 1200px;
+
+// Radius'
+$standard-radius: 3px;
+
+// Margins and Padding
+$num-of-classes: 5;
+$directions: ('top', 'bottom', 'left', 'right');
+$types: ('margin', 'padding');
+$queries: (
+  $mq-tiny: 'xxs',
+  $phone: 'xs',
+  $tablet: 'sm',
+  $desktop: 'md',
+  $lg-desktop: 'lg'
+);

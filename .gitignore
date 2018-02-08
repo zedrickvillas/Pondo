@@ -1,20 +1,41 @@
-vendor/
-node_modules/
-npm-debug.log
+### OSX BOOGERS ###
+.DS_Store
+*._DS_Store
+._.DS_Store
+*._
+._*
+._.*
 
-# Laravel 4 specific
-bootstrap/compiled.php
-app/storage/
+### WINDOWS BOOGERS ###
+Thumbs.db
 
-# Laravel 5 & Lumen specific
-public/storage
-public/hot
-storage/*.key
-.env.*.php
-.env.php
+### Sass ###
+#bower_components/*
+/.sass-cache/*
+.sass-cache
+
+### SUBLIMETEXT BOOGERS ###
+*.sublime-workspace
+
+### PHPSTORM BOOGERS ###
+.idea/*
+/.idea/*
+.phpintel/*
+/.phpintel/*
+
+### DIFFERENT TYPE OF MASTER CONFIGS ###
 .env
+composer.lock
+
+### ASSET EXCLUSIONS ###
+/node_modules
+/public/storage
+/storage/*.key
+/vendor
 Homestead.yaml
 Homestead.json
-
-# Rocketeer PHP task runner and deployment package. https://github.com/rocketeers/rocketeer
-.rocketeer/
+/storage/debugbar
+/storage/framework
+/storage/logs
+/storage/users
+packages/
