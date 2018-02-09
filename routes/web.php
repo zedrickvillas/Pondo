@@ -18,7 +18,7 @@ Route::get('/', 'WelcomeController@welcome')->name('welcome');
 
 // Authentication Routes
 Auth::routes();
-
+Route::get('/admin/login', 'AdminRouteController@showAdminLoginForm');
 // Public Routes
 Route::group(['middleware' => ['web', 'activity']], function () {
 
