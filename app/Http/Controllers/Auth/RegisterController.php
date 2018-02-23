@@ -11,6 +11,10 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Validator;
 use jeremykenedy\LaravelRoles\Models\Role;
 
+//RegistersUsers trait
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
+
 class RegisterController extends Controller
 {
     /*
@@ -27,6 +31,41 @@ class RegisterController extends Controller
     use ActivationTrait;
     use CaptchaTrait;
     use RegistersUsers;
+
+
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRegistrationForm()
+    {
+        $data = [
+            'roles' => Role::whereIn('slug', ['business.owner', 'investor'])->get(),
+        ];
+
+        return view('auth.register')->with($data);
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
+    }
+
+
 
     /**
      * Where to redirect users after registration.
@@ -64,6 +103,7 @@ class RegisterController extends Controller
 
         return Validator::make($data,
             [
+                'user_role'             => 'required|in:Business Owner, Investor',
                 'name'                  => 'required|max:255|unique:users',
                 'first_name'            => '',
                 'last_name'             => '',

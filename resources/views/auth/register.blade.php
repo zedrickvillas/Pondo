@@ -13,6 +13,20 @@
 
                         {{ csrf_field() }}
 
+
+                        <div class="form-group">
+                            <label for="user_role" class="col-sm-4 control-label" name="user_role">What are you:</label>
+                            <div class="col-sm-6">
+                              <select class="form-control" id="user_role" class="col-sm-6" name="user_role">
+                                @foreach($roles as $role)
+                                    <option>{{ $role->name }}</option>
+                                @endforeach
+                              </select>
+                            </div>
+                        </div>
+
+
+
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-sm-4 control-label">Name</label>
                             <div class="col-sm-6">
