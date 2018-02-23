@@ -19,12 +19,39 @@ class ConnectRelationshipsSeeder extends Seeder
          */
         $permissions = Permission::all();
 
+        $postPermissions = $permissions->whereIn('slug', ['create.post', 'edit.post', 'delete.post']);
+
+
+     
+        /**
+        * Get Available Roles.
+        */
+        $roleAdmin = Role::where('slug', '=', 'admin')->first();
+        $roleBusinessOwner = Role::where('slug', '=', 'business.owner')->first();
+        $roleInvestor = Role::where('slug', '=', 'investor')->first();
+
+
+
+
+
         /**
          * Attach Permissions to Roles.
          */
-        $roleAdmin = Role::where('slug', '=', 'admin')->first();
+
         foreach ($permissions as $permission) {
             $roleAdmin->attachPermission($permission);
         }
+
+       
+
+        
+        foreach ($postPermissions as $permission) {
+            $roleBusinessOwner->attachPermission($permission);
+            $roleInvestor->attachPermission($permission);
+        }
+     
+        
+
+
     }
 }

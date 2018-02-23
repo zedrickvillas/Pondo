@@ -18,6 +18,9 @@ class PermissionsTableSeeder extends Seeder
          * Add Permissions
          *
          */
+
+        //-----------User Management
+
         if (Permission::where('name', '=', 'Can View Users')->first() === null) {
             Permission::create([
                 'name'        => 'Can View Users',
@@ -53,5 +56,36 @@ class PermissionsTableSeeder extends Seeder
                 'model'       => 'Permission',
             ]);
         }
+
+        //-----------Post
+        
+        if (Permission::where('name', '=', 'Can Create Post')->first() === null) {
+            Permission::create([
+                'name'        => 'Can Create Post',
+                'slug'        => 'create.post',
+                'description' => 'Can post',
+                'model'       => 'Permission',
+            ]);
+        }
+
+        if (Permission::where('name', '=', 'Can Edit Post')->first() === null) {
+            Permission::create([
+                'name'        => 'Can Edit Post',
+                'slug'        => 'edit.post',
+                'description' => 'Can post',
+                'model'       => 'Permission',
+            ]);
+        }
+
+        if (Permission::where('name', '=', 'Can Delete Post')->first() === null) {
+            Permission::create([
+                'name'        => 'Can Delete Post',
+                'slug'        => 'delete.post',
+                'description' => 'Can delete post',
+                'model'       => 'Permission',
+            ]);
+        }
+
+        
     }
 }

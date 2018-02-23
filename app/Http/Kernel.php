@@ -64,5 +64,6 @@ class Kernel extends HttpKernel
         'permission'  => \jeremykenedy\LaravelRoles\Middleware\VerifyPermission::class,
         'level'       => \jeremykenedy\LaravelRoles\Middleware\VerifyLevel::class,
         'currentUser' => \App\Http\Middleware\CheckCurrentUser::class,
+        'isAdmin' => \App\Http\Middleware\CheckUserIsAdmin::class,
     ];
 }

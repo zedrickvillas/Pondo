@@ -18,7 +18,9 @@ Route::get('/', 'WelcomeController@welcome')->name('welcome');
 
 // Authentication Routes
 Auth::routes();
-Route::get('/admin/login', 'AdminRouteController@showAdminLoginForm');
+Route::get('/admin/login', 'AdminController@showAdminLoginForm');
+
+
 // Public Routes
 Route::group(['middleware' => ['web', 'activity']], function () {
 
@@ -49,7 +51,7 @@ Route::group(['middleware' => ['auth', 'activated', 'activity']], function () {
 Route::group(['middleware' => ['auth', 'activated', 'activity', 'twostep']], function () {
 
     //  Homepage Route - Redirect based on user role is in controller.
-    Route::get('/home', ['as' => 'public.home',   'uses' => 'UserController@index']);
+    Route::get('/dashboard', ['as' => 'user.dashboard',   'uses' => 'UserController@index']);
 
     // Show users profile - viewable by other users.
     Route::get('profile/{username}', [

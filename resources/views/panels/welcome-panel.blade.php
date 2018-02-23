@@ -54,8 +54,11 @@
                 @role('admin')
                    Admin
                 @endrole
-                @role('user')
-                   User
+                @role('business.owner')
+                   Business Owner
+                @endrole
+                @role('investor')
+                   Investor
                 @endrole
             Access
         </h4>

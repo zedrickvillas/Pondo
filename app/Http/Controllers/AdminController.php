@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-class AdminRouteController extends Controller
+class AdminController extends Controller
 {
     /**
      * Show the application dashboard.
