@@ -13,6 +13,8 @@
 |
 */
 
+Route::resource('posts', 'PostsController');
+
 // Homepage Route
 Route::get('/', 'WelcomeController@welcome')->name('welcome');
 
