@@ -63,9 +63,9 @@
                 @include('partials.form-status')
 
             </div>
-
+            <div class="container">
             @yield('content')
-
+            </div>
         </div>
 
         {{-- Scripts --}}

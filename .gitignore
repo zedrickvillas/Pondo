@@ -38,3 +38,4 @@ Homestead.json
 /storage/logs
 /storage/users
 packages/
+composer-setup.php
