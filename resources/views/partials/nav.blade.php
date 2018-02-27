@@ -20,8 +20,12 @@
                     <ul class="nav navbar-nav">
                         <li><a href="/dashboard">Home</a></li>
                         <li><a href="/posts">Posts</a></li>
+                        <li>
+                            <a href="/posts/create">Create Posts</a>
+                        </li>
                         <li><a href="#">Page 2</a></li>
                         <li><a href="#">Page 3</a></li>
+
                     </ul>
 
 

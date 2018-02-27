@@ -23,14 +23,15 @@
         "laravel/framework": "5.5.*",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
-        "laravelcollective/html": "^5.5",
+        "laravelcollective/html": "^5.4.0",
         "pusher/pusher-php-server": "^3.0",
         "rap2hpoutre/laravel-log-viewer": "^0.10.4",
         "socialiteproviders/37signals": "^3.0",
         "socialiteproviders/generators": "^2.0",
         "socialiteproviders/instagram": "^3.0",
         "socialiteproviders/twitch": "^3.0",
-        "socialiteproviders/youtube": "^3.0"
+        "socialiteproviders/youtube": "^3.0",
+        "unisharp/laravel-ckeditor": "^4.7"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

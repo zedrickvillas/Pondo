@@ -39,3 +39,4 @@ Homestead.json
 /storage/users
 packages/
 composer-setup.php
+public/vendor
