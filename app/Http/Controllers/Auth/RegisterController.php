@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Business;
 use App\Traits\ActivationTrait;
 use App\Traits\CaptchaTrait;
 use App\Traits\CaptureIpTrait;
@@ -57,7 +58,7 @@ class RegisterController extends Controller
     {
         $this->validator($request->all())->validate();
 
-        event(new Registered($user = $this->create($request->all())));
+        event(new Registered($user = $this->create($request->all())));  
 
         $this->guard()->login($user);
 
@@ -101,9 +102,41 @@ class RegisterController extends Controller
             $data['captcha'] = true;
         }
 
-        return Validator::make($data,
+
+        if ($data["user_role"] === "Business Owner") {
+            return Validator::make($data,
+                [
+                    'user_role'             => 'required|in:Business Owner',
+                    'business_name'         => 'required',
+                    'business_nature'       => 'required',
+                    'business_address'      => 'required',
+                    'name'                  => 'required|max:255|unique:users',
+                    'first_name'            => '',
+                    'last_name'             => '',
+                    'email'                 => 'required|email|max:255|unique:users',
+                    'password'              => 'required|min:6|max:20|confirmed',
+                    'password_confirmation' => 'required|same:password',
+                    'g-recaptcha-response'  => '',
+                    'captcha'               => 'required|min:1',
+                ],
+                [
+                    'name.unique'                   => trans('auth.userNameTaken'),
+                    'name.required'                 => trans('auth.userNameRequired'),
+                    'first_name.required'           => trans('auth.fNameRequired'),
+                    'last_name.required'            => trans('auth.lNameRequired'),
+                    'email.required'                => trans('auth.emailRequired'),
+                    'email.email'                   => trans('auth.emailInvalid'),
+                    'password.required'             => trans('auth.passwordRequired'),
+                    'password.min'                  => trans('auth.PasswordMin'),
+                    'password.max'                  => trans('auth.PasswordMax'),
+                    'g-recaptcha-response.required' => trans('auth.captchaRequire'),
+                    'captcha.min'                   => trans('auth.CaptchaWrong'),
+                ]
+            );
+        } else {
+            return Validator::make($data,
             [
-                'user_role'             => 'required|in:Business Owner, Investor',
+                'user_role'             => 'required|in:Investor',
                 'name'                  => 'required|max:255|unique:users',
                 'first_name'            => '',
                 'last_name'             => '',
@@ -127,6 +160,12 @@ class RegisterController extends Controller
                 'captcha.min'                   => trans('auth.CaptchaWrong'),
             ]
         );
+        }
+
+
+
+
+        
     }
 
     /**
@@ -139,7 +178,13 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $ipAddress = new CaptureIpTrait();
-        $role = Role::where('slug', '=', 'unverified')->first();
+
+
+        $role = $data['user_role']; //Retrieving the user_role field
+
+        $role_r = Role::where('name', '=', $role)->first();            
+            
+        
 
         $user = User::create([
                 'name'              => $data['name'],
@@ -152,7 +197,19 @@ class RegisterController extends Controller
                 'activated'         => !config('settings.activation'),
             ]);
 
-        $user->attachRole($role);
+        if ($role_r->slug == "business.owner") {
+             Business::create([
+                'name'                  => $data['business_name'],
+                'nature'                => $data['business_nature'],
+                'address'               => $data['business_address'],
+                'user_id'               => $user->id,
+            ]);
+        } 
+
+
+
+        $user->attachRole($role_r);
+
         $this->initiateEmailActivation($user);
 
         return $user;

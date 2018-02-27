@@ -134,7 +134,7 @@ class ActivateController extends Controller
         $user = Auth::user();
         $currentRoute = Route::currentRouteName();
         $ipAddress = new CaptureIpTrait();
-        $role = Role::where('slug', '=', 'user')->first();
+        //$role = Role::where('slug', '=', 'user')->first();
         $profile = new Profile();
 
         $rCheck = $this->activeRedirect($user, $currentRoute);
@@ -155,8 +155,8 @@ class ActivateController extends Controller
         }
 
         $user->activated = true;
-        $user->detachAllRoles();
-        $user->attachRole($role);
+        //$user->detachAllRoles();
+        //$user->attachRole($role);
         $user->signup_confirmation_ip_address = $ipAddress->getClientIp();
         $user->profile()->save($profile);
         $user->save();

@@ -25,6 +25,45 @@
                             </div>
                         </div>
 
+                        <div id="businessOwnerFields">
+
+                            <div class="form-group{{ $errors->has('business_name') ? ' has-error' : '' }}">
+                                <label for="first_name" class="col-sm-4 control-label">Business Name</label>
+                                <div class="col-sm-6">
+                                    {!! Form::text('business_name', null, ['class' => 'form-control', 'placeholder' => 'Business Name', 'id' => 'business_name']) !!}
+                                    @if ($errors->has('business_name'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('business_name') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('business_nature') ? ' has-error' : '' }}">
+                                <label for="business_nature" class="col-sm-4 control-label">Business Nature</label>
+                                <div class="col-sm-6">
+                                    {!! Form::text('business_nature', null, ['class' => 'form-control', 'placeholder' => 'Business Nature', 'id' => 'business_nature']) !!}
+                                    @if ($errors->has('business_nature'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('business_nature') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                             <div class="form-group{{ $errors->has('business_address') ? ' has-error' : '' }}">
+                                <label for="business_address" class="col-sm-4 control-label">Business Address</label>
+                                <div class="col-sm-6">
+                                    {!! Form::text('business_address', null, ['class' => 'form-control', 'placeholder' => 'Business Address', 'id' => 'business_address']) !!}
+                                    @if ($errors->has('business_address'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('business_address') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+
 
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -127,5 +166,48 @@
 @section('footer_scripts')
 
     <script src='https://www.google.com/recaptcha/api.js'></script>
+
+
+    <script>
+     $(document).ready(function () {
+
+        var user_role;
+
+        user_role = $("#user_role").val();
+
+       
+
+
+            if (user_role == "Business Owner") {
+
+                $("#businessOwnerFields").removeClass("hidden");
+
+            } else {
+
+                $("#businessOwnerFields").addClass("hidden");
+            }
+
+
+            $("#user_role").on("change", function(){
+
+                user_role = $("#user_role").val();
+
+                
+                if (user_role == "Business Owner") {
+
+                    $("#businessOwnerFields").removeClass("hidden");
+
+                } else {
+
+                    $("#businessOwnerFields").addClass("hidden");
+                }
+
+            });
+
+
+
+
+        });
+    </script>
 
 @endsection

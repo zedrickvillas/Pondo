@@ -1,18 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Business extends Model
 {
-
-    use HasRoleAndPermission;
-    use Notifiable;
-    use SoftDeletes;
-
-    protected $table = 'businesses';
-    protected $guarded = 'id';
 
     protected $fillable = [
         'name',
