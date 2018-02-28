@@ -25,6 +25,12 @@
             {{-- Left Side Of Navbar --}}
             <ul class="nav navbar-nav">
                 <li><a href="{{ route('posts.index') }}">Posts</a></li>
+                @if(Auth::user())
+                    @if (Auth::user()->hasRole('business.owner'))
+                        <li><a href="{{ route('posts.create') }}">Create Posts</a></li>
+                    @endif
+                @endif
+
             </ul>
             
 
