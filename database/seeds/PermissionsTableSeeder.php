@@ -63,7 +63,7 @@ class PermissionsTableSeeder extends Seeder
             Permission::create([
                 'name'        => 'Can Create Post',
                 'slug'        => 'create.post',
-                'description' => 'Can post',
+                'description' => 'Can create post',
                 'model'       => 'Permission',
             ]);
         }
@@ -72,7 +72,7 @@ class PermissionsTableSeeder extends Seeder
             Permission::create([
                 'name'        => 'Can Edit Post',
                 'slug'        => 'edit.post',
-                'description' => 'Can post',
+                'description' => 'Can edit post',
                 'model'       => 'Permission',
             ]);
         }

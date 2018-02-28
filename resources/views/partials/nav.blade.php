@@ -32,7 +32,7 @@
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
-            {{-- Left Side Of Navbar --}}
+            {{-- Left Side Of Navbar 
             <ul class="nav navbar-nav">
                 @role('admin')
                     <li class="dropdown">
@@ -51,6 +51,7 @@
                     </li>
                 @endrole
             </ul>
+            --}}
 
             {{-- Right Side Of Navbar --}}
             <ul class="nav navbar-nav navbar-right">
@@ -59,6 +60,8 @@
                     <li><a href="{{ route('login') }}">{!! trans('titles.login') !!}</a></li>
                     <li><a href="{{ route('register') }}">{!! trans('titles.register') !!}</a></li>
                 @else
+
+                    <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 

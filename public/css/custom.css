@@ -1,3 +1,11 @@
 .hidden {
 	display:none;
 }
+
+.text-large {
+  font-size: 100px;
+}
+ 
+.no-underline {
+	text-decoration: none !important;
+}
