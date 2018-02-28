@@ -4,7 +4,7 @@
     <h1>{{$post->title}}</h1>
     <small>written on {{$post->created_at}}</small>
     <div>
-        {{$post->body}}
+        {!! $post->body!!}
     </div>
     <div>
         <p>Items left: {{$post->quantity}} </p>
