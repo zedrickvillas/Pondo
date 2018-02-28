@@ -27,8 +27,12 @@ class UserController extends Controller
 
         if ($user->isAdmin()) {
             return view('pages.admin.dashboard');
+        } if ($user->hasRole('business.owner')) {
+            return view('pages.businessowner.dashboard');
+        } else {
+            return view('pages.investor.dashboard');
         }
-
-        return view('pages.user.dashboard');
+        
+        
     }
 }
