@@ -118,7 +118,7 @@
    		</div>
 
    		<div class="flex-g-1 p-1">
-   				<form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
+   				<form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}" style="overflow: hidden;">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
