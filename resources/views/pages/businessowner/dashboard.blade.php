@@ -12,7 +12,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-
+            	<h1>Business Owner Page</h1>
                 @include('panels.welcome-panel')
 
             </div>
