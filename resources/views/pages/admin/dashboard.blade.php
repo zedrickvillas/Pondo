@@ -8,8 +8,8 @@
 @endsection
 
 @section('content')
-    <div class="container">
-   		<h1>Admin</h1>
+    <div id="admin" class="container">
+   		<h1>Admin Dashboard</h1>
         @include('panels.admin.modules')
     </div>
 
