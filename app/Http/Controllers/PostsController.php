@@ -18,6 +18,13 @@ class PostsController extends Controller
         return view ('posts.index')->with('posts',$posts);
     }
 
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' =>['index','show']]);
+    }
+
+
     /**]  * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -50,7 +57,7 @@ class PostsController extends Controller
         $post->body = $request->input('body');
         $post->quantity = $request->input('quantity');
         $post->price = $request->input('price');
-        //$post->user_id = auth()->user()->id;
+        $post->user_id = auth()->user()->id;
         $post->save();
 
         return redirect('/posts')->with('success', 'Post Created');
@@ -77,6 +84,10 @@ class PostsController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
+
+        if(auth()->user()->id !==$post->user_id){
+            return redirect('/posts')->with('error', 'Unauthorized Page');
+        }
         return view('posts.edit')->with('post',$post);
     }
 
@@ -116,6 +127,10 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
+
+        if(auth()->user()->id !==$post->user_id){
+            return redirect('/posts')->with('error', 'Unauthorized Page');
+        }
         $post->delete();
         return redirect('/posts')->with('success', 'Post Removed');
     }

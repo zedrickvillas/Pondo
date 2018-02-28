@@ -112,4 +112,8 @@ class User extends Authenticatable
     {
         return $this->profiles()->detach($profile);
     }
+
+    public function posts(){
+        return $this->hasMany('App\Models\Post');
+    }
 }
