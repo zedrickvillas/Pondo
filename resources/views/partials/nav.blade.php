@@ -17,41 +17,16 @@
             </a>
 
 
-                    <ul class="nav navbar-nav">
-                        <li><a href="/dashboard">Home</a></li>
-                        <li><a href="/posts">Posts</a></li>
-                        <li>
-                            <a href="/posts/create">Create Posts</a>
-                        </li>
-                        <li><a href="#">Page 2</a></li>
-                        <li><a href="#">Page 3</a></li>
-
-                    </ul>
 
 
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
-            {{-- Left Side Of Navbar 
+            {{-- Left Side Of Navbar --}}
             <ul class="nav navbar-nav">
-                @role('admin')
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            Admin <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li {{ Request::is('users', 'users/' . Auth::user()->id, 'users/' . Auth::user()->id . '/edit') ? 'class=active' : null }}>{!! HTML::link(url('/users'), Lang::get('titles.adminUserList')) !!}</li>
-                            <li {{ Request::is('users/create') ? 'class=active' : null }}>{!! HTML::link(url('/users/create'), Lang::get('titles.adminNewUser')) !!}</li>
-                            <li {{ Request::is('themes','themes/create') ? 'class=active' : null }}>{!! HTML::link(url('/themes'), Lang::get('titles.adminThemesList')) !!}</li>
-                            <li {{ Request::is('logs') ? 'class=active' : null }}>{!! HTML::link(url('/logs'), Lang::get('titles.adminLogs')) !!}</li>
-                            <li {{ Request::is('phpinfo') ? 'class=active' : null }}>{!! HTML::link(url('/phpinfo'), Lang::get('titles.adminPHP')) !!}</li>
-                            <li {{ Request::is('routes') ? 'class=active' : null }}>{!! HTML::link(url('/routes'), Lang::get('titles.adminRoutes')) !!}</li>
-                            <li {{ Request::is('active-users') ? 'class=active' : null }}>{!! HTML::link(url('/active-users'), Lang::get('titles.activeUsers')) !!}</li>
-                        </ul>
-                    </li>
-                @endrole
+                <li><a href="{{ route('posts.index') }}">Posts</a></li>
             </ul>
-            --}}
+            
 
             {{-- Right Side Of Navbar --}}
             <ul class="nav navbar-nav navbar-right">
