@@ -116,4 +116,8 @@ class User extends Authenticatable
     public function posts(){
         return $this->hasMany('App\Models\Post');
     }
+
+    public function business(){
+        return $this->hasOne('App\Models\Business');
+    }
 }

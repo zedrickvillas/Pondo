@@ -12,7 +12,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-            	<h1>Business Owner Page</h1>
+            	<h1>{{$business->name}}'s Dashboard</h1>
+                {{--<h1>Business Owner Page</h1>--}}
+
+
+
                 @if(count($posts) > 0)
                     <table class="table table-striped">
                         <tr>
