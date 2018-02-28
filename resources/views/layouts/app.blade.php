@@ -67,6 +67,8 @@
             <div class="container">
             @yield('content')
             </div>
+
+            @yield('no-container-content')
         </div>
 
         {{-- Scripts --}}

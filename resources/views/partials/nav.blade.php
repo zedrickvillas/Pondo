@@ -32,8 +32,10 @@
             <ul class="nav navbar-nav navbar-right">
                 {{-- Authentication Links --}}
                 @if (Auth::guest())
-                    <li><a href="{{ route('login') }}">{!! trans('titles.login') !!}</a></li>
-                    <li><a href="{{ route('register') }}">{!! trans('titles.register') !!}</a></li>
+                    @if (request()->route()->getName() !== 'welcome')
+                        <li><a href="{{ route('login') }}">Log In</a></li>
+                        <li><a href="{{ route('register') }}">Create Account</a></li>
+                    @endif
                 @else
 
                     <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>

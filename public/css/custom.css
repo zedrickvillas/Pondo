@@ -47,3 +47,42 @@
 	-moz-box-shadow: 0px 10px 10px -1px rgba(0,0,0,0.52);
 	box-shadow: 0px 10px 10px -1px rgba(0,0,0,0.52);
 }
+
+.d-flex {
+	display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  	display: -ms-flexbox;  /* TWEENER - IE 10 */
+  	display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+  	display: flex;  
+}
+
+.flex-g-1 {
+	flex-grow: 1;
+}
+
+.flex-g-2 {
+	flex-grow: 2;
+}
+
+.flex-g-3 {
+	flex-grow: 3;
+}
+
+
+/*
+	Welcome page
+*/
+
+#register-link {
+	text-decoration: none;
+    border: 1px none;
+    padding: 10px 30px;
+    border-radius: 4px;
+    background-color: #0dc60dba;
+    font-size: large;
+    color: #fff;
+    transition: all ease 200ms;
+}
+
+#register-link:hover {
+    background-color: #0dc60ddb;
+}
