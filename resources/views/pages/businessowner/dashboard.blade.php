@@ -9,24 +9,9 @@
 
 @section('content')
 
-    <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
             	<h1>{{Auth::user()->name}}'s Dashboard</h1>
-
-
-                {{--<div class="form-group">
-                    <label class="form-label">Business Name: </label>
-                    <div class="form-control">{{Auth::user()->business->name}}</div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Business Nature: </label>
-                    <div class="form-control">{{Auth::user()->business->nature}}</div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Business Address: </label>
-                    <div class="form-control">{{Auth::user()->business->address}}</div>
-                </div>--}}
 
 
                 @include('panels.businessowner.modules')
@@ -63,7 +48,7 @@
 
             </div>
         </div>
-    </div>
+    
 
 @endsection
 

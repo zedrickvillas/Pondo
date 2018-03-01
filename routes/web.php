@@ -14,6 +14,7 @@
 */
 
 Route::resource('posts', 'PostsController');
+Route::resource('business', 'BusinessController');
 
 // Homepage Route
 Route::get('/', 'WelcomeController@welcome')->name('welcome');
