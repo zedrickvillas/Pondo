@@ -2,6 +2,7 @@
 
 use App\Models\Profile;
 use App\Models\User;
+use App\Models\Business;
 use Illuminate\Database\Seeder;
 use jeremykenedy\LaravelRoles\Models\Role;
 
@@ -59,7 +60,19 @@ class UsersTableSeeder extends Seeder
             $user->profile()->save(new Profile());
             $user->attachRole($businessOwnerRole);
             $user->save();
+
+            Business::create([
+                'name'                           => 'businessName',
+                'nature'                         => 'businessNature',
+                'address'                        => 'businessAddress',
+                'user_id'                         => $user->id,
+            ]);
+
         }
+
+
+
+
 
         // Seed test user
         $user = User::where('email', '=', 'investor@user.com')->first();
