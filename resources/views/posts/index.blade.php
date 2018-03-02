@@ -19,7 +19,9 @@
                 @foreach($posts as $post)
                     <tr>
                         <td><a href="/posts/{{$post->id}}">{{$post->title}}</a></td>
-                        <td>{{$post->user->business->name}}</td>
+                        <td>
+                          <a href="{{ route('business.show', ['business' => $post->user->business]) }}" class="no-underline">{{$post->user->business->name}}</a>
+                        </td>
                         <td>{{$post->price}}</td>
                         <td>{{$post->quantity}}</td>
                         <td>

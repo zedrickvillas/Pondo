@@ -4,7 +4,9 @@
     {{ $business->user->name }}'s' Business
 @endsection
 
-
+@section('template_linked_css')
+	<link rel="stylesheet" href="{{ asset('css/rating/star-rating.min.css') }}" />
+@endsection
 
 @section('content')
 
@@ -22,8 +24,10 @@
                                         <input type="hidden" name="business_id" required="" value="{{ $business->id }}">
 
                                         <br/>
-
-                                        <button class="btn btn-success">Submit Rate</button>
+                                        @if ( !$business->isRatedBy(Auth::User()->id) )
+                                        	<button class="btn btn-success">Submit Rate</button>
+                                        @endif
+                                        
 
                         </div>
 
@@ -69,9 +73,5 @@
 @endsection
 
 @section('footer_scripts')
-
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.2/css/star-rating.min.css" />
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.2/js/star-rating.min.js"></script>
-
+	<script src="{{ asset('js/rating/star-rating.min.js') }}"></script>
 @endsection

@@ -107,10 +107,20 @@ class BusinessController extends Controller
 
         $business = Business::find($request->input('business_id'));
         $rate = $request->input('rate');
+        $user_id = auth()->user()->id;
 
-        //$lesson->updateRating($rating_id, $value); // rating_id and the new rating value
-        //$lesson->updateRatingForUser($user_id, $value); // update all rating for a single user related to the lesson
-        dd($request->input('rate'));
+        if ($business->isRatedBy($user_id)) {
+            return redirect(route('business.show', ['business' => $business]))->with('error', 'You already rated this business!');
+        }
+        
+        $business->getRatingBuilder()
+                 ->user($user_id) // you may also use $user->id
+                 ->uniqueRatingForUsers(true) // update if already rated
+                 ->rate($rate);
+     
+        return redirect(route('business.show', ['business' => $business]))->with('success', 'Successfully rated.');
+
+
     }
 
 }
