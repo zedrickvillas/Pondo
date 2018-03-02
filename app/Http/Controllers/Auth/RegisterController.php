@@ -198,12 +198,18 @@ class RegisterController extends Controller
             ]);
 
         if ($role_r->slug == "business.owner") {
-             Business::create([
+            $business = Business::create([
                 'name'                  => $data['business_name'],
                 'nature'                => $data['business_nature'],
                 'address'               => $data['business_address'],
                 'user_id'               => $user->id,
             ]);
+
+            $business->getRatingBuilder()
+                 ->user($user) // you may also use $user->id
+                 ->uniqueRatingForUsers(true) // update if already rated
+                 ->rate(0);
+
         } 
 
 

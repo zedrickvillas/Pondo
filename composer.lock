@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "923a81324ba6dd8c9a3aa7cf618b5973",
+    "content-hash": "e9e6bd436da9804c08df187d0e5e0a6c",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -4198,6 +4198,71 @@
                 "environment"
             ],
             "time": "2016-09-01T10:05:43+00:00"
+        },
+        {
+            "name": "yoeunes/rateable",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yoeunes/rateable.git",
+                "reference": "7c77e89eaa5ab4d7c6ce3a16cbd20c2509fb23b2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yoeunes/rateable/zipball/7c77e89eaa5ab4d7c6ce3a16cbd20c2509fb23b2",
+                "reference": "7c77e89eaa5ab4d7c6ce3a16cbd20c2509fb23b2",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^5.5",
+                "illuminate/support": "^5.5",
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "laracasts/testdummy": "^2.3",
+                "orchestra/testbench": "^3.5",
+                "phpunit/phpunit": "^6.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Yoeunes\\Rateable\\RateableServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Yoeunes\\Rateable\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Younes Khoubza",
+                    "email": "younes.khoubza@gmail.com",
+                    "homepage": "https://dalilbook.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel 5 package to allows multiple models to be rated.",
+            "homepage": "https://github.com/yoeunes/rateable",
+            "keywords": [
+                "Rate",
+                "Rating",
+                "fivestar",
+                "laravel",
+                "laravel 5",
+                "rateable",
+                "vote"
+            ],
+            "time": "2018-02-04T16:38:57+00:00"
         }
     ],
     "packages-dev": [

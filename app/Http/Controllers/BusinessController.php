@@ -8,6 +8,18 @@ use Illuminate\Http\Request;
 
 class BusinessController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -89,4 +101,16 @@ class BusinessController extends Controller
     {
         //
     }
+
+    public function rate(Request $request)
+    {
+
+        $business = Business::find($request->input('business_id'));
+        $rate = $request->input('rate');
+
+        //$lesson->updateRating($rating_id, $value); // rating_id and the new rating value
+        //$lesson->updateRatingForUser($user_id, $value); // update all rating for a single user related to the lesson
+        dd($request->input('rate'));
+    }
+
 }

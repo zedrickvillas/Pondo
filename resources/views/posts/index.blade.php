@@ -24,7 +24,9 @@
                         <td>{{$post->quantity}}</td>
                         <td>
 
-                            {{Form::submit('Buy', ['class' => 'btn btn-success'])}}
+                            <button type="submit" class="btn btn-success">
+                                <i class="fa fa-cart-plus"></i>
+                            </button>
                             {!!Form::close()!!}
                         </td>
                     </tr>
