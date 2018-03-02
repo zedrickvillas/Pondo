@@ -26,9 +26,15 @@
                         <td>{{$post->quantity}}</td>
                         <td>
 
-                            <button type="submit" class="btn btn-success">
-                                <i class="fa fa-cart-plus"></i>
-                            </button>
+                            <form action="{{route('cart.store')}}" method="POST">
+
+                                {{csrf_field()}}
+                                <input type="hidden" name="id" value="{{$post->id}}">
+                                <input type="hidden" name="title" value="{{$post->title}}">
+                                <input type="hidden" name="price" value="{{$post->price}}">
+                                <button type="submit" class="button button-green"><i class="fa fa-cart-plus"></i></button>
+                            </form>
+
                             {!!Form::close()!!}
                         </td>
                     </tr>

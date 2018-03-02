@@ -14,6 +14,7 @@
 */
 
 Route::resource('posts', 'PostsController');
+Route::resource('cart', 'CartController');
 Route::resource('business', 'BusinessController');
 
 // Homepage Route
