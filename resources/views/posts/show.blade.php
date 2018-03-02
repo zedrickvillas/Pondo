@@ -4,13 +4,14 @@
     <div class="panel panel-body">
         <div class="panel-heading"><h1>{{$post->title}}</h1></div>
         <div class="panel-body">
-            <small>written on {{$post->created_at}}</small>
+            <small>Written on {{$post->created_at}}</small>
+            <p>Written by: <a href="{{ route('business.show', ['business' => $post->user->business->id]) }}">{{ $post->user->business->name }}</a></p>
             <div>
                 {!! $post->body!!}
             </div>
             <div>
-                <p>Items left: {{$post->quantity}} </p>
-                <p>Item Price: {{$post->price}}</p>
+                <p>Quantity: {{$post->quantity}} </p>
+                <p>Price: {{$post->price}}</p>
             </div>
 
 

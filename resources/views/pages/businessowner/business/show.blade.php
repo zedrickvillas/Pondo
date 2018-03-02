@@ -24,8 +24,13 @@
                                         <input type="hidden" name="business_id" required="" value="{{ $business->id }}">
 
                                         <br/>
-                                        @if ( !$business->isRatedBy(Auth::User()->id) )
-                                        	<button class="btn btn-success">Submit Rate</button>
+                                        
+                                        @if (Auth::User())
+
+                                        	@if ( !$business->isRatedBy(Auth::User()->id) )
+                                        		<button class="btn btn-success">Submit Rate</button>
+                                        	@endif
+
                                         @endif
                                         
 
