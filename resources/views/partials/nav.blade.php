@@ -11,8 +11,9 @@
             </button>
 
             {{-- Branding Image --}}
-            <a class="navbar-brand" href="{{ url('/') }}">
-                {!! config('app.name', Lang::get('titles.app')) !!}
+            <a class="navbar-brand d-flex" href="{{ url('/') }}">
+                <img src="{{ asset('favicon.ico') }}" / id="logo-img">
+                ondo
 
             </a>
 

@@ -11,39 +11,11 @@
 
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-            	<h1>{{Auth::user()->name}}'s Dashboard</h1>
-
+            	<h1>Dashboard</h1>
 
                 @include('panels.businessowner.modules')
 
-                <a href="{{ route('posts.create') }}" class="btn btn-primary pull-right">Create Post</a>
-
-                @if(count($posts) > 0)
-                    <table class="table table-striped">
-                        <tr>
-                            <th>Title</th>
-                            <th>Date</th>
-                            <th>Actions</th>
-                        </tr>
-                        @foreach($posts as $post)
-                            <tr>
-                                <td>{{$post->title}}</td>
-                                <td>{{$post->created_at}}</td>
-                                <td>
-                                    <a href="/posts/{{$post->id}}/edit" class="btn btn-default">Edit</a>
-                                    {!!Form::open(['action' => ['PostsController@destroy', $post->id], 'method' => 'POST', 'style' => 'display: inline-block;'])!!}
-                                    {{Form::hidden('_method', 'DELETE')}}
-                                    {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
-                                    {!!Form::close()!!}
-                                </td>
-                            </tr>
-                        @endforeach
-                    </table>
-                @else
-                    <p>You have no posts</p>
-                @endif
-
-                
+                @include('panels.businessowner.posts')
 
 
             </div>

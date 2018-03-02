@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ Auth::user()->name }}'s' Business
+    {{ $business->user->name }}'s' Business
 @endsection
 
 

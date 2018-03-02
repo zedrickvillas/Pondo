@@ -1,3 +1,11 @@
+#logo-img {
+	height: 35px;
+}
+
+.navbar-brand {
+	align-items: center;
+}
+
 .hidden {
 	display:none;
 }
