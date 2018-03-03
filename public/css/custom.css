@@ -31,6 +31,18 @@
 	margin-bottom: 30px;
 }
 
+.mt-1 {
+	margin-top: 10px;
+}
+
+.mt-2 {
+	margin-top: 20px;
+}
+
+.mt-3 {
+	margin-top: 30px;
+}
+
 .p-1 {
 	padding: 10px;
 }
@@ -100,3 +112,53 @@
 }
 
 
+/* Login Form */
+
+.form-group {
+  position: relative;
+}
+.form-group + .form-group {
+  margin-top: 30px;
+}
+
+.form-label {
+  position: absolute;
+  left: 0;
+  top: 7px;
+  color: #999;
+  background-color: transparent;
+  z-index: 10;
+  -webkit-transition: font-size 150ms ease-out, -webkit-transform 150ms ease-out;
+  transition: font-size 150ms ease-out, -webkit-transform 150ms ease-out;
+  transition: transform 150ms ease-out, font-size 150ms ease-out;
+  transition: transform 150ms ease-out, font-size 150ms ease-out, -webkit-transform 150ms ease-out;
+}
+
+.focused .form-label {
+  -webkit-transform: translateY(-125%);
+          transform: translateY(-125%);
+  font-size: .75em;
+}
+
+.form-input {
+  position: relative;
+  padding: 12px 0px 5px 0;
+  width: 100%;
+  outline: 0;
+  border: 0;
+  -webkit-box-shadow: 0 1px 0 0 #e5e5e5;
+          box-shadow: 0 1px 0 0 #e5e5e5;
+  -webkit-transition: -webkit-box-shadow 150ms ease-out;
+  transition: -webkit-box-shadow 150ms ease-out;
+  transition: box-shadow 150ms ease-out;
+  transition: box-shadow 150ms ease-out, -webkit-box-shadow 150ms ease-out;
+}
+.form-input:focus {
+  -webkit-box-shadow: 0 2px 0 0 blue;
+          box-shadow: 0 2px 0 0 blue;
+}
+
+.form-input.filled {
+  -webkit-box-shadow: 0 2px 0 0 lightgreen;
+          box-shadow: 0 2px 0 0 lightgreen;
+}

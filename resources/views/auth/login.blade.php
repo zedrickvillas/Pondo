@@ -1,45 +1,66 @@
 @extends('layouts.app')
 
+
+
+@section('template_linked_css')
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+
+        .form {
+            width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .logo .logo-text{
+            color: #008c61;
+            margin-bottom: 0;
+        }
+
+        small.text {
+            font-weight: bolder;
+            color: #999999f0;
+        }
+
+    </style>
+@endsection
+
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">User Login</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
+ <form class="form mt-3 mb-3" role="form" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                        
+                        <a class="d-flex logo no-underline" href="{{ url('/') }}">
+                            <h1 class="logo-text">Pondo</h1>
+                            
+                        </a>
+                        <small class="text">LOG IN</small>
+                         
+                        <div class="mt-2 form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label class="form-label" for="first">E-Mail Address</label>
+                            <input id="first" class="form-input" type="text"  value="{{ old('email') }}" />
+                            @if ($errors->has('email'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </span>
+                            @endif
                         </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <label class="form-label" for="first">Password</label>
+                            <input id="first" class="form-input" type="text"  value="{{ old('password') }}" />
+                            @if ($errors->has('password'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                </span>
+                            @endif
                         </div>
+
 
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
+                            <div class="text-center">
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
@@ -55,7 +76,7 @@
                                 </button>
                             </div>
                             <div class="text-center">
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                <a class="btn btn-link no-underline" href="{{ route('password.request') }}">
                                     Forgot Your Password?
                                 </a>
                             </div>
@@ -67,10 +88,30 @@
 
                         @include('partials.socials-icons')
 
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                        <hr />
+
+                        <div class="text-center">
+                            <a id="register-link" href="{{ route('register') }}">Create Account</a>
+                        </div>
+
+ </form>
+@endsection
+
+
+@section('footer_scripts')
+    <script>
+        $('input').focus(function(){
+          $(this).parents('.form-group').addClass('focused');
+        });
+
+        $('input').blur(function(){
+          var inputValue = $(this).val();
+          if ( inputValue == "" ) {
+            $(this).removeClass('filled');
+            $(this).parents('.form-group').removeClass('focused');  
+          } else {
+            $(this).addClass('filled');
+          }
+        })  
+    </script>
 @endsection

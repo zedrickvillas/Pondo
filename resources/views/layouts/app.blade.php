@@ -57,7 +57,11 @@
     <body>
         <div id="app">
 
-            @include('partials.nav')
+            @if (request()->route()->getName() !== 'login')
+
+                @include('partials.nav')
+
+            @endif
 
             <div class="container">
 
