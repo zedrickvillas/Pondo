@@ -38,9 +38,9 @@
                         </a>
                         <small class="text">LOG IN</small>
                          
-                        <div class="mt-2 form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                        <div class="mt-2 form-group {{ $errors->has('email') ? ' has-error' : '' }}">
                             <label class="form-label" for="first">E-Mail Address</label>
-                            <input id="first" class="form-input" type="text"  value="{{ old('email') }}" />
+                            <input id="email" name="email" class="form-input" type="text"  value="{{ old('email') }}" />
                             @if ($errors->has('email'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('email') }}</strong>
@@ -48,9 +48,9 @@
                             @endif
                         </div>
 
-                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                         <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
                             <label class="form-label" for="first">Password</label>
-                            <input id="first" class="form-input" type="text"  value="{{ old('password') }}" />
+                            <input id="password" name="password" class="form-input" type="password"  value="{{ old('password') }}" />
                             @if ($errors->has('password'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('password') }}</strong>

@@ -63,11 +63,11 @@
 
             @endif
 
-            <div class="container">
+            
 
-                @include('partials.form-status')
+            @include('partials.form-status')
 
-            </div>
+    
             <div class="container">
             @yield('content')
             </div>

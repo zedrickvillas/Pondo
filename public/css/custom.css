@@ -123,6 +123,7 @@
 
 .form-label {
   position: absolute;
+  pointer-events:none;
   left: 0;
   top: 7px;
   color: #999;
@@ -143,6 +144,7 @@
 .form-input {
   position: relative;
   padding: 12px 0px 5px 0;
+  text-indent: 5px;
   width: 100%;
   outline: 0;
   border: 0;
