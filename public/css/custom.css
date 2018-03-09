@@ -114,14 +114,14 @@
 
 /* Login Form */
 
-.form-group {
+#loginForm .form-group {
   position: relative;
 }
-.form-group + .form-group {
+#loginForm .form-group + .form-group {
   margin-top: 30px;
 }
 
-.form-label {
+#loginForm .form-label {
   position: absolute;
   pointer-events:none;
   left: 0;
@@ -135,13 +135,13 @@
   transition: transform 150ms ease-out, font-size 150ms ease-out, -webkit-transform 150ms ease-out;
 }
 
-.focused .form-label {
+#loginForm .focused .form-label {
   -webkit-transform: translateY(-125%);
           transform: translateY(-125%);
   font-size: .75em;
 }
 
-.form-input {
+#loginForm .form-input {
   position: relative;
   padding: 12px 0px 5px 0;
   text-indent: 5px;
@@ -155,12 +155,12 @@
   transition: box-shadow 150ms ease-out;
   transition: box-shadow 150ms ease-out, -webkit-box-shadow 150ms ease-out;
 }
-.form-input:focus {
+#loginForm .form-input:focus {
   -webkit-box-shadow: 0 2px 0 0 blue;
           box-shadow: 0 2px 0 0 blue;
 }
 
-.form-input.filled {
+#loginForm .form-input.filled {
   -webkit-box-shadow: 0 2px 0 0 lightgreen;
           box-shadow: 0 2px 0 0 lightgreen;
 }

@@ -28,7 +28,7 @@
 @endsection
 
 @section('content')
- <form class="form mt-3 mb-3" role="form" method="POST" action="{{ route('login') }}">
+ <form id="loginForm" class="form mt-3 mb-3" role="form" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
                         
@@ -98,20 +98,23 @@
 @endsection
 
 
-@section('footer_scripts')
+@section('footer_scripts')   
     <script>
-        $('input').focus(function(){
-          $(this).parents('.form-group').addClass('focused');
-        });
+        $(document).ready(function() {
+            if (!$('input').val().length == 0) {
+             $('input').parents('.form-group').addClass('focused');
+            }
 
-        $('input').blur(function(){
-          var inputValue = $(this).val();
-          if ( inputValue == "" ) {
-            $(this).removeClass('filled');
-            $(this).parents('.form-group').removeClass('focused');  
-          } else {
-            $(this).addClass('filled');
-          }
-        })  
+            $('input').blur(function(){
+              var inputValue = $(this).val();
+              if ( inputValue == "" ) {
+                $(this).removeClass('filled');
+                $(this).parents('.form-group').removeClass('focused');  
+              } else {
+                $(this).addClass('filled');
+              }
+            })  
+        });
     </script>
 @endsection
+
