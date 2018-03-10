@@ -1,3 +1,5 @@
+<div class="container">
+  
 @if (session('message'))
   <div class="alert alert-{{ Session::get('status') }} status-box alert-dismissable fade in">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;<span class="sr-only">Close</span></a>
@@ -47,3 +49,4 @@
     </ul>
   </div>
 @endif
+</div>

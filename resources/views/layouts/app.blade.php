@@ -57,13 +57,17 @@
     <body>
         <div id="app">
 
-            @include('partials.nav')
+            @if (request()->route()->getName() !== 'login')
 
-            <div class="container">
+                @include('partials.nav')
 
-                @include('partials.form-status')
+            @endif
 
-            </div>
+            
+
+            @include('partials.form-status')
+
+    
             <div class="container">
             @yield('content')
             </div>
