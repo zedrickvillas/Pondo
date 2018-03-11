@@ -46,12 +46,12 @@
         </tr>
         <tr>
             <td colspan="2">&nbsp;</td>
-            <td>Tax</td>
+            <td><b>Tax</b></td>
             <td><?php echo Cart::tax(); ?></td>
         </tr>
         <tr>
             <td colspan="2">&nbsp;</td>
-            <td>Total</td>
+            <td><b>Total</b></td>
             <td><?php echo Cart::total(); ?></td>
         </tr>
         </tfoot>

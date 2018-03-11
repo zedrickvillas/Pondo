@@ -5,7 +5,7 @@
 				<h1 class="text-large"><i class="fa fa-users" aria-hidden="true"></i></h1>
 				<h3>User Administration</h3>
 			</a>
-		</div>
+		</div>`xx
 	</div>
 	<div class="col-md-4">
 		<div class="col-content text-center border-shadow p-1 module">

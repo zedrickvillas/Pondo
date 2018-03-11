@@ -7,12 +7,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use jeremykenedy\LaravelRoles\Traits\HasRoleAndPermission;
+use Cmgmyr\Messenger\Traits\Messagable;
 
 class User extends Authenticatable
 {
     use HasRoleAndPermission;
     use Notifiable;
     use SoftDeletes;
+
+    use Messagable;
 
     /**
      * The database table used by the model.
@@ -120,4 +123,6 @@ class User extends Authenticatable
     public function business(){
         return $this->hasOne('App\Models\Business');
     }
+
+
 }
