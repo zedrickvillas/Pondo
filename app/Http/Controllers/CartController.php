@@ -38,7 +38,7 @@ class CartController extends Controller
     {
         Cart::add($request->id, $request->title, 1, $request->price)->associate('App\Models\Post');
 
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index')->with('success_message','Item has been added to cart');
     }
 
     /**
@@ -83,6 +83,8 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Cart::remove($id);
+
+        return back()->with('success_message', 'Item has been removed!');
     }
 }

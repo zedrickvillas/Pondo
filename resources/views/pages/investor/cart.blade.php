@@ -9,7 +9,7 @@
 
 @section('content')
 
-
+    <div class='container-fluid'>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -17,6 +17,7 @@
             <th>Qty</th>
             <th>Price</th>
             <th>Subtotal</th>
+            <th></th>
         </tr>
         </thead>
 
@@ -26,12 +27,19 @@
 
         <tr>
             <td>
-                <p><strong><?php echo $row->name; ?></strong></p>
+                <p><strong><a href="/posts/{{$row->id}}"><?php echo $row->name; ?></a></strong></p>
                 <p><?php echo ($row->options->has('size') ? $row->options->size : ''); ?></p>
             </td>
-            <td><input type="text" value="<?php echo $row->qty; ?>"></td>
-            <td>$<?php echo $row->price; ?></td>
-            <td>$<?php echo $row->total; ?></td>
+            <td><?php echo $row->qty; ?>pcs.</td>
+            <td>₱<?php echo $row->price; ?></td>
+            <td>₱<?php echo (($row->price)*($row->qty)); ?></td>
+
+            <td><form action="{{ route('cart.destroy', $row->rowId) }}" method="POST">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+
+                    <button type="submit" class="cart-options">Remove</button>
+                </form></td>
         </tr>
 
         <?php endforeach;?>
@@ -42,20 +50,19 @@
         <tr>
             <td colspan="2">&nbsp;</td>
             <td>Subtotal</td>
-            <td><?php echo Cart::subtotal(); ?></td>
+            <td>₱<?php echo Cart::subtotal(); ?></td>
         </tr>
-        <tr>
-            <td colspan="2">&nbsp;</td>
-            <td>Tax</td>
-            <td><?php echo Cart::tax(); ?></td>
-        </tr>
-        <tr>
-            <td colspan="2">&nbsp;</td>
-            <td>Total</td>
-            <td><?php echo Cart::total(); ?></td>
-        </tr>
+
+
         </tfoot>
     </table>
+
+        <div class="cart-buttons">
+            <a href="{{ route('posts.index') }}" class="button">Continue Shopping</a>
+           {{-- <a href="{{ route('checkout.index') }}" class="button-primary">Proceed to Checkout</a>--}}
+        </div>
+    </div>
+
 
 
 @endsection
