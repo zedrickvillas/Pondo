@@ -25,6 +25,42 @@
                     {!!Form::close()!!}
                 @endif
             @endif
+
+            <div class="comments-app">
+                <h1>Comments</h1> 
+                <!--
+                <div class="comment-form">
+                    <div class="comment-avatar"><img src="storage/commentbox.png"></div> 
+                    <form name="form" class="form">
+                        <div class="form-row">
+                            <textarea placeholder="Add comment..." required="required" class="input"></textarea> 
+                        </div> 
+
+                        <div class="form-row"><input placeholder="Email" type="text" disabled="disabled" class="input"></div> 
+
+                        <div class="form-row"><input type="button" value="Add Comment" class="btn btn-success"></div>
+
+                    </form>
+                </div> 
+                -->
+
+                <div class="comments">
+                    @foreach ($post->comments as $comment)
+                        <div class="comment"><div class="comment-avatar"><img src="{{ $comment->user->profile->avatar }}"></div> 
+                            <div class="comment-box">
+                                <div class="comment-text">{{ $comment->body }}</div> 
+                                <div class="comment-footer">
+                                    <div class="comment-info">
+                                        <span class="comment-author"><em>{{ $comment->user->name }}</em></span> 
+                                        <span class="comment-date">{{ $comment->created_at->diffForHumans() }}</span>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach    
+                </div>
+            </div>
+
         </div>
     </div>
 @endsection
