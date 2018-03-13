@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Yoeunes\Rateable\Traits\Rateable;
 
 class Post extends Model
 {
+	use Rateable;
+
     protected $table = 'posts';
     public $primaryKey = 'id';
     public $timestamps = true;

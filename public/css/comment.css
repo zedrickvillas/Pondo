@@ -45,6 +45,7 @@
 }
 
 .comment-form .form textarea.input{
+  resize: vertical;
   height: 100px;
   padding: 15px;
 }
@@ -146,6 +147,7 @@
 }
 
 .comment .comment-text{
+  word-wrap: break-word;
   color: #555f77;
   font-size: 15px;
   margin-bottom: 25px;

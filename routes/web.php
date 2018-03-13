@@ -13,10 +13,6 @@
 |
 */
 
-Route::resource('posts', 'PostsController');
-Route::resource('cart', 'CartController');
-Route::resource('business', 'BusinessController');
-
 // Homepage Route
 Route::get('/', 'WelcomeController@welcome')->name('welcome');
 
@@ -136,4 +132,16 @@ Route::redirect('/php', '/phpinfo', 301);
 
 
 // BusinessController
-Route::post('/business/rate', 'BusinessController@rate')->name('rate.business');
+Route::resource('business', 'BusinessController');
+
+// CommentController
+Route::post('/comments/store', 'CommentController@store')->name('comments.store');
+Route::delete('/comments/{comment}', 'CommentController@destroy')->name('comments.destroy');
+
+// PostController
+Route::resource('posts', 'PostsController');
+Route::post('/posts/rate', 'PostsController@rate')->name('rate.post');
+
+// CartController
+Route::resource('cart', 'CartController');
+
