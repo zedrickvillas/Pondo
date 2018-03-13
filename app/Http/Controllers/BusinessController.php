@@ -120,7 +120,6 @@ class BusinessController extends Controller
      
         return redirect(route('business.show', ['business' => $business]))->with('success', 'Successfully rated.');
 
-
     }
 
 }

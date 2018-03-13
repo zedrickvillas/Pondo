@@ -3,12 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Yoeunes\Rateable\Traits\Rateable;
 
 class Business extends Model
 {
-    use Rateable;
-
     protected $fillable = [
         'name',
         'user_id',

@@ -40,3 +40,4 @@ Homestead.json
 packages/
 composer-setup.php
 public/vendor
+public/images/users

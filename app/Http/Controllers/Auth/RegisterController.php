@@ -204,12 +204,6 @@ class RegisterController extends Controller
                 'address'               => $data['business_address'],
                 'user_id'               => $user->id,
             ]);
-
-            $business->getRatingBuilder()
-                 ->user($user) // you may also use $user->id
-                 ->uniqueRatingForUsers(true) // update if already rated
-                 ->rate(0);
-
         } 
 
 
