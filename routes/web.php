@@ -20,6 +20,9 @@ Route::get('/', 'WelcomeController@welcome')->name('welcome');
 Auth::routes();
 Route::get('/admin/login', 'AdminController@showAdminLoginForm');
 
+// Messaging Route
+Route::get('/messages', 'MessagesController@index')->name('message');
+
 
 // Public Routes
 Route::group(['middleware' => ['web', 'activity']], function () {
@@ -145,3 +148,12 @@ Route::post('/posts/rate', 'PostsController@rate')->name('rate.post');
 // CartController
 Route::resource('cart', 'CartController');
 
+
+//MessagesController
+Route::group(['prefix' => 'messages'], function () {
+    Route::get('/', ['as' => 'messages', 'uses' => 'MessagesController@index']);
+    Route::get('create', ['as' => 'messages.create', 'uses' => 'MessagesController@create']);
+    Route::post('/', ['as' => 'messages.store', 'uses' => 'MessagesController@store']);
+    Route::get('{id}', ['as' => 'messages.show', 'uses' => 'MessagesController@show']);
+    Route::put('{id}', ['as' => 'messages.update', 'uses' => 'MessagesController@update']);
+});

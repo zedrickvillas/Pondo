@@ -15,7 +15,7 @@
                 <div class="rating">
 
                     <input id="input-1" name="rate" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="{{ $post->averageRating }}" data-size="xs"> 
-                    <small>{{ $post->countRating() }}
+                    <small>{{ $post->countRating() }}</small>
                         @if ($post->countRating() > 1)
                             raters
                         @else
@@ -60,6 +60,11 @@
                     {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
                     {!!Form::close()!!}
                 @endif
+            @endif
+
+            <!--Messaging-->
+            @if(Auth::user()->hasRole('investor') == $post->user_id)
+                <a href="/messages/create" class="btn btn-default"><span class="glyphicon glyphicon-envelope"></span></a></li>
             @endif
 
             <div class="comments-app">
