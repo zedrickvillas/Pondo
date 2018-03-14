@@ -23,13 +23,13 @@ class MessagesController extends Controller
     public function index()
     {
         // All threads, ignore deleted/archived participants
-        $threads = Thread::getAllLatest()->get();
+        // $threads = Thread::getAllLatest()->get();
 
         // All threads that user is participating in
-        // $threads = Thread::forUser(Auth::id())->latest('updated_at')->get();
+        //$threads = Thread::forUser(Auth::id())->latest('updated_at')->get();
 
         // All threads that user is participating in, with new messages
-        // $threads = Thread::forUserWithNewMessages(Auth::id())->latest('updated_at')->get();
+         $threads = Thread::forUserWithNewMessages(Auth::id())->latest('updated_at')->get();
 
         return view('messenger.index', compact('threads'));
     }
@@ -49,6 +49,8 @@ class MessagesController extends Controller
 
             return redirect()->route('messages');
         }
+
+
 
         // show current user in list if not a current participant
         // $users = User::whereNotIn('id', $thread->participantsUserIds())->get();
@@ -85,6 +87,8 @@ class MessagesController extends Controller
 
         $thread = Thread::create([
             'subject' => $input['subject'],
+
+            //try
         ]);
 
         // Message
@@ -101,11 +105,15 @@ class MessagesController extends Controller
             'last_read' => new Carbon,
         ]);
 
-        // Recipients
-
         if (Input::has('recipients')) {
             $thread->addParticipant($input['recipients']);
         }
+
+            Participant::create([
+            'thread_id' => $thread->id,
+            'user_id' => Auth::id(),
+        ]);
+
 
         return redirect()->route('messages');
     }
@@ -147,6 +155,7 @@ class MessagesController extends Controller
         if (Input::has('recipients')) {
             $thread->addParticipant(Input::get('recipients'));
         }
+
 
         return redirect()->route('messages.show', $id);
     }
