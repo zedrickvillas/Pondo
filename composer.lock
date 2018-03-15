@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "bd445f9cf7edcc0d5ffeeafced25fd0a",
+    "content-hash": "5349806d3fbab39808c74220737481f4",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -2231,6 +2231,59 @@
                 "debugbar"
             ],
             "time": "2017-12-15T11:13:46+00:00"
+        },
+        {
+            "name": "mojoblanco/domainos",
+            "version": "1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mojoblanco/domainos.git",
+                "reference": "d217db4a2a64d3c3977ba390d4f5f23ab6b2ac19"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mojoblanco/domainos/zipball/d217db4a2a64d3c3977ba390d4f5f23ab6b2ac19",
+                "reference": "d217db4a2a64d3c3977ba390d4f5f23ab6b2ac19",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.6|~7.0"
+            },
+            "type": "package",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Mojoblanco\\Domainos\\DomainosServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Mojoblanco\\Domainos\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": ":John Olawale",
+                    "email": "mojoblanco@gmail.com",
+                    "homepage": "http://mojizze.com",
+                    "role": "Software Developer"
+                }
+            ],
+            "description": "A laravel package for blacklisting or whitelisting specific email providers or domains",
+            "homepage": "https://github.com/mojoblanco/domainos",
+            "keywords": [
+                "domains",
+                "emails",
+                "laravel",
+                "mojoblanco",
+                "security"
+            ],
+            "time": "2017-11-06T14:34:54+00:00"
         },
         {
             "name": "monolog/monolog",
