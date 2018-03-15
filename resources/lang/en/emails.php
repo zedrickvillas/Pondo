@@ -1,5 +1,4 @@
 <?php
-
 return [
 
     /*
@@ -18,11 +17,11 @@ return [
      *
      */
 
-    'activationSubject'  => 'Activation required',
-    'activationGreeting' => 'Welcome!',
-    'activationMessage'  => 'You need to activate your email before you can start using all of our services.',
+    'activationSubject'  => 'Pondo Account Activation',
+    'activationGreeting' => 'Greetings!' ,
+    'activationMessage'  => 'You need to activate your email before you can start using your Pondo Account. Just click the button below to activate.',
     'activationButton'   => 'Activate',
-    'activationThanks'   => 'Thank you for using our application!',
+    'activationThanks'   => 'Enjoy using Pondo!',
 
     /*
      * Goobye email.
