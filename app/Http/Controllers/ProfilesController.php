@@ -277,10 +277,10 @@ class ProfilesController extends Controller
             $currentUser = \Auth::user();
             $avatar = Input::file('file');
             $filename = 'avatar.'.$avatar->getClientOriginalExtension();
-            $save_path = public_path().'/storage/uploads/images/users/'.$currentUser->id.'/avatar/';
+            $save_path = public_path().'/images/users/id/'.$currentUser->id.'/uploads/avatar/';
             $path = $save_path.$filename;
 
-            $public_path = '/storage/uploads/images/users/'.$currentUser->id.'/avatar/'.$filename;
+            $public_path = '/images/users/id/'.$currentUser->id.'/uploads/avatar/'.$filename;
 
             // Make the user a folder and set permissions
             File::makeDirectory($save_path, $mode = 0755, true, true);
@@ -308,7 +308,7 @@ class ProfilesController extends Controller
      */
     public function userProfileAvatar($id, $image)
     {
-        return Image::make(public_path().'/storage/uploads/images/users/'.$id.'/avatar/'.$image)->response();
+        return Image::make(public_path().'/images/users/id/'.$id.'/uploads/avatar/'.$image)->response();
     }
 
     /**
