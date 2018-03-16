@@ -14,7 +14,7 @@
 
                 <div class="rating">
 
-                    <input id="input-1" name="rate" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="{{ $post->averageRating }}" data-size="xs"> 
+                    <input id="input-1" name="rate" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="{{ $post->averageRating }}" data-size="xs">
                     <small>{{ $post->countRating() }}</small>
                         @if ($post->countRating() > 1)
                             raters
@@ -24,8 +24,8 @@
                     <br/>
 
                     <input type="hidden" name="business_id" required="" value="{{ $post->id }}">
-                    
-                                        
+
+
                     @if (Auth::User())
 
                         @if ( !$post->isRatedBy(Auth::User()->id) )
@@ -33,7 +33,7 @@
                         @endif
 
                     @endif
-                                        
+
 
                 </div>
 
@@ -68,19 +68,19 @@
             @endif
 
             <div class="comments-app">
-                <h1>Comments</h1> 
+                <h1>Comments</h1>
                 @if(!Auth::guest())
                     <div class="comment-form">
-                        <div class="comment-avatar"><img src="{{ Auth::user()->profile->avatar }}"></div> 
+                        <div class="comment-avatar"><img src="{{ Auth::user()->profile->avatar }}"></div>
                         <form name="form" class="form" method="POST" action="{{ route('comments.store') }}">
                             {{ csrf_field() }}
                             <div class="form-row">
-                                <textarea name="comment" placeholder="Add comment..." required="required" class="input"></textarea> 
-                            </div> 
+                                <textarea name="comment" placeholder="Add comment..." required="required" class="input"></textarea>
+                            </div>
 
                             <div class="form-row">
                                 <input placeholder="{{ Auth::user()->name }}" type="text" disabled="disabled" class="input">
-                            </div> 
+                            </div>
 
                             <input type="hidden" name="post_id" required="" value="{{ $post->id }}">
 
@@ -95,13 +95,13 @@
 
                 @else
                     <div class="comment-form">
-                        <div class="comment-avatar"><img src="{{ asset('images/smile.png') }}"></div> 
+                        <div class="comment-avatar"><img src="{{ asset('images/smile.png') }}"></div>
                         <form name="form" class="form">
                             <div class="form-row">
                                 <a href="{{ route('login') }}">
-                                    <textarea name="comment" placeholder="Add comment..." required="required" class="input"></textarea> 
+                                    <textarea name="comment" placeholder="Add comment..." required="required" class="input"></textarea>
                                 </a>
-                            </div> 
+                            </div>
                         </form>
                     </div>
 
@@ -109,17 +109,17 @@
 
                 <div class="comments">
                     @foreach ($post->comments as $comment)
-                        <div class="comment"><div class="comment-avatar"><img src="{{ $comment->user->profile->avatar }}"></div> 
+                        <div class="comment"><div class="comment-avatar"><img src="{{ $comment->user->profile->avatar }}"></div>
                             <div class="comment-box">
-                                <div class="comment-text">{{ $comment->body }}</div> 
+                                <div class="comment-text">{{ $comment->body }}</div>
                                 <div class="comment-footer">
                                     <div class="comment-info">
-                                        <span class="comment-author"><em>{{ $comment->user->name }}</em></span> 
+                                        <span class="comment-author"><em>{{ $comment->user->name }}</em></span>
                                         <span class="comment-date">{{ $comment->created_at->diffForHumans() }}</span>
-                                    </div> 
+                                    </div>
 
                                     @if(!Auth::guest())
-                                        @if(Auth::user()->id == $comment->user_id)                    
+                                        @if(Auth::user()->id == $comment->user_id)
                                             {!!Form::open(['action' => ['CommentController@destroy', $comment->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
                                             {{Form::hidden('_method', 'DELETE')}}
                                             {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
@@ -130,7 +130,7 @@
                                 </div>
                             </div>
                         </div>
-                    @endforeach    
+                    @endforeach
                 </div>
             </div>
 

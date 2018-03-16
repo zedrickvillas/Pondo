@@ -50,6 +50,16 @@ class MessagesController extends Controller
             return redirect()->route('messages');
         }
 
+        // restrict users from seeing other threads
+        if($thread->hasParticipant(Auth::id())){
+            $thread->markAsRead($id);
+
+            return view('messenger.show', compact('thread'));
+        }else{
+            Session::flash('error_message', 'This conversation does not involves you');
+
+            return redirect('messages');
+        }
 
 
         // show current user in list if not a current participant
@@ -58,6 +68,8 @@ class MessagesController extends Controller
         // don't show the current user in list
         $userId = Auth::id();
         $users = User::whereNotIn('id', $thread->participantsUserIds($userId))->get();
+
+
 
         $thread->markAsRead($userId);
 
@@ -105,6 +117,7 @@ class MessagesController extends Controller
             'last_read' => new Carbon,
         ]);
 
+        //Recipient
         if (Input::has('recipients')) {
             $thread->addParticipant($input['recipients']);
         }
@@ -134,6 +147,9 @@ class MessagesController extends Controller
             return redirect()->route('messages');
         }
 
+
+
+
         $thread->activateAllParticipants();
 
         // Message
@@ -155,6 +171,18 @@ class MessagesController extends Controller
         if (Input::has('recipients')) {
             $thread->addParticipant(Input::get('recipients'));
         }
+        
+        // restrict users from seeing other threads
+        if($thread->hasParticipant(Auth::id())){
+            $thread->markAsRead($id);
+
+            return view('messenger.show', compact('thread'));
+        }else{
+            Session::flash('error_message', 'This conversation does not involves you');
+
+            return redirect('messages');
+        }
+
 
 
         return redirect()->route('messages.show', $id);

@@ -111,6 +111,18 @@ class Thread extends Eloquent
         return $this->creatorCache;
     }
 
+    public function receiver()
+    {
+        if (is_null($this->creatorCache)) {
+            $firstMessage = $this->messages()->withTrashed()->oldest()->first();
+            $this->creatorCache = $firstMessage ? $firstMessage->user : Models::user();
+        }
+
+        return $this->creatorCache;
+    }
+
+
+
     /**
      * Returns all of the latest threads by updated_at date.
      *
@@ -314,6 +326,7 @@ class Thread extends Eloquent
      */
     public function participantsString($userId = null, $columns = ['name'])
     {
+        User::all();
         $participantsTable = Models::table('participants');
         $usersTable = Models::table('users');
         $userPrimaryKey = Models::user()->getKeyName();
