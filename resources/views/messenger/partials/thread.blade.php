@@ -4,7 +4,7 @@
     <h4 class="media-heading">
 
        <!-- <a href="{{ route('messages.show', $thread->id) }}" >{{ $thread->subject }}</a>-->
-           <a href="{{ route('messages.show', $thread->id) }}">{{ $thread->participantsString(Auth::id()) }}</a>
+               <a href="{{ route('messages.show', $thread->id) }}">{{$thread->participantsString(Auth::id(), ['first_name', 'last_name'])}}</a>
 
 
            ({{ $thread->userUnreadMessagesCount(Auth::id()) }} unread)</h4>
