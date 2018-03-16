@@ -6,7 +6,11 @@
 
 @section('content')
     <div class="panel panel-body">
-        <div class="panel-heading"><h1>{{$post->title}}</h1>
+        <div class="panel-heading">
+
+            <img src="{{ $post->image }}" />
+
+            <h1>{{$post->title}}</h1>
 
             <form action="{{ route('rate.post') }}" method="POST">
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Image;
+use File;
 
 class PostsController extends Controller
 {
@@ -58,6 +60,25 @@ class PostsController extends Controller
         $post->quantity = $request->input('quantity');
         $post->price = $request->input('price');
         $post->user_id = auth()->user()->id;
+
+        // Save Image
+        if ($request->hasFile('featured_image')) {
+            $image  = $request->file('featured_image');
+            $file_name =  time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path() . '/images/users/id/' . $post->user_id . '/uploads/posts/';
+
+            // Make the user a folder and set permissions
+
+            if (!file_exists($location)) {
+                mkdir($location, 666, true);
+            }
+
+
+            Image::make($image)->save($location.$file_name);
+
+            $post->image = '/images/users/id/' . $post->user_id . '/uploads/posts/'. $file_name;
+        }
+
         $post->save();
 
         return redirect('/posts')->with('success', 'Post Created');
