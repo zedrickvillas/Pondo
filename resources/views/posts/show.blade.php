@@ -12,8 +12,6 @@
 
             <h1>{{$post->title}}</h1>
 
-
-
             <div class="rating">
                     <input id="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="{{ $post->averageRating }}" data-size="xs"> 
                     <small>{{ $post->countRating() }}
@@ -22,10 +20,8 @@
                         @else
                             Rating
                         @endif
-
                     </small>
             </div>
-
 
             </form>
 
@@ -132,7 +128,11 @@
                                 <div class="rating">
                                     <input class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="{{ $comment->post->averageRatingForUser($comment->user_id) }}" data-size="xs">           
                                 </div>
+<<<<<<< HEAD
                                 <div class="comment-text">{{ $comment->body }}</div>
+=======
+                                <div class="comment-text">{{ $comment->body }}</div> 
+>>>>>>> 92194d64a62f22942b499f015ca963686b61eb86
                                 <div class="comment-footer">
                                     <div class="comment-info">
                                         <span class="comment-author"><em>{{ $comment->user->name }}</em></span>
@@ -154,7 +154,11 @@
                         @endforeach
                     @else
                         <p>No review yet.</p> 
+<<<<<<< HEAD
                     @endif
+=======
+                    @endif   
+>>>>>>> 92194d64a62f22942b499f015ca963686b61eb86
                 </div>
             </div>
 
