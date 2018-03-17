@@ -16,8 +16,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts =  Post::all();
-        return view ('posts.index')->with('posts',$posts);
+
     }
 
 
@@ -45,10 +44,11 @@ class PostsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required',
-            'body' => 'required',
-            'quantity' => 'required',
-            'price' => 'required'
+            'title'             => 'required',
+            'body'              => 'required',
+            'quantity'          => 'required|numeric',
+            'price'             => 'required|numeric',
+            'featured_image'    => 'required',
         ]);
 
 
@@ -81,7 +81,7 @@ class PostsController extends Controller
 
         $post->save();
 
-        return redirect('/posts')->with('success', 'Post Created');
+        return redirect()->route('home')->with('success', 'Post Created');
     }
 
     /**
@@ -107,7 +107,7 @@ class PostsController extends Controller
         $post = Post::find($id);
 
         if(auth()->user()->id !==$post->user_id){
-            return redirect('/posts')->with('error', 'Unauthorized Page');
+            return redirect()->route('home')->with('error', 'Unauthorized Page');
         }
         return view('posts.edit')->with('post',$post);
     }
@@ -136,7 +136,7 @@ class PostsController extends Controller
         //$post->user_id = auth()->user()->id;
         $post->save();
 
-        return redirect('/posts')->with('success', 'Post Updated');
+        return redirect()->route('home')->with('success', 'Post Updated');
     }
 
     /**
@@ -150,10 +150,10 @@ class PostsController extends Controller
         $post = Post::find($id);
 
         if(auth()->user()->id !==$post->user_id){
-            return redirect('/posts')->with('error', 'Unauthorized Page');
+            return redirect()->route('home')->with('error', 'Unauthorized Page');
         }
         $post->delete();
-        return redirect('/posts')->with('success', 'Post Removed');
+        return redirect()->route('home')->with('success', 'Post Removed');
     }
 
     public function rate(Request $request)

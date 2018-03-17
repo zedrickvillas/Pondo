@@ -1,0 +1,10 @@
+.investment-item {
+	padding: 20px 20px;
+}
+
+.investment-item-header {
+	height: 250px;
+	background-size: cover;
+	background-repeat:no-repeat;
+	background-position: center center;
+}

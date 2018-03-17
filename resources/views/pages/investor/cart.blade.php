@@ -58,7 +58,7 @@
     </table>
 
         <div class="cart-buttons">
-            <a href="{{ route('posts.index') }}" class="button">Continue Shopping</a>
+            <a href="{{ route('home') }}" class="button">Continue Shopping</a>
            {{-- <a href="{{ route('checkout.index') }}" class="button-primary">Proceed to Checkout</a>--}}
         </div>
     </div>
