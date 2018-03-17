@@ -60,8 +60,10 @@
             @endif
 
             <!--Messaging-->
-            @if(Auth::user()->hasRole('investor') == $post->user_id)
-                <a href="/messages/create" class="btn btn-default"><span class="glyphicon glyphicon-envelope"></span></a></li>
+            @if (!Auth::guest())
+                @if(Auth::user()->hasRole('investor'))
+                    <a href="{{ route('messages.create')  }}" class="btn btn-default"><span class="glyphicon glyphicon-envelope"></span></a></li>
+                @endif
             @endif
 
             <div class="comments-app">
@@ -128,11 +130,7 @@
                                 <div class="rating">
                                     <input class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="{{ $comment->post->averageRatingForUser($comment->user_id) }}" data-size="xs">           
                                 </div>
-<<<<<<< HEAD
                                 <div class="comment-text">{{ $comment->body }}</div>
-=======
-                                <div class="comment-text">{{ $comment->body }}</div> 
->>>>>>> 92194d64a62f22942b499f015ca963686b61eb86
                                 <div class="comment-footer">
                                     <div class="comment-info">
                                         <span class="comment-author"><em>{{ $comment->user->name }}</em></span>
@@ -153,12 +151,9 @@
                         </div>
                         @endforeach
                     @else
-                        <p>No review yet.</p> 
-<<<<<<< HEAD
-                    @endif
-=======
+                        <p>No review yet.</p>
                     @endif   
->>>>>>> 92194d64a62f22942b499f015ca963686b61eb86
+
                 </div>
             </div>
 
