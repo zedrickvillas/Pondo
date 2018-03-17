@@ -12,36 +12,30 @@
 
             <h1>{{$post->title}}</h1>
 
-            <form action="{{ route('rate.post') }}" method="POST">
 
-                {{ csrf_field() }}
-
-                <div class="rating">
-
-                    <input id="input-1" name="rate" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="{{ $post->averageRating }}" data-size="xs"> 
+            <div class="rating">
+                    <input id="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="{{ $post->averageRating }}" data-size="xs"> 
                     <small>{{ $post->countRating() }}
                         @if ($post->countRating() > 1)
-                            raters
+                            Ratings
                         @else
-                            rater
+                            Rating
                         @endif
-                    <br/>
-
-                    <input type="hidden" name="business_id" required="" value="{{ $post->id }}">
-                    
-                                        
-                    @if (Auth::User())
-
-                        @if ( !$post->isRatedBy(Auth::User()->id) )
-                            <button class="btn btn-success">Submit Rate</button>
-                        @endif
-
-                    @endif
-                                        
-
-                </div>
+                    <br/>                          
+            </div>
 
             </form>
+
+
+
+            <form action="{{route('cart.store')}}" method="POST">
+                {{csrf_field()}}
+                <input type="hidden" name="id" value="{{$post->id}}">
+                <input type="hidden" name="title" value="{{$post->title}}">
+                <input type="hidden" name="price" value="{{$post->price}}">
+                <button type="submit" class="button button-green"><i class="fa fa-cart-plus"></i></button>
+            </form>
+
         </div>
         <div class="panel-body">
             <small>Written on {{$post->created_at}}</small>
@@ -67,31 +61,47 @@
             @endif
 
             <div class="comments-app">
-                <h1>Comments</h1> 
-                @if(!Auth::guest())
-                    <div class="comment-form">
-                        <div class="comment-avatar"><img src="{{ Auth::user()->profile->avatar }}"></div> 
-                        <form name="form" class="form" method="POST" action="{{ route('comments.store') }}">
-                            {{ csrf_field() }}
-                            <div class="form-row">
-                                <textarea name="comment" placeholder="Add comment..." required="required" class="input"></textarea> 
-                            </div> 
+                <h1>Reviews</h1>
+                @if (!Auth::guest())
+                    @if(Auth::User()->hasRole('investor'))
+                        @if ( !$post->isRatedBy(Auth::User()->id) )
+                            <div class="comment-form">
+                                <div class="comment-avatar"><img src="{{ Auth::user()->profile->avatar }}"></div> 
+                                <form name="form" class="form" method="POST" action="{{ route('comments.store') }}">
+                                    {{ csrf_field() }}
+                                    <div class="form-row">
+                                        <textarea name="comment" placeholder="Add comment..." required="required" class="input"></textarea> 
+                                    </div> 
+                                    <div class="form-row">
+                                        <div class="rating">
 
-                            <div class="form-row">
-                                <input placeholder="{{ Auth::user()->name }}" type="text" disabled="disabled" class="input">
-                            </div> 
+                                            <input id="input-1" name="rate" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="" data-size="xs">           
+                                             
+                                            @if ($errors->has('rate'))
+                                                <span class="text-danger">
+                                                    <strong>{{ $errors->first('rate') }}</strong>
+                                                </span>
+                                            @endif
 
-                            <input type="hidden" name="post_id" required="" value="{{ $post->id }}">
+                                        </div>
+                                    </div>
 
-                            <input type="hidden" name="user_id" required="" value="{{ Auth::user()->id }}">
+                                    <div class="form-row">
+                                        <input placeholder="{{ Auth::user()->name }}" type="text" disabled="disabled" class="input">
+                                    </div> 
 
-                            <div class="form-row">
-                                <input type="submit" value="Add Comment" class="btn btn-success">
+                                    <input type="hidden" name="post_id" required="" value="{{ $post->id }}">
+
+                                    <input type="hidden" name="user_id" required="" value="{{ Auth::user()->id }}">
+
+                                    <div class="form-row">
+                                        <input type="submit" value="Submit Review" class="btn btn-success">
+                                    </div>
+
+                                </form>
                             </div>
-
-                        </form>
-                    </div>
-
+                        @endif                   
+                    @endif
                 @else
                     <div class="comment-form">
                         <div class="comment-avatar"><img src="{{ asset('images/smile.png') }}"></div> 
@@ -103,13 +113,17 @@
                             </div> 
                         </form>
                     </div>
-
                 @endif
 
+                
                 <div class="comments">
-                    @foreach ($post->comments as $comment)
+                    @if (count($post->comments) >= 1)
+                        @foreach ($post->comments as $comment)
                         <div class="comment"><div class="comment-avatar"><img src="{{ $comment->user->profile->avatar }}"></div> 
                             <div class="comment-box">
+                                <div class="rating">
+                                    <input class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="{{ $comment->post->averageRatingForUser($comment->user_id) }}" data-size="xs">           
+                                </div>
                                 <div class="comment-text">{{ $comment->body }}</div> 
                                 <div class="comment-footer">
                                     <div class="comment-info">
@@ -129,7 +143,10 @@
                                 </div>
                             </div>
                         </div>
-                    @endforeach    
+                        @endforeach
+                    @else
+                        <p>No review yet.</p> 
+                    @endif   
                 </div>
             </div>
 

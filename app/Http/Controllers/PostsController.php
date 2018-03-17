@@ -156,22 +156,4 @@ class PostsController extends Controller
         return redirect()->route('home')->with('success', 'Post Removed');
     }
 
-    public function rate(Request $request)
-    {
-        $post = Post::find($request->input('business_id'));
-        $rate = $request->input('rate');
-        $user_id = auth()->user()->id;
-
-        if ($post->isRatedBy($user_id)) {
-            return back()->with('error', 'You already rated this business!');
-        }
-        
-        $post->getRatingBuilder()
-                 ->user($user_id) // you may also use $user->id
-                 ->uniqueRatingForUsers(true) // update if already rated
-                 ->rate($rate);
-     
-        return back()->with('success', 'Successfully rated.');
-
-    }
 }
