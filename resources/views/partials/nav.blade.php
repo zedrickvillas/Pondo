@@ -24,9 +24,9 @@
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             {{-- Left Side Of Navbar --}}
-            <ul class="nav navbar-nav">
-                <li><a href="{{ route('posts.index') }}">Posts</a></li>
-            </ul>
+            <!--<ul class="nav navbar-nav">
+        
+            </ul>-->
             
 
             {{-- Right Side Of Navbar --}}
@@ -39,7 +39,7 @@
                     @endif
                 @else
 
-                    <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+                    
                     <li><a href="{{ url('/cart') }}">Cart</a></li>
 
                 <!-- Messaging-->
@@ -57,6 +57,9 @@
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+                            </li>
                             <li {{ Request::is('profile/'.Auth::user()->name, 'profile/'.Auth::user()->name . '/edit') ? 'class=active' : null }}>
                                 {!! HTML::link(url('/profile/'.Auth::user()->name), trans('titles.profile')) !!}
                             </li>

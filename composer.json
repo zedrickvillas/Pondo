@@ -26,6 +26,7 @@
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4.0",
+        "mojoblanco/domainos": "^1.1",
         "pusher/pusher-php-server": "^3.0",
         "rap2hpoutre/laravel-log-viewer": "^0.10.4",
         "socialiteproviders/37signals": "^3.0",

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Image;
+use File;
 
 class PostsController extends Controller
 {
@@ -14,8 +16,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts =  Post::all();
-        return view ('posts.index')->with('posts',$posts);
+
     }
 
 
@@ -43,10 +44,11 @@ class PostsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required',
-            'body' => 'required',
-            'quantity' => 'required',
-            'price' => 'required'
+            'title'             => 'required',
+            'body'              => 'required',
+            'quantity'          => 'required|numeric',
+            'price'             => 'required|numeric',
+            'featured_image'    => 'required',
         ]);
 
 
@@ -58,9 +60,28 @@ class PostsController extends Controller
         $post->quantity = $request->input('quantity');
         $post->price = $request->input('price');
         $post->user_id = auth()->user()->id;
+
+        // Save Image
+        if ($request->hasFile('featured_image')) {
+            $image  = $request->file('featured_image');
+            $file_name =  time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path() . '/images/users/id/' . $post->user_id . '/uploads/posts/';
+
+            // Make the user a folder and set permissions
+
+            if (!file_exists($location)) {
+                mkdir($location, 666, true);
+            }
+
+
+            Image::make($image)->save($location.$file_name);
+
+            $post->image = '/images/users/id/' . $post->user_id . '/uploads/posts/'. $file_name;
+        }
+
         $post->save();
 
-        return redirect('/posts')->with('success', 'Post Created');
+        return redirect()->route('home')->with('success', 'Post Created');
     }
 
     /**
@@ -86,7 +107,7 @@ class PostsController extends Controller
         $post = Post::find($id);
 
         if(auth()->user()->id !==$post->user_id){
-            return redirect('/posts')->with('error', 'Unauthorized Page');
+            return redirect()->route('home')->with('error', 'Unauthorized Page');
         }
         return view('posts.edit')->with('post',$post);
     }
@@ -115,7 +136,7 @@ class PostsController extends Controller
         //$post->user_id = auth()->user()->id;
         $post->save();
 
-        return redirect('/posts')->with('success', 'Post Updated');
+        return redirect()->route('home')->with('success', 'Post Updated');
     }
 
     /**
@@ -129,28 +150,10 @@ class PostsController extends Controller
         $post = Post::find($id);
 
         if(auth()->user()->id !==$post->user_id){
-            return redirect('/posts')->with('error', 'Unauthorized Page');
+            return redirect()->route('home')->with('error', 'Unauthorized Page');
         }
         $post->delete();
-        return redirect('/posts')->with('success', 'Post Removed');
+        return redirect()->route('home')->with('success', 'Post Removed');
     }
 
-    public function rate(Request $request)
-    {
-        $post = Post::find($request->input('business_id'));
-        $rate = $request->input('rate');
-        $user_id = auth()->user()->id;
-
-        if ($post->isRatedBy($user_id)) {
-            return back()->with('error', 'You already rated this business!');
-        }
-        
-        $post->getRatingBuilder()
-                 ->user($user_id) // you may also use $user->id
-                 ->uniqueRatingForUsers(true) // update if already rated
-                 ->rate($rate);
-     
-        return back()->with('success', 'Successfully rated.');
-
-    }
 }
