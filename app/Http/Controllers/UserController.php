@@ -42,4 +42,20 @@ class UserController extends Controller
         
 
     }
+
+    public function myFavorites() { 
+
+        $data = [
+            'myFavorites' => Auth::user()->favorites,
+        ];
+
+        if (Auth::user()->hasRole('investor')) {
+            return view('pages.investor.my_favorites')->with($data);
+        } else {
+            return back()->with('error', 'Unauthorized Access');
+        }
+        
+    }
+
+
 }

@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Yoeunes\Rateable\Traits\Rateable;
+use App;
+use App\Models\Favorite;
+use Auth;
 
 class Post extends Model
 {
@@ -19,5 +22,11 @@ class Post extends Model
 
     public function comments() {
     	return $this->hasMany('App\Models\Comment');
+    }
+
+    public function favorited() {
+        return (bool) Favorite::where('user_id', Auth::id())
+                                ->where('post_id', $this->id)
+                                ->first();
     }
 }

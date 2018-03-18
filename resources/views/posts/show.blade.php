@@ -48,7 +48,7 @@
             </div>
 
 
-            @if(!Auth::guest())
+            @if(Auth::check())
                 @if(Auth::user()->id == $post->user_id)
                     <a href="/posts/{{$post->id}}/edit" class="btn btn-default">Edit</a>
 
@@ -60,7 +60,7 @@
             @endif
 
             <!--Messaging-->
-            @if (!Auth::guest())
+            @if (Auth::check())
                 @if(Auth::user()->hasRole('investor'))
                     <a href="{{ route('messages.create')  }}" class="btn btn-default"><span class="glyphicon glyphicon-envelope"></span></a></li>
                 @endif
@@ -68,7 +68,7 @@
 
             <div class="comments-app">
                 <h1>Reviews</h1>
-                @if (!Auth::guest())
+                @if (Auth::check())
                     @if(Auth::User()->hasRole('investor'))
                         @if ( !$post->isRatedBy(Auth::User()->id) )
                             <div class="comment-form">

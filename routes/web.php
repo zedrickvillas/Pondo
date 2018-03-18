@@ -144,6 +144,9 @@ Route::delete('/comments/{comment}', 'CommentController@destroy')->name('comment
 // PostController
 Route::resource('posts', 'PostsController');
 Route::post('/posts/rate', 'PostsController@rate')->name('rate.post');
+Route::post('favorite/{post}', 'PostsController@favoritePost');
+Route::post('unfavorite/{post}', 'PostsController@unFavoritePost');
+
 
 // CartController
 Route::resource('cart', 'CartController');
@@ -157,3 +160,8 @@ Route::group(['prefix' => 'messages'], function () {
     Route::get('{id}', ['as' => 'messages.show', 'uses' => 'MessagesController@show']);
     Route::put('{id}', ['as' => 'messages.update', 'uses' => 'MessagesController@update']);
 });
+
+//UserController Investor
+Route::get('favorites', 'UserController@myFavorites')->middleware('auth')->name('investor.favorites');
+
+

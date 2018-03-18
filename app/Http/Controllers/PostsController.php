@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use Image;
 use File;
+use Auth;
 
 class PostsController extends Controller
 {
@@ -154,6 +155,17 @@ class PostsController extends Controller
         }
         $post->delete();
         return redirect()->route('home')->with('success', 'Post Removed');
+    }
+
+
+    public function favoritePost(Post $post) {
+        Auth::user()->favorites()->attach($post->id);
+
+        return back();
+    }
+
+    public function unFavoritePost(Post $post) {
+        Auth::user()->favorites()->detach($post->id);
     }
 
 }

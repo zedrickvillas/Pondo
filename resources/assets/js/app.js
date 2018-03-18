@@ -20,8 +20,10 @@ password = require('password-strength-meter');
  */
 
 // Vue.component('example', require('./components/Example.vue'));
-
+Vue.component('favorite', require('./components/Favorite.vue'))
 Vue.component('users-count', require('./components/UsersCount.vue'));
+
+
 
 const app = new Vue({
     el: '#app'
