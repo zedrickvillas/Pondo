@@ -164,3 +164,16 @@
   -webkit-box-shadow: 0 2px 0 0 lightgreen;
           box-shadow: 0 2px 0 0 lightgreen;
 }
+
+
+/*
+  Post
+*/
+.panel-heading .rating, .comments .rating{
+  pointer-events: none;
+}
+
+.panel-heading .rating .clear-rating, .comments .rating .clear-rating{
+  display: none !important;
+}
+
