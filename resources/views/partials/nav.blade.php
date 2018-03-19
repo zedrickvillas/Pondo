@@ -57,9 +57,15 @@
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
+                            
+                            <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+                            
+                            @if (Auth::User()->hasRole('investor'))
                             <li>
-                                <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+                                <a href="{{ route('investor.favorites') }}">My Favorites</a>
                             </li>
+                            @endif
+                            
                             <li {{ Request::is('profile/'.Auth::user()->name, 'profile/'.Auth::user()->name . '/edit') ? 'class=active' : null }}>
                                 {!! HTML::link(url('/profile/'.Auth::user()->name), trans('titles.profile')) !!}
                             </li>

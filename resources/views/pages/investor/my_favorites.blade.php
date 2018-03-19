@@ -128,20 +128,20 @@
     <h3 class="page-header">Investments</h3>
 
     <div id="investment-list" class="row">
-            @forelse ($posts as $post)
+            @forelse ($myFavorites as $myFavorite)
                 <div class="investment-item col-sm-4">
                    
-                    <div class="investment-item-header" style="background-image: url({{$post->image}})">
+                    <div class="investment-item-header" style="background-image: url({{$myFavorite->image}})">
 
-                        <h2><a href="/posts/{{$post->id}}">{{$post->title}}</a></h2>
+                        <h2><a href="/posts/{{$myFavorite->id}}">{{$myFavorite->title}}</a></h2>
 
                         <p>
                             <form action="{{route('cart.store')}}" method="POST">
 
                                                         {{csrf_field()}}
-                                                        <input type="hidden" name="id" value="{{$post->id}}">
-                                                        <input type="hidden" name="title" value="{{$post->title}}">
-                                                        <input type="hidden" name="price" value="{{$post->price}}">
+                                                        <input type="hidden" name="id" value="{{$myFavorite->id}}">
+                                                        <input type="hidden" name="title" value="{{$myFavorite->title}}">
+                                                        <input type="hidden" name="price" value="{{$myFavorite->price}}">
                                                         <button type="submit" class="button button-green"><i class="fa fa-cart-plus"></i></button>
                             </form>
 
@@ -150,9 +150,9 @@
                     </div>
 
                     <div class="investment-item-body">
-                        <p><a href="{{ route('business.show', ['business' => $post->user->business]) }}" class="no-underline">{{$post->user->business->name}}</a></p>
-                        <p>{{$post->price}}</p>
-                        <p>{{$post->quantity}}</p>
+                        <p><a href="{{ route('business.show', ['business' => $myFavorite->user->business]) }}" class="no-underline">{{$myFavorite->user->business->name}}</a></p>
+                        <p>{{$myFavorite->price}}</p>
+                        <p>{{$myFavorite->quantity}}</p>
                     </div>
 
                     <div class="investment-item-footer">
@@ -160,8 +160,8 @@
                         @if (Auth::check())
                             @if (Auth::user()->hasRole('investor'))
                                 <favorite
-                                    :post={{ $post->id }}
-                                    :favorited={{ $post->favorited() ? 'true' : 'false'}}
+                                    :post={{ $myFavorite->id }}
+                                    :favorited={{ $myFavorite->favorited() ? 'true' : 'false'}}
                                 ></favorite>
                             @endif
                         @endif   
@@ -172,7 +172,7 @@
                 </div>
 
             @empty
-                <p>No investment.</p>
+                <p>No favorited investment.</p>
             @endforelse
 
 

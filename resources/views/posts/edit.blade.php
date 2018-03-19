@@ -13,14 +13,20 @@
         </div>
 
         <div class="form-group">
-            {{Form::label('body', 'Quantity:')}}
+            {{Form::label('quantity', 'Quantity:')}}
             {{Form::text ('quantity', $post->quantity )}}
         </div>
 
         <div class="form-group">
-            {{Form::label('body', 'Price per quantity (PHP):')}}
+            {{Form::label('price', 'Price per quantity (PHP):')}}
             {{Form::text ('price', $post->price )}}
         </div>
+
+        <div class="form-group">
+            {{Form::label('update_msg', 'Update Message:')}}
+            {{Form::textarea ('update_msg', '', ['class' => 'form-control', 'placeholder' => "What's New?"] )}}
+        </div>
+
 
         {{Form::hidden('_method','PUT')}}
         {{Form::submit('Submit', ['class'=>'btn btn-primary'])}}

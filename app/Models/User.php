@@ -117,11 +117,18 @@ class User extends Authenticatable
         return $this->profiles()->detach($profile);
     }
 
-    public function posts(){
+    public function posts()
+    {
         return $this->hasMany('App\Models\Post');
     }
 
-    public function business(){
+    public function business()
+    {
         return $this->hasOne('App\Models\Business');
+    }
+
+    public function favorites()
+    {
+        return $this->belongsToMany(Post::class, 'favorites', 'user_id', 'post_id')->withTimeStamps();
     }
 }

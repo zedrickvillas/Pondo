@@ -214,9 +214,9 @@ class UsersManagementController extends Controller
         $ipAddress = new CaptureIpTrait();
 
         if ($user->id != $currentUser->id) {
-            $user->deleted_ip_address = $ipAddress->getClientIp();
-            $user->save();
-            $user->delete();
+            //$user->deleted_ip_address = $ipAddress->getClientIp();
+            //$user->save();
+            $user->forceDelete();
 
             return redirect('users')->with('success', trans('usersmanagement.deleteSuccess'));
         }
