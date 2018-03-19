@@ -7,6 +7,7 @@ use App\Models\Post;
 use Image;
 use File;
 use Auth;
+use Mail;
 
 class PostsController extends Controller
 {
@@ -126,7 +127,8 @@ class PostsController extends Controller
             'title' => 'required',
             'body' => 'required',
             'quantity' => 'required',
-            'price' => 'required'
+            'update_msg' => 'required',
+            'price' => 'required',
         ]);
 
         $post = Post::find($id);
@@ -136,6 +138,18 @@ class PostsController extends Controller
         $post->price = $request->input('price');
         //$post->user_id = auth()->user()->id;
         $post->save();
+
+        $followers_emails = $post->followersEmails();
+        $title = $post->title.':';
+        $content = $request->input('update_msg');
+
+        Mail::send('emails.send', ['title' => $title, 'content' => $content], function($message) use($followers_emails) {
+
+            $message->from($_ENV['MAIL_FROM_ADDRESS'], $_ENV['MAIL_FROM_NAME']);
+            $message->to($followers_emails)->subject('My Pondo Subscription| An invesment has been updated');
+            
+        });
+
 
         return redirect()->route('home')->with('success', 'Post Updated');
     }

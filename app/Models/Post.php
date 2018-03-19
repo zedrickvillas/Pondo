@@ -7,6 +7,7 @@ use Yoeunes\Rateable\Traits\Rateable;
 use App;
 use App\Models\Favorite;
 use Auth;
+use App\Models\User;
 
 class Post extends Model
 {
@@ -29,4 +30,29 @@ class Post extends Model
                                 ->where('post_id', $this->id)
                                 ->first();
     }
+
+    public function followersEmails() {
+
+        $favorited_post =  Favorite::where('post_id', $this->id)->get();
+
+        $investors = User::whereHas('roles', function($q) {
+                            $q->where('slug', 'investor');
+                        }
+                    )->get();
+
+
+        $followers_emails = [];
+
+        foreach ($favorited_post as $favpost) {
+            foreach ($investors as $investor) {
+                if ($favpost->user_id == $investor->id) {
+                    array_push($followers_emails, $investor->email);
+                }
+            }
+        }
+     
+
+        return $followers_emails;
+    }
+
 }
