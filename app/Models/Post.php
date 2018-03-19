@@ -31,6 +31,11 @@ class Post extends Model
                                 ->first();
     }
 
+    public function followersCount() {
+        $followers_count =  Favorite::where('post_id', $this->id)->count();
+        return $followers_count;
+    }
+
     public function followersEmails() {
 
         $favorited_post =  Favorite::where('post_id', $this->id)->get();

@@ -139,17 +139,20 @@ class PostsController extends Controller
         //$post->user_id = auth()->user()->id;
         $post->save();
 
-        $followers_emails = $post->followersEmails();
-        $title = $post->title.':';
-        $content = $request->input('update_msg');
+        if ($post->followersCount() > 0) {
+            $followers_emails = $post->followersEmails();
+            $title = $post->title.':';
+            $content = $request->input('update_msg');
 
-        Mail::send('emails.send', ['title' => $title, 'content' => $content], function($message) use($followers_emails) {
+            Mail::send('emails.send', ['title' => $title, 'content' => $content], function($message) use($followers_emails) {
 
-            $message->from($_ENV['MAIL_FROM_ADDRESS'], $_ENV['MAIL_FROM_NAME']);
-            $message->to($followers_emails)->subject('My Pondo Subscription| An invesment has been updated');
-            
-        });
+                $message->from($_ENV['MAIL_FROM_ADDRESS'], $_ENV['MAIL_FROM_NAME']);
+                $message->to($followers_emails)->subject('My Pondo Subscription| An invesment has been updated');
+                
+            });
+        }
 
+        
 
         return redirect()->route('home')->with('success', 'Post Updated');
     }
