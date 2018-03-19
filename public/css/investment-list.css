@@ -9,11 +9,33 @@
 	background-position: center center;
 }
 
-.rating {
-	 pointer-events: none;
-}
-
 .clear-rating {
 	display: none !important;
+}
+
+
+.investment-item-header {
+	border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+
+.investment-item-panel {
+	background-color: #fff;
+	border-radius: 5px;
+    box-shadow: 0px 3px 16px -4px #bfbfbf;
+}
+
+.investment-item-panel:hover {
+	box-shadow: 0px 10px 16px 0px #bfbfbf;
+}
+
+.investment-item-body {
+	padding: 5px 10px;
+}
+
+.investment-item-title {
+	word-wrap: break-word;
+	margin-top: 0;
 }
 

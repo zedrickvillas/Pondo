@@ -1,9 +1,25 @@
+* {
+  text-decoration: none !important;
+}
+
 #logo-img {
 	height: 35px;
 }
 
 .navbar-brand {
 	align-items: center;
+}
+
+.dropdown-menu li a{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex; 
+  justify-content: space-between;
+}
+
+.dropdown-menu li a:hover {
+  color: #04a36f;
 }
 
 .hidden {
@@ -176,4 +192,26 @@
 .panel-heading .rating .clear-rating, .comments .rating .clear-rating{
   display: none !important;
 }
+
+
+.rating {
+  pointer-events: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;   
+  align-items: center;
+}
+
+.rating > small {
+  margin-left: 10px !important;
+}
+
+#investment-list .fa.fa-heart,
+.panel-heading .fa.fa-heart,
+.panel-heading .fa.fa-heart-o,
+#investment-list .fa.fa-heart-o {
+  font-size: 30px;
+}
+
 

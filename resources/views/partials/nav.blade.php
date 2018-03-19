@@ -40,10 +40,11 @@
                 @else
 
                     
-                    <li><a href="{{ url('/cart') }}">Cart</a></li>
+                    @if (Auth::User()->hasRole('investor'))
+                        <li><a href="{{ route('cart.index') }}"><i class="fa fa-shopping-cart" style="font-size: 27px;"></i></a></li>
+                    @endif
 
-                <!-- Messaging-->
-                    <li><a href="{{ url('/messages') }}"><span class="glyphicon glyphicon-envelope"></span></a></li>
+               
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -58,22 +59,22 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             
-                            <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+                            <li><a href="{{ url('/dashboard') }}"><i class="fa fa-tachometer" aria-hidden="true"></i>Dashboard</a></li>
+
+                            <li><a href="{{ route('messages') }}"><i class="fa fa-envelope" aria-hidden="true"></i>Messenger</a></li>
                             
                             @if (Auth::User()->hasRole('investor'))
                             <li>
-                                <a href="{{ route('investor.favorites') }}">My Favorites</a>
+                                <a href="{{ route('investor.favorites') }}"><i class="fa fa-heart" aria-hidden="true"></i>My Favorites</a>
                             </li>
                             @endif
-                            
-                            <li {{ Request::is('profile/'.Auth::user()->name, 'profile/'.Auth::user()->name . '/edit') ? 'class=active' : null }}>
-                                {!! HTML::link(url('/profile/'.Auth::user()->name), trans('titles.profile')) !!}
-                            </li>
+
+                            <li><a href="{{ route('profile.show', ['profile' => Auth::User()->name]) }}"><i class="fa fa-user" aria-hidden="true"></i>My Profile</a></li>
                             <li>
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
-                                    {!! trans('titles.logout') !!}
+                                <i class="fa fa-sign-out" aria-hidden="true"></i>Logout
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

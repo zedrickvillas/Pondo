@@ -8,13 +8,24 @@
     <div class="panel panel-body">
         <div class="panel-heading">
 
+            @if (Auth::check())
+                @if (Auth::user()->hasRole('investor'))
+                    <div>
+                        <favorite
+                            :post={{ $post->id }}
+                            :favorited={{ $post->favorited() ? 'true' : 'false'}}
+                        ></favorite>
+                    </div>
+                @endif
+            @endif               
+
             <img src="{{ $post->image }}" />
 
             <h1>{{$post->title}}</h1>
 
             <div class="rating">
                     <input id="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="{{ $post->averageRating }}" data-size="xs"> 
-                    <small>{{ $post->countRating() }}
+                    <small>({{ $post->countRating() }})
                         @if ($post->countRating() > 1)
                             Ratings
                         @else
@@ -23,17 +34,18 @@
                     </small>
             </div>
 
-            </form>
+            @if (Auth::check())
+                @if (Auth::user()->hasRole('investor'))
+                    <form action="{{route('cart.store')}}" method="POST">
+                        {{csrf_field()}}
+                        <input type="hidden" name="id" value="{{$post->id}}">
+                        <input type="hidden" name="title" value="{{$post->title}}">
+                        <input type="hidden" name="price" value="{{$post->price}}">
+                        <button type="submit" class="button button-green"><i class="fa fa-cart-plus"></i></button>
+                    </form>
+                @endif
+            @endif
 
-
-
-            <form action="{{route('cart.store')}}" method="POST">
-                {{csrf_field()}}
-                <input type="hidden" name="id" value="{{$post->id}}">
-                <input type="hidden" name="title" value="{{$post->title}}">
-                <input type="hidden" name="price" value="{{$post->price}}">
-                <button type="submit" class="button button-green"><i class="fa fa-cart-plus"></i></button>
-            </form>
 
         </div>
         <div class="panel-body">

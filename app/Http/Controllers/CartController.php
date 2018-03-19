@@ -9,13 +9,27 @@ use Illuminate\Support\Facades\Validator;
 class CartController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('pages/investor/cart');
+        if (auth()->user()->hasRole('investor')) {
+            return view('pages/investor/cart');
+        } else {
+            return back()->with('error', 'Unauthorized access');
+        }
     }
 
     /**
