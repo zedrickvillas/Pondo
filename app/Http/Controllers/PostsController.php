@@ -124,11 +124,12 @@ class PostsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'title' => 'required',
-            'body' => 'required',
-            'quantity' => 'required',
-            'update_msg' => 'required',
-            'price' => 'required',
+            'title'             => 'required',
+            'body'              => 'required',
+            'quantity'          => 'required',
+            'update_msg'        => 'required',
+            'price'             => 'required',
+            'featured_image'    => 'image',
         ]);
 
         $post = Post::find($id);
@@ -136,7 +137,35 @@ class PostsController extends Controller
         $post->body = $request->input('body');
         $post->quantity = $request->input('quantity');
         $post->price = $request->input('price');
-        //$post->user_id = auth()->user()->id;
+
+        if ($request->featured_image) {
+            // add new featured image
+            $image  = $request->file('featured_image');
+            $file_name =  time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path() . '/images/users/id/' . $post->user_id . '/uploads/posts/';
+
+            // Make the user a folder if nonexistent and set permissions
+            if (!file_exists($location)) {
+                mkdir($location, 666, true);
+            }
+
+            Image::make($image)->save($location.$file_name);
+
+            if ( !empty($post->image)) {
+                // delete the old image from directory
+                $oldFileName =  public_path() . $post->image;
+                File::delete($oldFileName);
+            }
+            
+
+            // update the database
+            $post->image = '/images/users/id/' . $post->user_id . '/uploads/posts/'. $file_name;
+
+
+        }
+
+
+
         $post->save();
 
         if ($post->followersCount() > 0) {
