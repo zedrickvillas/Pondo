@@ -39,12 +39,24 @@
                     @endif
                 </div>
 
-                <div class="form-group" style="flex: 1;">
+                <div class="form-group" style="flex: 1; margin-right: 5px;">
                     {{Form::label('price', 'Price per quantity (PHP):')}}
                     {{Form::text ('price', '' , ["class" => "form-control"])}}
                     @if ($errors->has('price'))
                         <span class="text-danger">
                             <strong>{{ $errors->first('price') }}</strong>
+                        </span>
+                    @endif
+                </div>
+
+
+
+                <div class="form-group" style="flex: 1;">
+                    {{Form::label('roi', 'Projected ROI per Quantity(%):')}}
+                    {{Form::text ('roi', '' , ["class" => "form-control"] )}}
+                    @if ($errors->has('quantity'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('roi') }}</strong>
                         </span>
                     @endif
                 </div>

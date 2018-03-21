@@ -61,6 +61,7 @@ class PostsController extends Controller
         $post->body = $request->input('body');
         $post->quantity = $request->input('quantity');
         $post->price = $request->input('price');
+        $post->roi = $request->input('roi');
         $post->user_id = auth()->user()->id;
 
         // Save Image
@@ -136,6 +137,7 @@ class PostsController extends Controller
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         $post->quantity = $request->input('quantity');
+        $post->roi = $request->input('roi');
         $post->price = $request->input('price');
 
         if ($request->featured_image) {

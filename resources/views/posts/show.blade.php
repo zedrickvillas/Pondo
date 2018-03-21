@@ -92,7 +92,6 @@
     }
 }
 </style>
-    </style>
 @endsection
 
 @section('content')
@@ -163,6 +162,8 @@
             <div>
                 <p>Quantity: {{$post->quantity}} </p>
                 <p>Price: {{$post->price}}</p>
+                <p>Projected ROI per Quantity: {{$post->roi}}%</p>
+                <p>Projected Return after Investment: {{($post->roi * ($post->price/100))+$post->price}}</p>
             </div>
 
 
