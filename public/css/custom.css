@@ -195,7 +195,6 @@
 
 
 .rating {
-  pointer-events: none;
   display: -webkit-box;
   display: -ms-flexbox;
   display: -webkit-flex;
