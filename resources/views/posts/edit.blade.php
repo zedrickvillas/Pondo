@@ -6,7 +6,7 @@
     {!! Form::open(['action' => ['PostsController@update', $post->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}  
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h1>Edit Post</h1>
+            <h1>Edit Invesment</h1>
         </div>
         <div class="panel-body">
 

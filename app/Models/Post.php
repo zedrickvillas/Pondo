@@ -25,6 +25,10 @@ class Post extends Model
     	return $this->hasMany('App\Models\Comment');
     }
 
+    public function images() {
+        return $this->hasMany('App\Models\Image');
+    }
+
     public function favorited() {
         return (bool) Favorite::where('user_id', Auth::id())
                                 ->where('post_id', $this->id)

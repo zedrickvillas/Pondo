@@ -147,6 +147,10 @@ Route::post('/posts/rate', 'PostsController@rate')->name('rate.post');
 Route::post('favorite/{post}', 'PostsController@favoritePost');
 Route::post('unfavorite/{post}', 'PostsController@unFavoritePost');
 
+Route::get('/posts/{post}/gallery', 'PostsController@galleryIndex')->name('posts.gallery.index');
+Route::post('/posts/uploadImages', 'PostsController@galleryUpload')->name('posts.gallery.upload');
+
+
 
 // CartController
 Route::resource('cart', 'CartController');
