@@ -14,6 +14,7 @@
                                         <td>{{$post->title}}</td>
                                         <td>{{$post->created_at}}</td>
                                         <td>
+                                            <a href="{{ route('posts.gallery.index', ['post' => $post]) }}">Gallery</a>
                                             <a href="/posts/{{$post->id}}/edit" class="btn btn-default">Edit</a>
                                             {!!Form::open(['action' => ['PostsController@destroy', $post->id], 'method' => 'POST', 'style' => 'display: inline-block;'])!!}
                                             {{Form::hidden('_method', 'DELETE')}}

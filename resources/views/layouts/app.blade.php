@@ -24,6 +24,7 @@
 
         {{-- Styles --}}
         <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('/css/dropzone.min.css') }}" rel="stylesheet">
         <link href="{{ asset('/css/custom.css') }}" rel="stylesheet">
         <link href="{{ asset('/css/comment.css') }}" rel="stylesheet">
 
@@ -84,6 +85,7 @@
         @endif
 
         @yield('footer_scripts')
+        <script src="{{ asset('/js/dropzone.min.js') }}"></script>
         <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
         <script>
             CKEDITOR.replace( 'article-ckeditor' );

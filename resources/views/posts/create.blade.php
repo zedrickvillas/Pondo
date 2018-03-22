@@ -4,7 +4,7 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h1>Create Post</h1>
+            <h1>Create Invesment</h1>
         </div>
         <div class="panel-body"> 
 

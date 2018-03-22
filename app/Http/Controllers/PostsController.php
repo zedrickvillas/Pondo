@@ -216,4 +216,40 @@ class PostsController extends Controller
         Auth::user()->favorites()->detach($post->id);
     }
 
+    public function galleryIndex(Post $post) {
+        return view('posts.gallery')->with('post', $post);
+    }
+
+    public function galleryUpload(Request $request) {
+
+        $post_id = $request->input('post_id');
+        $post = Post::find($post_id);
+
+        // get file from the post request
+        $image = $request->file('file');
+
+        // set file name
+        $file_name = uniqid() . '.' . $image->getClientOriginalExtension();
+
+        
+
+        $location = public_path() . '/images/users/id/' . $post->user_id . '/uploads/posts/gallery/';
+
+        // Make the user a folder if nonexistent and set permissions
+        if (!file_exists($location)) {
+            mkdir($location, 666, true);
+        }
+
+        Image::make($image)->save($location.$file_name);
+            
+        // save tinto he database
+        $file_path = '/images/users/id/' . $post->user_id . '/uploads/posts/gallery/'. $file_name;
+
+        $image = $post->images()->create([
+            'post_id'   => $post_id,
+            'image'     => $file_path,
+        ]);
+
+    }
+
 }
