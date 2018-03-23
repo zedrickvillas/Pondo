@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+
+
+
+
 @section('content')
 	
 	
@@ -16,17 +20,10 @@
 				</form>
 
 
-				<div class="row">
+				<div class="row" id="gallery-images">
 					@foreach($post->images as $image)
-						<div class="col-md-4 p-2">
-							<div style="width: 100%; 
-										height: 130px;
-										background-image: url({{ $image->image }});
-										background-repeat: no-repeat;
-										background-position: center;
-										background-size: fill;
-										box-shadow: 0px 5px 7px 0px #f3e1e1;
-										border-radius: 4px;"></div>
+						<div class="col-sm-4 p-2">
+							<div class="g-image"  style="background-image: url({{ $image->image }});"></div>
 						</div>
 					@endforeach
 					
