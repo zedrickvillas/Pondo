@@ -250,6 +250,8 @@ class PostsController extends Controller
             'image'     => $file_path,
         ]);
 
+        return $image;
+
     }
 
 }
