@@ -1,6 +1,6 @@
 
 Dropzone.options.addImages = {
-	maxfileSize: 2,
+	maxfileSize: 0,
 	maxFiles: 5,
 	acceptedFiles: 'image/*',
 	success: function(file, response) {
@@ -9,7 +9,14 @@ Dropzone.options.addImages = {
 		} else {
 			handleDropzoneFileUpload.handleError(response);
 		}
-	}
+	},
+
+	init: function() {
+	    this.on("maxfilesexceeded", function(file){
+	        alert("No more files please!");
+	    });
+  	}
+
 };
 
 var handleDropzoneFileUpload = {

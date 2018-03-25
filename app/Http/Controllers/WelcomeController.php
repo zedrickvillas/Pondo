@@ -12,7 +12,7 @@ class WelcomeController extends Controller
      */
     public function welcome()
     {
-    	$posts =  Post::all();
+    	$posts =  Post::orderBy('created_at', 'desc')->paginate(6);
         return view('index')->with('posts', $posts);
     }
 }

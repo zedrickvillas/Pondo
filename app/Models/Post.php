@@ -35,6 +35,10 @@ class Post extends Model
                                 ->first();
     }
 
+    public function getAll($limit) {
+        return $limit;
+    }
+
     public function followersCount() {
         $followers_count =  Favorite::where('post_id', $this->id)->count();
         return $followers_count;
