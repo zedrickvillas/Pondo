@@ -13,7 +13,7 @@
             <div class="col-md-10 col-md-offset-1">
             	<h1>Dashboard</h1>
 
-                @include('panels.businessowner.posts')
+                @include('panels.businessowner.investments')
 
 
             </div>

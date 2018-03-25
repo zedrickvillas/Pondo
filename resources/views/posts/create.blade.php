@@ -54,7 +54,7 @@
                 <div class="form-group" style="flex: 1;">
                     {{Form::label('roi', 'Projected ROI per Quantity(%):')}}
                     {{Form::text ('roi', '' , ["class" => "form-control"] )}}
-                    @if ($errors->has('quantity'))
+                    @if ($errors->has('roi'))
                         <span class="text-danger">
                             <strong>{{ $errors->first('roi') }}</strong>
                         </span>
@@ -65,6 +65,11 @@
             <div class="form-group">
                 {{Form::label('featured_image', 'Upload Featured Image')}}
                 {{Form::file('featured_image')}}
+                @if ($errors->has('featured_image'))
+                    <span class="text-danger">
+                        <strong>{{ $errors->first('featured_image') }}</strong>
+                    </span>
+                @endif
             </div>
 
 

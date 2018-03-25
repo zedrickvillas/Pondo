@@ -14,7 +14,7 @@
 
                         <div class="investment-item-body">
                             <h2 class="investment-item-title"><a href="/posts/{{$post->id}}">{{$post->title}}</a></h2>
-                            <div class="rating">
+                            <div class="rating" style="pointer-events: none;">
                                     <input id="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="{{ $post->averageRating }}" data-size="xs"> 
                                     <small>({{ $post->countRating() }})
                                         @if ($post->countRating() > 1)
@@ -32,10 +32,12 @@
 
                             @if (Auth::check())
                                 @if (Auth::user()->hasRole('investor'))
-                                    <favorite
+                                    <div class="text-center">
+                                        <favorite
                                         :post={{ $post->id }}
                                         :favorited={{ $post->favorited() ? 'true' : 'false'}}
-                                    ></favorite>
+                                        ></favorite>
+                                    </div>
                                 @endif
                             @endif 
                         </div>

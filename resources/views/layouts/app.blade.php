@@ -28,6 +28,7 @@
         <link href="{{ asset('/css/custom.css') }}" rel="stylesheet">
         <link href="{{ asset('/css/comment.css') }}" rel="stylesheet">
         <link href="{{ asset('/css/gallery.css') }}" rel="stylesheet">
+        <link href="{{ asset('/css/lightbox.css') }}" rel="stylesheet">
 
         @yield('template_linked_css')
 
@@ -86,6 +87,7 @@
         @endif
 
         @yield('footer_scripts')
+        <script src="{{ asset('/js/lightbox.js') }}"></script>
         <script src="{{ asset('/js/gallery.js') }}"></script>
         <script src="{{ asset('/js/dropzone.min.js') }}"></script>
         <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>

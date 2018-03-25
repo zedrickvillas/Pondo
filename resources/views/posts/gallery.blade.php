@@ -23,10 +23,11 @@
 				<div class="row" id="gallery-images">
 					@foreach($post->images as $image)
 						<div class="col-sm-4 p-2">
-							<div class="g-image"  style="background-image: url({{ $image->image }});"></div>
+							<a href="{{ $image->image }}" data-lightbox="investment">
+                                <div class="g-image"  style="background-image: url({{ $image->image }});"></div>
+                            </a>
 						</div>
 					@endforeach
-					
 				</div>
 
                     

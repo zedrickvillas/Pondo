@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\User;
 use Carbon\Carbon;
 use Cmgmyr\Messenger\Models\Message;
@@ -81,11 +82,14 @@ class MessagesController extends Controller
      *
      * @return mixed
      */
-    public function create()
+    public function create($user, Post $investment)
     {
-        $users = User::where('id', '!=', Auth::id())->get();
+        $data = [
+            'user' =>  User::find($user),
+            'investment_title' => $investment->title,
+        ];
 
-        return view('messenger.create', compact('users'));
+        return view('messenger.create')->with($data);
     }
 
     /**
@@ -93,8 +97,14 @@ class MessagesController extends Controller
      *
      * @return mixed
      */
-    public function store()
+    public function store(Request $request)
     {
+        $this->validate($request, [
+            'subject'   => 'required',
+            'message'   => 'required',
+        ]);
+
+
         $input = Input::all();
 
         $thread = Thread::create([

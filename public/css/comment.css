@@ -91,7 +91,6 @@
 }
 
 
-.comments{  }
 
 .comment-form,
 .comment{
@@ -208,4 +207,10 @@
     list-style-type: none;
     display: inline !important;
 }
+
+
+.investment-table-row > td{
+  vertical-align: middle !important;
+}
+
 </style>
