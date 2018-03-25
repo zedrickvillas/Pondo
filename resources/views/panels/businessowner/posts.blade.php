@@ -1,16 +1,27 @@
 <div class="panel panel-default p-1">
-                    <a href="{{ route('posts.create') }}" class="btn btn-primary pull-right mb-1">Create Post</a>
+                    
+                    <div class="panel-heading">
+                        <h2>Investments</h2>
+                        <a href="{{ route('posts.create') }}" class="btn btn-primary">Create Invesment</a>
+                    </div>
+                   
                     <div class="panel-body">
                     
                         @if(count($posts) > 0)
                             <table class="table table-striped">
                                 <tr>
+                                    <th></th>
+                                    <th>Id</th>
                                     <th>Title</th>
-                                    <th>Date</th>
+                                    <th>Created At</th>
                                     <th>Actions</th>
                                 </tr>
                                 @foreach($posts as $post)
                                     <tr>
+                                        <td style="width: 200px;">
+                                            <div class="table-thumbnail" style="background-image: url({{ $post->image }});"></div>
+                                        </td>
+                                        <td>{{$post->id}}</td>
                                         <td>{{$post->title}}</td>
                                         <td>{{$post->created_at}}</td>
                                         <td>
@@ -30,4 +41,5 @@
 
                     </div>
 </div>
+
                 

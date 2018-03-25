@@ -50,6 +50,7 @@ class PostsController extends Controller
             'body'              => 'required',
             'quantity'          => 'required|numeric',
             'price'             => 'required|numeric',
+            'roi'               => 'required|numeric',
             'featured_image'    => 'required',
         ]);
 
