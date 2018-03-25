@@ -214,3 +214,15 @@
 }
 
 
+/* 
+ Table Investment
+*/
+.table-thumbnail {
+  width: 100%;
+  height: 150px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: fill;
+}
+
+
