@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e590342a8372504feb499d3a5e3a5745",
+    "content-hash": "531519ba73d9bc694630bf4e40a5efd1",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -955,16 +955,16 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "6.3.0",
+            "version": "6.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "f4db5a78a5ea468d4831de7f0bf9d9415e348699"
+                "reference": "68d0ea14d5a3f42a20e87632a5f84931e2709c90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/f4db5a78a5ea468d4831de7f0bf9d9415e348699",
-                "reference": "f4db5a78a5ea468d4831de7f0bf9d9415e348699",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/68d0ea14d5a3f42a20e87632a5f84931e2709c90",
+                "reference": "68d0ea14d5a3f42a20e87632a5f84931e2709c90",
                 "shasum": ""
             },
             "require": {
@@ -974,7 +974,7 @@
             },
             "require-dev": {
                 "ext-curl": "*",
-                "phpunit/phpunit": "^4.0 || ^5.0",
+                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.4",
                 "psr/log": "^1.0"
             },
             "suggest": {
@@ -983,7 +983,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "6.2-dev"
+                    "dev-master": "6.3-dev"
                 }
             },
             "autoload": {
@@ -1016,7 +1016,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2017-06-22T18:50:49+00:00"
+            "time": "2018-03-26T16:33:04+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -1293,16 +1293,16 @@
         },
         {
             "name": "jaybizzle/crawler-detect",
-            "version": "v1.2.60",
+            "version": "v1.2.61",
             "source": {
                 "type": "git",
                 "url": "https://github.com/JayBizzle/Crawler-Detect.git",
-                "reference": "6e9abfe7100f1c8febfa600b3568192989f10c2e"
+                "reference": "9f22764fa72f6a30211fe16cf28a1f43642136de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/6e9abfe7100f1c8febfa600b3568192989f10c2e",
-                "reference": "6e9abfe7100f1c8febfa600b3568192989f10c2e",
+                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/9f22764fa72f6a30211fe16cf28a1f43642136de",
+                "reference": "9f22764fa72f6a30211fe16cf28a1f43642136de",
                 "shasum": ""
             },
             "require": {
@@ -1338,7 +1338,7 @@
                 "crawlerdetect",
                 "php crawler detect"
             ],
-            "time": "2018-03-05T20:50:06+00:00"
+            "time": "2018-03-19T20:27:17+00:00"
         },
         {
             "name": "jaybizzle/laravel-crawler-detect",
@@ -1504,16 +1504,16 @@
         },
         {
             "name": "jeremykenedy/laravel-logger",
-            "version": "v1.0.1",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jeremykenedy/laravel-logger.git",
-                "reference": "4750b1c9ba658188f44de27bbae0fb1eeb09a18a"
+                "reference": "ecf5489e519fed22e3ea24742ed7aff9b3cb8fca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jeremykenedy/laravel-logger/zipball/4750b1c9ba658188f44de27bbae0fb1eeb09a18a",
-                "reference": "4750b1c9ba658188f44de27bbae0fb1eeb09a18a",
+                "url": "https://api.github.com/repos/jeremykenedy/laravel-logger/zipball/ecf5489e519fed22e3ea24742ed7aff9b3cb8fca",
+                "reference": "ecf5489e519fed22e3ea24742ed7aff9b3cb8fca",
                 "shasum": ""
             },
             "require": {
@@ -1547,7 +1547,7 @@
                 }
             ],
             "description": "Laravel Logger Package",
-            "time": "2018-01-22T01:24:53+00:00"
+            "time": "2018-03-26T05:32:29+00:00"
         },
         {
             "name": "jeremykenedy/laravel-phpinfo",
@@ -1760,6 +1760,65 @@
                 "UUID RFC4122"
             ],
             "time": "2017-09-04T11:08:32+00:00"
+        },
+        {
+            "name": "jorenvanhocht/laravel-share",
+            "version": "2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jorenvh/laravel-share.git",
+                "reference": "eccc0e368078c463b0910768a763ac7baf61fe58"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jorenvh/laravel-share/zipball/eccc0e368078c463b0910768a763ac7baf61fe58",
+                "reference": "eccc0e368078c463b0910768a763ac7baf61fe58",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "orchestra/testbench": "3.1.0|3.2.0|3.3.0",
+                "phpunit/phpunit": "5.*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Jorenvh\\Share\\Providers\\ShareServiceProvider"
+                    ],
+                    "aliases": {
+                        "Share": "Jorenvh\\Share\\ShareFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Jorenvh\\Share\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joren Van Hocht",
+                    "email": "joren@codeswitch.be",
+                    "homepage": "https://codeswitch.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Optional package for Laravel to generate social share links.",
+            "homepage": "https://github.com/jorenvh/laravel-share",
+            "keywords": [
+                "laravel",
+                "share",
+                "social links",
+                "social share links"
+            ],
+            "time": "2018-01-20T21:57:48+00:00"
         },
         {
             "name": "laravel/framework",
@@ -2516,16 +2575,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.24.2",
+            "version": "1.25.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "bba6c6e410c6b4317e37a9474aeaa753808c3875"
+                "reference": "cbcf13da0b531767e39eb86e9687f5deba9857b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/bba6c6e410c6b4317e37a9474aeaa753808c3875",
-                "reference": "bba6c6e410c6b4317e37a9474aeaa753808c3875",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/cbcf13da0b531767e39eb86e9687f5deba9857b4",
+                "reference": "cbcf13da0b531767e39eb86e9687f5deba9857b4",
                 "shasum": ""
             },
             "require": {
@@ -2565,7 +2624,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2018-03-10T10:10:14+00:00"
+            "time": "2018-03-19T15:50:49+00:00"
         },
         {
             "name": "nikic/php-parser",

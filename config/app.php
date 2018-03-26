@@ -191,6 +191,7 @@ return [
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
         jeremykenedy\laravelexceptionnotifier\LaravelExceptionNotifier::class,
         Cmgmyr\Messenger\MessengerServiceProvider::class,
+        Jorenvh\Share\Providers\ShareServiceProvider::class,
     ],
 
     /*
@@ -248,6 +249,7 @@ return [
         'Uuid'         => Webpatser\Uuid\Uuid::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'Share' => Jorenvh\Share\ShareFacade::class,
     ],
 
 ];

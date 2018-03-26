@@ -51,6 +51,7 @@
             ]) !!};
         </script>
 
+
         @if (Auth::User() && (Auth::User()->profile) && $theme->link != null && $theme->link != 'null')
             <link rel="stylesheet" type="text/css" href="{{ $theme->link }}">
         @endif
@@ -94,5 +95,7 @@
         <script>
             CKEDITOR.replace( 'article-ckeditor' );
         </script>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script src="{{ asset('js/share.js') }}"></script>
     </body>
 </html>

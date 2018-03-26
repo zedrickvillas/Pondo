@@ -5,6 +5,7 @@
 
 
 <style>
+
  #post-featured-image {
     border-radius: 5px;
     cursor: pointer;
@@ -22,6 +23,7 @@
 .investment-gallery-image {
     width: 100%;
 }
+
 </style>
 @endsection
 
@@ -103,7 +105,14 @@
                 <p>Price: {{$post->price}}</p>
                 <p>Projected ROI per Quantity: {{$post->roi}}%</p>
                 <p>Projected Return after Investment: {{($post->roi * ($post->price/100))+$post->price}}</p>
+
             </div>
+            <hr>
+            <H3> Share To</H3>
+            {!! Share::page(url()->current())->facebook()!!}
+            {!! Share::page(url()->current(), 'Share to TWITTER')->twitter();!!}
+
+
 
 
             @if(Auth::check())
