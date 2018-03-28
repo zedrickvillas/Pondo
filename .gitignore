@@ -41,3 +41,5 @@ packages/
 composer-setup.php
 public/vendor
 public/images/users
+.env
+
