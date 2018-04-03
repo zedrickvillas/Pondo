@@ -30,7 +30,7 @@
 
                 </div>
             @empty
-                <p>No investment.</p>
+                <p>No investment</p>
             @endforelse
 
 </div>

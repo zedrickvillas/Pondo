@@ -16,6 +16,12 @@
 @endsection
 
 
+@section('no-container-content-bottom')
+	@if(!Auth::check())
+	@include('partials.choose-role')
+	@endif
+@endsection
+
 @section('content')
     @include('partials.lists.investment-list')
 @endsection

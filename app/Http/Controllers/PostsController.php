@@ -128,10 +128,11 @@ class PostsController extends Controller
         $this->validate($request, [
             'title'             => 'required',
             'body'              => 'required',
-            'quantity'          => 'required',
-            'update_msg'        => 'required',
-            'price'             => 'required',
+            'quantity'          => 'required|numeric',
+            'price'             => 'required|numeric',
+            'roi'               => 'required|numeric',
             'featured_image'    => 'image',
+            'update_msg'        => 'required',
         ]);
 
         $post = Post::find($id);

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" id="status-msg">
   
 @if (session('message'))
   <div class="alert alert-{{ Session::get('status') }} status-box alert-dismissable fade in">

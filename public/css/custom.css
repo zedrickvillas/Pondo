@@ -1,6 +1,26 @@
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/OpenSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "Montserrat Bold";
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/Montserrat-Bold.ttf') format('truetype');
+}
+
+
 * {
   text-decoration: none !important;
-  font-family: sans-serif;
+  font-family: 'Open Sans';
+}
+
+
+h1, h2 ,h3 ,h4, h5, h6 {
+  font-family: "Montserrat bold";
 }
 
 #logo-img {
@@ -23,6 +43,13 @@
   color: #04a36f;
 }
 
+#status-msg {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-top: 15px;
+}
+
 .hidden {
 	display:none;
 }
@@ -33,6 +60,13 @@
  
 .no-underline {
 	text-decoration: none !important;
+}
+
+.wordwrap, .wordwrap *{ 
+   white-space: pre-wrap;      /* CSS3 */   
+   white-space: -moz-pre-wrap; /* Firefox */   
+   white-space: -o-pre-wrap;   /* Opera 7 */    
+   word-wrap: break-word;      /* IE */
 }
 
 
@@ -227,3 +261,77 @@
 }
 
 
+
+/*
+  Footer
+*/
+#footer {
+  padding: 15px 0;
+  background-color: #fff;
+  border-top: 1px solid #d2d2d2;
+}
+
+#footer a {
+  color: #777;
+}
+
+#footer .container > div {
+  flex:1;
+  align-items: center;
+}
+
+#footer .container > div:nth-child(2) {
+  justify-content: flex-end;
+}
+
+#footer nav a {
+  padding: 5px;
+}
+
+
+#footer nav a:hover {
+  color:#000;
+}
+
+
+
+
+
+/*
+  Welcome Page
+*/
+
+
+#choose-role > div {
+  flex:1;
+  padding: 50px;
+  text-align: center;
+}
+
+
+
+#choose-role > div:nth-child(1) {
+    border-right: 1px solid #d2d2d2;
+}
+
+#choose-role > div > a:nth-child(1) {
+    color: #777;
+}
+
+
+#choose-role h3 {
+  margin: 0;
+}
+
+#choose-role .btn {
+    padding: 10px 15px;
+    background-color: #43de43;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-family: "Montserrat Bold";
+}
+
+#choose-role .btn:hover {
+  background-color: #1eb91e;
+}

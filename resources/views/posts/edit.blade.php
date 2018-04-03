@@ -6,7 +6,7 @@
     {!! Form::open(['action' => ['PostsController@update', $post->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}  
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h1>Edit Invesment</h1>
+            <h1>Edit Investment</h1>
         </div>
         <div class="panel-body">
 
@@ -16,6 +16,7 @@
                         {{Form::label('title', 'Title')}}
                         {{Form::text('title', $post->title, ['class' => 'form-control', 'placeholder' => 'Title'])}}
                     </div>
+
                     <div class="form-group">
                         {{Form::label('body', 'Body')}}
                         {{Form::textarea('body', $post->body, ['id' => 'article-ckeditor', 'class' => 'form-control', 'placeholder' => 'Body Text'])}}
@@ -27,9 +28,14 @@
                             {{Form::text ('quantity', $post->quantity , ["class" => "form-control"])}}
                         </div>
 
-                        <div class="form-group" style="flex: 1;">
+                        <div class="form-group" style="flex: 1; margin-right: 5px;">
                             {{Form::label('price', 'Price per quantity (PHP):')}}
-                            {{Form::text ('price', $post->price, ["class" => "form-control"])}}
+                            {{Form::text ('price', $post->roi, ["class" => "form-control"])}}
+                        </div>
+
+                        <div class="form-group" style="flex: 1;">
+                            {{Form::label('roi', 'Projected ROI per Quantity(%):')}}
+                            {{Form::text ('roi', $post->roi, ["class" => "form-control"])}}
                         </div>
                     </div>
 

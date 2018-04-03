@@ -97,7 +97,7 @@
 
             <small>Written on {{$post->created_at}}</small>
             <p>Written by: <a href="{{ route('business.show', ['business' => $post->user->business->id]) }}">{{ $post->user->business->name }}</a></p>
-            <div>
+            <div class="wordwrap">
                 {!! $post->body!!}
             </div>
             <div>
