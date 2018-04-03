@@ -67,17 +67,17 @@
                 @include('partials.nav')
 
             @endif
-
             
-
             @include('partials.form-status')
 
+            @yield('no-container-content-top')
     
             <div class="container">
             @yield('content')
             </div>
 
-            @yield('no-container-content')
+            @yield('no-container-content-bottom')
+
         </div>
 
         {{-- Scripts --}}
