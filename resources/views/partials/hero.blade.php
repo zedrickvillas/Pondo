@@ -4,7 +4,7 @@
 
 			<div id="msg" class="mb-2">
 				<h1>Wealth is Health</h1>
-				<p>Find projects worth investing</p>
+				<p>Find investments that are worth investing in</p>
 			</div>
 
 			<form action="" method="GET" class="d-flex search-form">

@@ -78,6 +78,8 @@
 
             @yield('no-container-content-bottom')
 
+            @include('partials.footer')
+
         </div>
 
         {{-- Scripts --}}

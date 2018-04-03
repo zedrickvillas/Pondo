@@ -19,7 +19,11 @@
                             <div class="col-sm-6">
                               <select class="form-control" id="user_role" class="col-sm-6" name="user_role">
                                 @foreach($roles as $role)
-                                    <option>{{ $role->name }}</option>
+                                    @if(app('request')->input('role') == $role->slug)
+                                        <option selected>{{ $role->name }}</option>
+                                    @else
+                                        <option>{{ $role->name }}</option>
+                                    @endif
                                 @endforeach
                               </select>
                             </div>
@@ -146,12 +150,6 @@
                                 </button>
                             </div>
                         </div>
-
-                        <p class="text-center margin-bottom-2">
-                            Or Use Social Logins to Register
-                        </p>
-
-                        @include('partials.socials')
 
                     {!! Form::close() !!}
 
