@@ -25,6 +25,7 @@ class PostsController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['except' =>['index','show']]);
+        $this->middleware('isInvestor', ['only' =>['favoritePost', 'unFavoritePost']]);
     }
 
 
@@ -210,8 +211,6 @@ class PostsController extends Controller
 
     public function favoritePost(Post $post) {
         Auth::user()->favorites()->attach($post->id);
-
-        return back();
     }
 
     public function unFavoritePost(Post $post) {

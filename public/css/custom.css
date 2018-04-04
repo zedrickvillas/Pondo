@@ -45,6 +45,7 @@ h1, h2 ,h3 ,h4, h5, h6 {
 
 #status-msg {
     position: absolute;
+    z-index: 2;
     left: 0;
     right: 0;
     margin-top: 15px;
@@ -334,4 +335,20 @@ h1, h2 ,h3 ,h4, h5, h6 {
 
 #choose-role .btn:hover {
   background-color: #1eb91e;
+}
+
+
+@media only screen and (max-width: 600px) {
+
+  .form {
+    width: 100% !important;
+  }
+
+  #footer .container {
+    flex-direction: column;
+  }
+
+  #footer .container > div {
+    justify-content: center !important;
+  }
 }

@@ -24,6 +24,26 @@
     width: 100%;
 }
 
+#share-links {
+    margin-left: 10px;
+    align-items: center;
+}
+
+#social-links {
+    margin-left: 5px;
+}
+
+#social-links ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+#social-links ul li {
+    padding: 0px 5px;
+    display: inline-block;
+}
+
 </style>
 @endsection
 
@@ -31,13 +51,22 @@
     <div class="panel panel-body">
         <div class="panel-heading">
 
-            @if (Auth::check())
-                @if (Auth::user()->hasRole('investor'))
+    
                     <div class="d-flex" style="justify-content: space-between;">
-                        <favorite
+                        <div class="d-flex" style="align-items: center;">
+                            <favorite
                             :post={{ $post->id }}
                             :favorited={{ $post->favorited() ? 'true' : 'false'}}
-                        ></favorite>
+                            ></favorite>
+                            <small style="margin-left: 3px">Likes: {{ $post->followersCount() }}</small>
+
+                            <div id="share-links" class="d-flex">
+                                <small>Share: </small>
+                                {!! Share::page(url()->current(), 'Take a look at this investment: '.$post->title)->facebook()->twitter()!!}
+     
+                            </div>
+                        </div>
+                        
 
                          <form action="{{route('cart.store')}}" method="POST">
                             {{csrf_field()}}
@@ -47,8 +76,7 @@
                             <button type="submit" class="btn btn-success">Add to Cart<i class="fa fa-cart-plus"></i></button>
                         </form>
                     </div>
-                @endif
-            @endif               
+                  
 
             <div class="d-flex" style="height: 500px;">
                 
@@ -108,9 +136,8 @@
 
             </div>
             <hr>
-            <H3> Share To</H3>
-            {!! Share::page(url()->current())->facebook()!!}
-            {!! Share::page(url()->current(), 'Share to TWITTER')->twitter();!!}
+
+            
 
 
 
@@ -141,7 +168,7 @@
             @endif
 
             <div class="comments-app">
-                <h1>Reviews</h1>
+                <h1>Ratings</h1>
                 @if (Auth::check())
                     @if(Auth::User()->hasRole('investor'))
                         @if ( !$post->isRatedBy(Auth::User()->id) )
@@ -225,7 +252,7 @@
                         </div>
                         @endforeach
                     @else
-                        <p>No review yet.</p>
+                        <p>No ratings yet</p>
                     @endif   
 
                 </div>

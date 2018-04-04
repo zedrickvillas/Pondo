@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Pondo|Investments
+    Investments
 @endsection
 
 
