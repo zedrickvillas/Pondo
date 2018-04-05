@@ -44,8 +44,8 @@
                         <li><a href="{{ route('cart.index') }}"><i class="fa fa-shopping-cart" style="font-size: 27px;"></i></a></li>
                     @endif
 
-               
 
+                <li><a href="{{ route('wallet.store') }}">My Wallet </a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 
