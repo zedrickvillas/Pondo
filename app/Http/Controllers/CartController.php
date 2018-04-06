@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Validator;
+use DB;
 
 class CartController extends Controller
 {
@@ -25,11 +26,25 @@ class CartController extends Controller
      */
     public function index()
     {
+        $a = value(auth()->user()->id);
+        $b = DB::table('shoppingcart')->select('identifier')->where('identifier','=',$a)->pluck('identifier');
         if (auth()->user()->hasRole('investor')) {
+
+            if($b->contains($a)) {
+                Cart::restore((value(auth()->user()->id)));
+
+            }else{
+                Cart::store((value(auth()->user()->id)));
+            }
+
+
             return view('pages/investor/cart');
         } else {
+
             return back()->with('error', 'Unauthorized access');
         }
+
+
     }
 
     /**
