@@ -5,9 +5,9 @@
 
  <div class="panel panel-default">
  <h1>Wallet Balance</h1>
- <div class="well"><h3>{{$balance}}</h3></div>
+ <div class="well"><h3>₱{{$balance}}</h3></div>
 
- <a href="{{ url('wallet/addfunds') }}" class="btn btn-success">Add Wallet Funds</a>
+ <a href="{{ route('wallet.create')}}" class="btn btn-success">Add Wallet Funds</a>
  </div>
 
 @endsection

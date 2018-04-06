@@ -16,8 +16,9 @@
 
 Route::get('/wallet/addfunds', 'FundsController@index');
 
+
 // Wallet Route
-Route::get('/wallet', 'WalletController@index');
+Route::resource('wallet', 'WalletController');
 
 // Homepage Route
 Route::get('/', 'WelcomeController@welcome')->name('home');
