@@ -13,6 +13,13 @@
 |
 */
 
+
+Route::get('/wallet/addfunds', 'FundsController@index');
+
+
+// Wallet Route
+Route::resource('wallet', 'WalletController');
+
 // Homepage Route
 Route::get('/', 'WelcomeController@welcome')->name('home');
 

@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Business;
+use App\Models\Wallet;
 use App\Traits\ActivationTrait;
 use App\Traits\CaptchaTrait;
 use App\Traits\CaptureIpTrait;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Validator;
 use jeremykenedy\LaravelRoles\Models\Role;
+
 
 //RegistersUsers trait
 use Illuminate\Http\Request;
@@ -211,6 +213,9 @@ class RegisterController extends Controller
         $user->attachRole($role_r);
 
         $this->initiateEmailActivation($user);
+
+
+
 
         return $user;
     }

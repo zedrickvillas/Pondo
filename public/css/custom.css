@@ -338,6 +338,15 @@ h1, h2 ,h3 ,h4, h5, h6 {
 }
 
 
+
+
+
+.price-tag {
+  font-size:24px;
+  color:#04af76;
+}
+
+
 @media only screen and (max-width: 600px) {
   #choose-role {
     flex-direction: column;

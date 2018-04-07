@@ -38,7 +38,7 @@
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
 
-                    <button type="submit" class="cart-options">Remove</button>
+                    <button type="submit" class="btn btn-danger">Remove</button>
                 </form></td>
         </tr>
 
@@ -58,8 +58,10 @@
     </table>
 
         <div class="cart-buttons">
-            <a href="{{ route('home') }}" class="button">Continue Shopping</a>
+            <a href="{{ route('home') }}" class="btn btn-primary">Continue Shopping</a>
            {{-- <a href="{{ route('checkout.index') }}" class="button-primary">Proceed to Checkout</a>--}}
+        <hr>
+            {{Form::submit('BUY', ['class'=>'btn btn-success mt-3'])}}
         </div>
     </div>
 
