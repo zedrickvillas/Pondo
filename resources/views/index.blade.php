@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Investments
 @endsection
 
 
@@ -29,6 +28,3 @@
 @section('footer_scripts')
     <script src="{{ asset('js/rating/star-rating.min.js') }}"></script>
 @endsection
-
-
-
