@@ -39,3 +39,25 @@
 	margin-top: 0;
 }
 
+#investment-list .rating-xs {
+	font-size: 18px !important;
+}
+
+#investment-list .caption {
+	display: none !important;
+}
+
+
+.likes-ratings {
+	justify-content: space-between;
+}
+
+.likes, .likes .fa{
+	font-size: 18px !important;
+    color: #aaaaaa;
+}
+
+.likes-ratings .rating > small {
+  margin-left: 0px !important;
+}
+

@@ -11,18 +11,18 @@
 
                             <div class="investment-item-body">
                                 <h2 class="investment-item-title">{{$post->title}}</h2>
-                                <div class="rating" style="pointer-events: none;">
-                                        <input id="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="{{ $post->averageRating }}" data-size="xs"> 
-                                        <small>({{ $post->countRating() }})
-                                            @if ($post->countRating() > 1)
-                                                Ratings
-                                            @else
-                                                Rating
-                                            @endif
-                                        </small>
-                                </div>
-                                <p>Price: {{$post->price}}</p>
+
+                                <span class="price-tag .wordwrap"><small>₱</small> {{$post->price}}</span>
                                 <p>Quantity: {{$post->quantity}}</p>
+                                <p>ROI: {{$post->roi}}</p>
+
+                                <div class="d-flex likes-ratings">
+                                    <span class="likes"><i class="fa fa-heart-o"></i> {{ $post->followersCount() }}</span>
+                                     <div class="rating" style="pointer-events: none;">
+                                        <input id="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="{{ $post->averageRating }}" data-size="xs"> 
+                                        <small>({{ $post->countRating() }})</small>
+                                    </div>
+                                </div>
                             </div>
                         </a>
 
