@@ -16,6 +16,8 @@
 
 Route::get('/wallet/addfunds', 'FundsController@index');
 
+//Transaction Route
+Route::resource('transaction', 'TransactionController');
 
 // Wallet Route
 Route::resource('wallet', 'WalletController');

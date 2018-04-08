@@ -61,7 +61,7 @@
             <a href="{{ route('home') }}" class="btn btn-primary">Continue Shopping</a>
            {{-- <a href="{{ route('checkout.index') }}" class="button-primary">Proceed to Checkout</a>--}}
         <hr>
-            {{Form::submit('BUY', ['class'=>'btn btn-success mt-3'])}}
+            <a href="{{ route('transaction.create') }}" class="btn btn-success mt-3">BUY</a>
         </div>
     </div>
 
