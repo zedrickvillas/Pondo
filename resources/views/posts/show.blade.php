@@ -68,14 +68,7 @@
                         </div>
                         
 
-                         <form action="{{route('cart.store')}}" method="POST">
-                            {{csrf_field()}}
-                            <input type="hidden" name="id" value="{{$post->id}}">
-                            <input type="hidden" name="title" value="{{$post->title}}">
-                            <input type="hidden" name="price" value="{{$post->price}}">
-                            <input type="hidden" name="user_id" value="{{$post->user_id}}">
-                            <button type="submit" class="btn btn-success">Add to Cart<i class="fa fa-cart-plus"></i></button>
-                        </form>
+
                     </div>
                   
 
@@ -93,16 +86,16 @@
                 </a>
 
                 @if (count($post->images) > 0)
-                <div class="" id="gallery-images">
-                                            @foreach($post->images as $image)
-                            <div class="investment-gallery-image p-2" >
-                                <a href="{{ $image->image }}" data-lightbox="investment">
-                                    <div class="g-image"  style="background-image: url({{ $image->image }});"></div>
-                                </a>
-                            </div>
-                        @endforeach
-                    
-                </div>
+                    <div class="" id="gallery-images">
+                            @foreach($post->images as $image)
+                                <div class="investment-gallery-image p-2" >
+                                    <a href="{{ $image->image }}" data-lightbox="investment">
+                                        <div class="g-image"  style="background-image: url({{ $image->image }});"></div>
+                                    </a>
+                                </div>
+                            @endforeach
+
+                    </div>
                 @endif
 
             </div>
@@ -123,6 +116,36 @@
 
         </div>
         <div class="panel-body">
+
+
+
+            <form action="{{route('cart.store')}}" method="POST">
+                {{csrf_field()}}
+                <input type="hidden" name="id" value="{{$post->id}}">
+                <input type="hidden" name="title" value="{{$post->title}}">
+                <input type="hidden" name="price" value="{{$post->price}}">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label for="sel1">Select quantity:</label>
+                            <select class="form-control" id="qty" name="quantity">
+                                <?php for ($x = 1; $x <= $post->quantity; $x++) {?>
+                                    <option>{{$x}}</option>
+                                <?php
+                                }?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="hidden" name="user_id" value="{{$post->user_id}}">
+                        <input type="hidden" name="price" value="{{$post->price}}">
+
+                        <button type="submit" class="btn btn-success mt-2">Add to Cart<i class="fa fa-cart-plus"></i></button>
+                    </div>
+                </div>
+
+            </form>
+
 
             <small>Written on {{$post->created_at}}</small>
             <p>Written by: <a href="{{ route('business.show', ['business' => $post->user->business->id]) }}">{{ $post->user->business->name }}</a></p>
