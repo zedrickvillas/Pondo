@@ -73,6 +73,7 @@
                             <input type="hidden" name="id" value="{{$post->id}}">
                             <input type="hidden" name="title" value="{{$post->title}}">
                             <input type="hidden" name="price" value="{{$post->price}}">
+                            <input type="hidden" name="user_id" value="{{$post->user_id}}">
                             <button type="submit" class="btn btn-success">Add to Cart<i class="fa fa-cart-plus"></i></button>
                         </form>
                     </div>

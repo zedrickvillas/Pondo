@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
-    protected $table = 'transaction';
+    protected $table = 'transactions';
     public $primaryKey = 'id';
     public $timestamps = true;
 

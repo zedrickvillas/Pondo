@@ -29,10 +29,7 @@
             <?php foreach(Cart::content() as $row) :?>
 
             <tr>
-                <td>
-                    <p><strong><a href="/posts/{{$row->id}}"><?php echo $row->name; ?></a></strong></p>
-                    <p><?php echo ($row->options->has('size') ? $row->options->size : ''); ?></p>
-                </td>
+                <td><p><strong><a href="/posts/{{$row->id}}"><?php echo $row->name; ?></a></strong></p></td>
                 <td><?php echo $row->qty; ?>pcs.</td>
                 <td>₱<?php echo $row->price; ?></td>
                 <td>₱<?php echo (($row->price)*($row->qty)); ?></td>
@@ -79,15 +76,14 @@
 
         </div>
 
-        {{ Form::hidden('invisible', 'secret') }}
+        {{ Form::hidden('transaction_type', 'Purchase')}}
+
 
         <hr>
         <div class="container">
-            <p>Transaction Type: {{Form::label('Purchase','Purchase')}}</p>
+            <p>Transaction Type: Purchase</p>
             <p>Payment Method: WALLET</p>
             <p>Wallet Account holder: <?php echo auth()->user()->name; ?></p>
-            {{--</br><a href="{{ route('transaction.store') }}" class="btn btn-success mt-3">BUY</a>--}}
-
             <p>{{Form::submit('Proceed', ['class'=>'btn btn-primary '])}}</p>
             {!! Form::close() !!}
         </div>

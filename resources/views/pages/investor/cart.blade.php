@@ -28,7 +28,7 @@
         <tr>
             <td>
                 <p><strong><a href="/posts/{{$row->id}}"><?php echo $row->name; ?></a></strong></p>
-                <p><?php echo ($row->options->has('size') ? $row->options->size : ''); ?></p>
+                <p><?php //echo ($row->id); ?></p>
             </td>
             <td><?php echo $row->qty; ?>pcs.</td>
             <td>₱<?php echo $row->price; ?></td>
@@ -63,6 +63,7 @@
         <hr>
             <a href="{{ route('transaction.create') }}" class="btn btn-success mt-3">BUY</a>
         </div>
+
     </div>
 
 
