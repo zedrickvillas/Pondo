@@ -124,6 +124,7 @@
                 <input type="hidden" name="id" value="{{$post->id}}">
                 <input type="hidden" name="title" value="{{$post->title}}">
                 <input type="hidden" name="price" value="{{$post->price}}">
+
                 <div class="row">
                     <div class="col-sm-2">
                         <div class="form-group">
@@ -136,6 +137,7 @@
                             </select>
                         </div>
                     </div>
+                    <div class="col-sm-2 mt-3"><strong>({{$post->quantity}}pc/s available!)</strong></div>
                     <div class="col-sm-2">
                         <input type="hidden" name="user_id" value="{{$post->user_id}}">
                         <input type="hidden" name="price" value="{{$post->price}}">
@@ -146,7 +148,7 @@
 
             </form>
 
-
+            </br>
             <small>Written on {{$post->created_at}}</small>
             <p>Written by: <a href="{{ route('business.show', ['business' => $post->user->business->id]) }}">{{ $post->user->business->name }}</a></p>
             <div class="wordwrap">
