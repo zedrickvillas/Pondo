@@ -31,12 +31,12 @@ class CartController extends Controller
         $b = DB::table('shoppingcart')->select('identifier')->where('identifier','=',$a)->pluck('identifier');
         if (auth()->user()->hasRole('investor')) {
 
-            if($b->contains($a)) {
-                Cart::restore((value(auth()->user()->id)));
-
-            }else{
-                Cart::store((value(auth()->user()->id)));
-            }
+            //if($b->contains($a)) {
+            // //   Cart::restore((value(auth()->user()->id)));
+//
+            //}else{
+            //    Cart::store((value(auth()->user()->id)));
+            //}
 
 
             return view('pages/investor/cart');

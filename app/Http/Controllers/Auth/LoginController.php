@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Models\User;
 
 class LoginController extends Controller
@@ -29,6 +30,7 @@ class LoginController extends Controller
      *
      * @var string
      */
+
     protected $redirectTo = '/dashboard';
 
 
@@ -42,6 +44,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'logout']);
+
     }
 
     /**
@@ -51,10 +54,14 @@ class LoginController extends Controller
      */
     public function logout()
     {
+        Cart::store((value(auth()->user()->id)));
         $user = Auth::user();
         Log::info('User Logged Out. ', [$user]);
         Auth::logout();
         Session::flush();
+
+
+
 
         return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/');
     }

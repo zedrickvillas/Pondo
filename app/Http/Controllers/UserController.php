@@ -6,6 +6,7 @@ use Auth;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\Business;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class UserController extends Controller
 {
@@ -28,6 +29,8 @@ class UserController extends Controller
     {
 
         $user = Auth::user();
+
+        Cart::restore((value(auth()->user()->id)));
         if ($user->isAdmin()) {
             return view('pages.admin.dashboard');
         } if ($user->hasRole('business.owner')) {

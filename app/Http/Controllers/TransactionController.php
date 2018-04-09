@@ -97,6 +97,7 @@ class TransactionController extends Controller
         //return (DB::table('wallet')->select('balance')->where('user_id','=',DB::table('posts')->select('user_id')->where('user_id','=',2)->implode('user_id'))->implode('balance'));
         //return DB::table('wallet')->select('balance')->where('user_id','=',2)->implode('balance');
         //return DB::table('posts')->select('user_id')->where('id','=',$row->id)->implode('user_id');
+        Cart::destroy();
         return redirect()->route('home')->with('success', 'Transaction Successful');
 
 
