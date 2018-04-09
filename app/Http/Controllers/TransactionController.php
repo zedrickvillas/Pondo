@@ -67,6 +67,8 @@ class TransactionController extends Controller
                 $transaction_investor->user_id = $user_id;
                 $transaction_investor->save();
 
+                DB::table('wallet')->where('id','=', value(auth()->user()->id))->update(['balance' => $balance - $row->price ]);
+
 
 
 
@@ -77,8 +79,11 @@ class TransactionController extends Controller
                $transaction_business->type = $request->input('transaction_type');
                $transaction_business->user_id = DB::table('posts')->select('user_id')->where('id', '=', $row->id)->implode('user_id');
                $transaction_business->save();
+                DB::table('wallet')->where('id','=', DB::table('posts')->select('user_id')->where('id', '=', $row->id)->implode('user_id'))
+                    ->update(['balance' => ((int)(DB::table('wallet')->select('balance')->where('user_id', '=', DB::table('posts')->select('user_id')->where('id', '=', $row->id)->implode('user_id'))->implode('balance'))) + $row->price ]);
 
-                $p = DB::table('posts')->select('user_id')->where('user_id', '=', $row->id)->implode('user_id');
+
+
                 }
         }
         //return DB::table('wallet')->select('balance')->where('user_id','=',value(auth()->user()->id))->implode('balance');
