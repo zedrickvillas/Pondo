@@ -28,21 +28,57 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        //$purchase = (float) filter_var(Cart::subtotal(), FILTER_SANITIZE_NUMBER_INT);
-        //$purchase = (str_split(Cart::subtotal()));
-        //$purchase = (floatval(Cart::subtotal()));
-        //$test ="1,000.22";
-        $purchase = floatval(str_replace( ',', '', Cart::subtotal()));
-        $balance = ((double)(DB::table('wallet')->select('balance')->where('user_id','=',value(auth()->user()->id))->implode('balance')));
-        //$balance = Wallet::select('balance')->where('user_id','=',value(auth()->user()->id))->implode('balance');
-        //$balance = Wallet::all();
-        $fundsAfterPurchase = $balance - $purchase;
-        $user_id= value(auth()->user()->id);
-        $data =['purchase' => $purchase,
-                'balance' => $balance,
-                'fundsAfterPurchase' => $fundsAfterPurchase,
-                'user_id' => $user_id];
-        return view ('transaction.create')->with('data',$data);
+        $results=array();
+        foreach(Cart::content() as $row) {
+
+                //Cart::content()->get('qty')
+                    if ($row->qty <= DB::table('Funds')->select('id')->where(['post_id' => $row->options['post_id'], 'status' => "Available"])->get()->count()) {
+                        array_push($results,'true');
+
+
+
+                        //return var_dump(Cart::content()->pluck('qty'));
+                        //return DB::table('Funds')->select('id')->where(['post_id' => 3, 'status' => "Available"])->get()->count();
+                        //return view ('transaction.create')->with('data',$data);
+
+                    } else{
+
+                        array_push($results,'false');
+                        //return back()->with('error','Not enough Stocks');
+                    }
+
+
+                }
+                $collected_results = collect($results);
+                if( $collected_results->contains('false')){
+                    Cart::destroy();
+                    return redirect('/')->with('error','Not enough Stocks');
+
+                    //temporary solution
+
+                }else{
+
+                    //$purchase = (float) filter_var(Cart::subtotal(), FILTER_SANITIZE_NUMBER_INT);
+                    //$purchase = (str_split(Cart::subtotal()));
+                    //$purchase = (floatval(Cart::subtotal()));
+                    //$test ="1,000.22";
+                    $purchase = floatval(str_replace( ',', '', Cart::subtotal()));
+                    $balance = ((double)(DB::table('wallet')->select('balance')->where('user_id','=',value(auth()->user()->id))->implode('balance')));
+                    //$balance = Wallet::select('balance')->where('user_id','=',value(auth()->user()->id))->implode('balance');
+                    //$balance = Wallet::all();
+                    $fundsAfterPurchase = $balance - $purchase;
+                    $user_id= value(auth()->user()->id);
+                    $data =['purchase' => $purchase,
+                        'balance' => $balance,
+                        'fundsAfterPurchase' => $fundsAfterPurchase,
+                        'user_id' => $user_id];
+
+                    return view ('transaction.create')->with('data',$data);
+                }
+
+
+
+
     }
 
     /**
