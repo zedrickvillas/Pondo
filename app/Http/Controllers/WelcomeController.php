@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Post;
-use App\Models\Wallet;
+use DB;
 
 class WelcomeController extends Controller
 {
@@ -13,6 +13,7 @@ class WelcomeController extends Controller
      */
     public function welcome()
     {
+
     	$posts =  Post::orderBy('created_at', 'desc')->paginate(6);
         return view('index')->with('posts', $posts);
     }

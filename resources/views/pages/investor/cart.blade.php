@@ -29,6 +29,7 @@
             <td>
                 <p><strong><a href="/posts/{{$row->id}}"><?php echo $row->name; ?></a></strong></p>
                 <p><?php //echo ($row->id); ?></p>
+                <p><?php //echo $row->id ?></p>
             </td>
             <td><?php echo $row->qty; ?>pcs.</td>
             <td>₱<?php echo $row->price; ?></td>

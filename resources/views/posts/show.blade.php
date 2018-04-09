@@ -130,16 +130,17 @@
                         <div class="form-group">
                             <label for="sel1">Select quantity:</label>
                             <select class="form-control" id="qty" name="quantity">
-                                <?php for ($x = 1; $x <= $post->quantity; $x++) {?>
+                                <?php for ($x = 1; $x <= $fund; $x++) {?>
                                     <option>{{$x}}</option>
                                 <?php
                                 }?>
                             </select>
                         </div>
                     </div>
-                    <div class="col-sm-2 mt-3"><strong>({{$post->quantity}}pc/s available!)</strong></div>
+                    <div class="col-sm-2 mt-3"><strong>({{$fund}}pc/s available!)</strong></div>
                     <div class="col-sm-2">
                         <input type="hidden" name="user_id" value="{{$post->user_id}}">
+                        <input type="hidden" name="post_id" value="{{$post->id}}">
                         <input type="hidden" name="price" value="{{$post->price}}">
 
                         <button type="submit" class="btn btn-success mt-2">Add to Cart<i class="fa fa-cart-plus"></i></button>

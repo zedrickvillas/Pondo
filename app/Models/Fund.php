@@ -10,6 +10,8 @@ class Fund extends Model
     public $primaryKey = 'id';
     public $timestamps = true;
 
+    protected $fillable = ['investor','status'];
+
     public function post(){
         return $this->belongsTo('App\Models\Post');
     }

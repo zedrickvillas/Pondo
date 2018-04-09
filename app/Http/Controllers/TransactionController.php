@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaction;
-use App\Models\Wallet;
+use App\Models\Fund;
+
 use Illuminate\Http\Request;
 use DB;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -52,6 +53,7 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
+        $fund =  DB::table('funds')->select('amount')->where('status','=',"Available")->count();
         $balance = DB::table('wallet')->select('balance')->where('user_id','=',value(auth()->user()->id))->implode('balance');
         $user_id= value(auth()->user()->id);
         //$balance_business =  DB::table('posts')->select('user_id')->where('user_id','=',$row->id)->implode('user_id');
@@ -66,10 +68,8 @@ class TransactionController extends Controller
                 $transaction_investor->type = $request->input('transaction_type');
                 $transaction_investor->user_id = $user_id;
                 $transaction_investor->save();
-
+                //update
                 DB::table('wallet')->where('id','=', value(auth()->user()->id))->update(['balance' => $balance - $row->price ]);
-
-
 
 
                $transaction_business = new Transaction;
@@ -79,13 +79,18 @@ class TransactionController extends Controller
                $transaction_business->type = $request->input('transaction_type');
                $transaction_business->user_id = DB::table('posts')->select('user_id')->where('id', '=', $row->id)->implode('user_id');
                $transaction_business->save();
-                DB::table('wallet')->where('id','=', DB::table('posts')->select('user_id')->where('id', '=', $row->id)->implode('user_id'))
-                    ->update(['balance' => ((int)(DB::table('wallet')->select('balance')->where('user_id', '=', DB::table('posts')->select('user_id')->where('id', '=', $row->id)->implode('user_id'))->implode('balance'))) + $row->price ]);
+               //update
+                DB::table('wallet')->where('id','=', DB::table('posts')->select('user_id')->where('id', '=', $row->id)->implode('user_id'))->update(['balance' => ((int)(DB::table('wallet')->select('balance')->where('user_id', '=', DB::table('posts')->select('user_id')->where('id', '=', $row->id)->implode('user_id'))->implode('balance'))) + $row->price ]);
 
+                $l = DB::table('funds')->select('id')
+                    ->where(['post_id' => $row->id,
+                        'status' => "Available"])->get()->first();
 
-
+                //DB::table('funds')->where(['post_id' => $row->id,'status' => "Available"])->first()->update(['investor' => $user_id,'status'=>'Sold']);
+                Fund::where(['post_id' => $row->id,'status' => "Available"])->first()->update(['investor' => $user_id,'status'=>'Sold']);
                 }
         }
+        //return var_dump($l);
         //return DB::table('wallet')->select('balance')->where('user_id','=',value(auth()->user()->id))->implode('balance');
         //return DB::table('wallet')->select('balance')->where('user_id','=',DB::table('posts')->select('user_id')->where('user_id','=',1)->implode('user_id'))->implode('balance');
         //return DB::table('posts')->select('user_id')->where('user_id','=',2)->implode('user_id');

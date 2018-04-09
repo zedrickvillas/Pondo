@@ -16,7 +16,6 @@ class CreateFundsTable extends Migration
         Schema::create('funds', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('post_id');
-            $table->string('post_title');
             $table->string('business_owner');
             $table->string('investor');
             $table->double('amount');
