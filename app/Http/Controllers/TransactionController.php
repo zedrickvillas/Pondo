@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaction;
+use App\Models\Wallet;
 use Illuminate\Http\Request;
 use DB;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -26,8 +27,14 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        $purchase = Cart::subtotal();
-        $balance = DB::table('wallet')->select('balance')->where('user_id','=',value(auth()->user()->id))->implode('balance');
+        //$purchase = (float) filter_var(Cart::subtotal(), FILTER_SANITIZE_NUMBER_INT);
+        //$purchase = (str_split(Cart::subtotal()));
+        //$purchase = (floatval(Cart::subtotal()));
+        //$test ="1,000.22";
+        $purchase = floatval(str_replace( ',', '', Cart::subtotal()));
+        $balance = ((double)(DB::table('wallet')->select('balance')->where('user_id','=',value(auth()->user()->id))->implode('balance')));
+        //$balance = Wallet::select('balance')->where('user_id','=',value(auth()->user()->id))->implode('balance');
+        //$balance = Wallet::all();
         $fundsAfterPurchase = $balance - $purchase;
         $user_id= value(auth()->user()->id);
         $data =['purchase' => $purchase,
