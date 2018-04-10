@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="{{ asset('css/hero.css') }}" />
 @endsection
 
-
-
 @section('no-container-content-bottom')
 	@if(!Auth::check())
 	@include('partials.choose-role')

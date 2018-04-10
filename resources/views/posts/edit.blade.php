@@ -61,7 +61,7 @@
 
                 <div class="form-group">
                         {{Form::label('update_msg', 'Update Message:')}}
-                        {{Form::textarea ('update_msg', '', ['class' => 'form-control', 'placeholder' => "What's New?"] )}}
+                        {{Form::textarea ('update_msg', '', ['class' => 'form-control', 'placeholder' => "What's New? [Optional]"] )}}
                 </div>
 
                 <div class="well">
