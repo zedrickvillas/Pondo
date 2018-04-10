@@ -40,7 +40,20 @@ class UserController extends Controller
             $business = User::find($user->id)->business;
             $posts = Post::where('user_id', $user->id)->paginate(5);
 
-            return view('pages.businessowner.dashboard') ->with('posts',$posts,'business',$business);
+            $funds = Fund::where('business_owner',value(auth()->user()->id))->paginate(5);
+            $sold =  Fund::where(['business_owner'=>value(auth()->user()->id),'status'=>"Sold"])->paginate(20);
+            $completed =  Fund::where(['business_owner'=>value(auth()->user()->id),'status'=>"Completed"])->paginate(20);
+            $data = ['posts' => $posts ,
+                            'business' => $business ,
+                            'funds' => $funds,
+                            'sold'=>$sold,
+                            'completed'=>$completed];
+
+
+
+            //return $funds->pluck('id');
+
+            return view('pages.businessowner.dashboard') ->with('data',$data);
         
 
         } else {
