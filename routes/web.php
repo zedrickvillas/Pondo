@@ -14,9 +14,6 @@
 */
 
 
-Route::get('/wallet/addfunds', 'FundsController@index');
-
-
 // Wallet Route
 Route::resource('wallet', 'WalletController');
 
@@ -156,6 +153,8 @@ Route::post('unfavorite/{post}', 'PostsController@unFavoritePost');
 
 Route::get('/posts/{post}/gallery', 'PostsController@galleryIndex')->name('posts.gallery.index');
 Route::post('/posts/uploadImages', 'PostsController@galleryUpload')->name('posts.gallery.upload');
+
+Route::post('/posts/images/{image}', 'PostsController@galleryDelete')->name('posts.gallery.delete');
 
 
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Image as GalleryImage;
 use Image;
 use File;
 use Auth;
@@ -254,6 +255,19 @@ class PostsController extends Controller
 
         return $image;
 
+    }
+
+    public function galleryDelete($id)
+    {
+        $image = GalleryImage::find($id);
+
+        // Delete Image from directory
+        unlink(public_path($image->image));
+
+        // Delete image from database
+        $image->delete();
+        
+        return back();
     }
 
 }
