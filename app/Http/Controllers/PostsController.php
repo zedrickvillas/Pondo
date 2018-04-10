@@ -274,7 +274,7 @@ class PostsController extends Controller
     {
         $search = $request->input('search');
 
-        $posts = Post::orderBy('created_at', 'desc')->where('title', 'LIKE', '%'.$search.'%')->orWhere('title', 'LIKE', '%'.$search.'%')->paginate(6);
+        $posts = Post::orderBy('created_at', 'desc')->where('title', 'LIKE', '%'.$search.'%')->orWhere('body', 'LIKE', '%'.$search.'%')->paginate(6);
 
         return view('index')->with('posts', $posts);
 
