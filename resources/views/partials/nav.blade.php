@@ -1,5 +1,13 @@
 <nav class="navbar navbar-default navbar-static-top">
-    <div class="container">
+    <div class="container" id="header">
+        {{-- Branding Image --}}
+        <a id="top-brand" class="navbar-brand d-flex" href="{{ url('/') }}">
+                <img src="{{ asset('favicon.ico') }}" / id="logo-img">
+                ondo
+
+        </a>
+
+
         <div class="navbar-header">
 
             {{-- Collapsed Hamburger --}}
@@ -9,34 +17,58 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-
-            {{-- Branding Image --}}
-            <a class="navbar-brand d-flex" href="{{ url('/') }}">
-                <img src="{{ asset('favicon.ico') }}" / id="logo-img">
-                ondo
-
-            </a>
-
-
-
-
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             {{-- Left Side Of Navbar --}}
             <!--<ul class="nav navbar-nav">
-        
             </ul>-->
             
 
             {{-- Right Side Of Navbar --}}
             <ul class="nav navbar-nav navbar-right">
                 {{-- Authentication Links --}}
-                @if (Auth::guest())
-                    @if (request()->route()->getName() !== 'welcome')
-                        <li><a href="{{ route('login') }}">Log In</a></li>
-                        <li><a href="{{ route('register') }}">Create Account</a></li>
-                    @endif
+                @if (!Auth::check())
+                        <form class="d-flex" id="navLoginForm" role="form" method="POST" action="{{ route('login') }}">
+                        {{ csrf_field() }}
+
+                        <div class="form-group d-flex {{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label class="form-label" for="first">E-Mail Address</label>
+                            <input id="email" name="email" class="form-input" type="text"  value="{{ old('email') }}" />
+                            @if ($errors->has('email'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </span>
+                            @endif
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                                </label>
+                            </div>
+                        </div>
+
+                         <div class="form-group d-flex {{ $errors->has('password') ? ' has-error' : '' }}">
+                            <label class="form-label" for="first">Password</label>
+                            <input id="password" name="password" class="form-input" type="password"  value="{{ old('password') }}" />
+                            @if ($errors->has('password'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                </span>
+                            @endif
+                            <a class="btn btn-link no-underline" href="{{ route('password.request') }}">
+                                Forgot Your Password?
+                            </a>
+                        </div>
+
+
+                        <div class="form-group d-flex">
+                       
+                            <button type="submit" class="btn btn-primary">
+                                    Login
+                            </button>
+                            
+                        </div>
+                    </form>
                 @else
 
                     
@@ -86,5 +118,10 @@
                 @endif
             </ul>
         </div>
-    </div>
+
+     </div>
 </nav>
+<div>
+    
+</div>
+

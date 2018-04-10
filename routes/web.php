@@ -156,6 +156,8 @@ Route::post('/posts/uploadImages', 'PostsController@galleryUpload')->name('posts
 
 Route::post('/posts/images/{image}', 'PostsController@galleryDelete')->name('posts.gallery.delete');
 
+Route::post('/search', 'PostsController@search')->name('search');
+
 
 
 // CartController

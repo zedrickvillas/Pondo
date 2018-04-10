@@ -25,7 +25,7 @@ class PostsController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth', ['except' =>['index','show']]);
+        $this->middleware('auth', ['except' =>['index','show','search']]);
         $this->middleware('isInvestor', ['only' =>['favoritePost', 'unFavoritePost']]);
     }
 
@@ -269,5 +269,16 @@ class PostsController extends Controller
         
         return back();
     }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+
+        $posts = Post::orderBy('created_at', 'desc')->where('title', 'LIKE', '%'.$search.'%')->orWhere('title', 'LIKE', '%'.$search.'%')->paginate(6);
+
+        return view('index')->with('posts', $posts);
+
+  
+    }   
 
 }

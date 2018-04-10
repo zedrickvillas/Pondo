@@ -1,6 +1,19 @@
-<h3 class="page-header">Investments</h3>
+
 
 <div id="investment-list" class="row">
+
+    <div class="d-flex" style="justify-content: space-between; align-items: center;">
+        <h3 class="page-header">Investments</h3> 
+
+         <form action="{{ route('search') }}" method="POST" class="d-flex search-form" style="width: 300px">
+            {{ csrf_field() }}
+                    <input type="text" name="search" placeholder="Where do you want to invest?">
+                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </form>
+    </div>
+    
+
+
             @forelse ($posts as $post)
                 <div class="investment-item col-md-4">
 
