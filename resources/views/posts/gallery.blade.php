@@ -26,6 +26,16 @@
 							<a href="{{ $image->image }}" data-lightbox="investment">
                                 <div class="g-image"  style="background-image: url({{ $image->image }});"></div>
                             </a>
+
+                            <form>
+                                <input type="submit" name="delete">Delete</input>
+                            </form>
+
+
+
+
+
+
 						</div>
 					@endforeach
 				</div>
