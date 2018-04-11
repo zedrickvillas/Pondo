@@ -54,14 +54,25 @@
 
                                     </tr>
                                         @foreach($data['funds'] as $fund)
-                                            <tr>
-                                                <td>{{DB::table('posts')->select('title')->where('id',$post->id)->implode('title')}}</td>
-                                                <td>{{DB::table('funds')->select('amount')->where(['id'=>$fund->id,'post_id'=>$post->id])->implode('amount')}}</td>
-                                                <td>{{$fund->investor}}</td>
-                                                <td>{{$fund->created_at}}</td>
-                                                <td>{{$fund->status}}</td>
-                                                <td><button type="button" class="btn btn-microsoft btn-sm">Return Investment</button></td>
-                                            </tr>
+                                            @if (empty(DB::table('funds')->select('investor')->where(['id'=>$fund->id,'post_id'=>$post->id])->implode('investor')))
+
+                                            @else
+                                                    <tr>
+                                                        <td>{{DB::table('posts')->select('title')->where('id',$post->id)->implode('title')}}</td>
+                                                        <td>{{DB::table('funds')->select('amount')->where(['id'=>$fund->id,'post_id'=>$post->id])->implode('amount')}}</td>
+                                                        <td>{{DB::table('funds')->select('investor')->where(['id'=>$fund->id,'post_id'=>$post->id])->implode('investor')}}</td>
+                                                        <td>{{DB::table('funds')->select('created_at')->where(['id'=>$fund->id,'post_id'=>$post->id])->implode('created_at')}}</td>
+                                                        <td>{{DB::table('funds')->select('status')->where(['id'=>$fund->id,'post_id'=>$post->id])->implode('status')}}</td>
+                                                        @if (DB::table('funds')->select('status')->where(['id'=>$fund->id,'post_id'=>$post->id])->implode('status') == 'Sold')
+                                                            <td><button type="button" class="btn btn-microsoft btn-sm">Return Investment</button></td>
+                                                        @else
+                                                            <td></td>
+                                                        @endif
+                                                    </tr>
+                                                    <div class="text-center">
+                                                        {!! $data['funds']->links() !!}
+                                                    </div>
+                                            @endif
                                         @endforeach
                                         </table>
                                     </table>
