@@ -68,13 +68,7 @@
                         </div>
                         
 
-                         <form action="{{route('cart.store')}}" method="POST">
-                            {{csrf_field()}}
-                            <input type="hidden" name="id" value="{{$post->id}}">
-                            <input type="hidden" name="title" value="{{$post->title}}">
-                            <input type="hidden" name="price" value="{{$post->price}}">
-                            <button type="submit" class="btn btn-success">Add to Cart<i class="fa fa-cart-plus"></i></button>
-                        </form>
+
                     </div>
                   
 
@@ -92,16 +86,16 @@
                 </a>
 
                 @if (count($post->images) > 0)
-                <div class="" id="gallery-images">
-                                            @foreach($post->images as $image)
-                            <div class="investment-gallery-image p-2" >
-                                <a href="{{ $image->image }}" data-lightbox="investment">
-                                    <div class="g-image"  style="background-image: url({{ $image->image }});"></div>
-                                </a>
-                            </div>
-                        @endforeach
-                    
-                </div>
+                    <div class="" id="gallery-images">
+                            @foreach($post->images as $image)
+                                <div class="investment-gallery-image p-2" >
+                                    <a href="{{ $image->image }}" data-lightbox="investment">
+                                        <div class="g-image"  style="background-image: url({{ $image->image }});"></div>
+                                    </a>
+                                </div>
+                            @endforeach
+
+                    </div>
                 @endif
 
             </div>
@@ -123,6 +117,39 @@
         </div>
         <div class="panel-body">
 
+
+
+            <form action="{{route('cart.store')}}" method="POST">
+                {{csrf_field()}}
+                <input type="hidden" name="id" value="{{$post->id}}">
+                <input type="hidden" name="title" value="{{$post->title}}">
+                <input type="hidden" name="price" value="{{$post->price}}">
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label for="sel1">Select quantity:</label>
+                            <select class="form-control" id="qty" name="quantity">
+                                <?php for ($x = 1; $x <= $fund; $x++) {?>
+                                    <option>{{$x}}</option>
+                                <?php
+                                }?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 mt-3"><strong>({{$fund}}pc/s available!)</strong></div>
+                    <div class="col-sm-2">
+                        <input type="hidden" name="user_id" value="{{$post->user_id}}">
+                        <input type="hidden" name="post_id" value="{{$post->id}}">
+                        <input type="hidden" name="price" value="{{$post->price}}">
+
+                        <button type="submit" class="btn btn-success mt-2">Add to Cart<i class="fa fa-cart-plus"></i></button>
+                    </div>
+                </div>
+
+            </form>
+
+            </br>
             <small>Written on {{$post->created_at}}</small>
             <p>Written by: <a href="{{ route('business.show', ['business' => $post->user->business->id]) }}">{{ $post->user->business->name }}</a></p>
             <div class="wordwrap">
@@ -146,10 +173,7 @@
                 @if(Auth::user()->id == $post->user_id)
                     <a href="/posts/{{$post->id}}/edit" class="btn btn-default">Edit</a>
 
-                    {!!Form::open(['action' => ['PostsController@destroy', $post->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
-                    {{Form::hidden('_method', 'DELETE')}}
-                    {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
-                    {!!Form::close()!!}
+
                 @endif
             @endif
 

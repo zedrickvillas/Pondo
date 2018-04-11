@@ -31,12 +31,12 @@ class CartController extends Controller
         $b = DB::table('shoppingcart')->select('identifier')->where('identifier','=',$a)->pluck('identifier');
         if (auth()->user()->hasRole('investor')) {
 
-            if($b->contains($a)) {
-                Cart::restore((value(auth()->user()->id)));
-
-            }else{
-                Cart::store((value(auth()->user()->id)));
-            }
+            //if($b->contains($a)) {
+            // //   Cart::restore((value(auth()->user()->id)));
+//
+            //}else{
+            //    Cart::store((value(auth()->user()->id)));
+            //}
 
 
             return view('pages/investor/cart');
@@ -66,7 +66,8 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        Cart::add($request->id, $request->title, 1, $request->price)->associate('App\Models\Post');
+        //Cart::add($request->id, $request->title, 1, $request->price,['user_id' => $request->user_id])->associate('App\Models\Post');
+        Cart::add(['id' => $request->id, 'name' => $request->title, 'qty' => $request->quantity, 'price' => $request->price, 'options' => ['user_id' => $request->user_id,'post_id'=>$request->id]])->associate('App\Models\Post');
 
         return redirect()->route('home')->with('success','Item has been added to cart');
     }

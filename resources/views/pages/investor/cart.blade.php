@@ -8,63 +8,68 @@
 @endsection
 
 @section('content')
+    <div class=" container">
+        <div class='container-fluid'>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>Subtotal</th>
+                <th></th>
+            </tr>
+            </thead>
 
-    <div class='container-fluid'>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Product</th>
-            <th>Qty</th>
-            <th>Price</th>
-            <th>Subtotal</th>
-            <th></th>
-        </tr>
-        </thead>
+            <tbody>
 
-        <tbody>
+            <?php foreach(Cart::content() as $row) :?>
 
-        <?php foreach(Cart::content() as $row) :?>
+            <tr>
+                <td>
+                    <p><strong><a href="/posts/{{$row->id}}"><?php echo $row->name; ?></a></strong></p>
+                    <p><?php //echo ($row->id); ?></p>
+                    <p><?php //echo $row->id ?></p>
+                </td>
+                <td><?php echo $row->qty; ?>pcs.</td>
+                <td>₱<?php echo $row->price; ?></td>
+                <td>₱<?php echo (($row->price)*($row->qty)); ?></td>
 
-        <tr>
-            <td>
-                <p><strong><a href="/posts/{{$row->id}}"><?php echo $row->name; ?></a></strong></p>
-                <p><?php echo ($row->options->has('size') ? $row->options->size : ''); ?></p>
-            </td>
-            <td><?php echo $row->qty; ?>pcs.</td>
-            <td>₱<?php echo $row->price; ?></td>
-            <td>₱<?php echo (($row->price)*($row->qty)); ?></td>
+                <td><form action="{{ route('cart.destroy', $row->rowId) }}" method="POST">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
 
-            <td><form action="{{ route('cart.destroy', $row->rowId) }}" method="POST">
-                    {{ csrf_field() }}
-                    {{ method_field('DELETE') }}
+                        <button type="submit" class="btn btn-danger">Remove</button>
+                    </form></td>
+            </tr>
 
-                    <button type="submit" class="btn btn-danger">Remove</button>
-                </form></td>
-        </tr>
+            <?php endforeach;?>
 
-        <?php endforeach;?>
+            </tbody>
 
-        </tbody>
-
-        <tfoot>
-        <tr>
-            <td colspan="2">&nbsp;</td>
-            <td>Subtotal</td>
-            <td>₱<?php echo Cart::subtotal(); ?></td>
-        </tr>
+            <tfoot>
+            <tr>
+                <td colspan="2">&nbsp;</td>
+                <td>Subtotal</td>
+                <td>₱<?php echo Cart::subtotal(); ?></td>
+            </tr>
 
 
-        </tfoot>
-    </table>
+            </tfoot>
+        </table>
 
-        <div class="cart-buttons">
-            <a href="{{ route('home') }}" class="btn btn-primary">Continue Shopping</a>
-           {{-- <a href="{{ route('checkout.index') }}" class="button-primary">Proceed to Checkout</a>--}}
-        <hr>
-            {{Form::submit('BUY', ['class'=>'btn btn-success mt-3'])}}
+            <div class="cart-buttons">
+                <a href="{{ route('home') }}" class="btn btn-primary">Continue Shopping</a>
+               {{-- <a href="{{ route('checkout.index') }}" class="button-primary">Proceed to Checkout</a>--}}
+            <hr>
+
+
+                        <a href="{{ route('transaction.create') }}" class="btn btn-success mt-3">BUY</a>
+
+            </div>
+
         </div>
     </div>
-
 
 
 @endsection

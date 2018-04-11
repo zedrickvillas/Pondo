@@ -14,6 +14,10 @@
 */
 
 
+
+//Transaction Route
+Route::resource('transaction', 'TransactionController');
+
 // Wallet Route
 Route::resource('wallet', 'WalletController');
 

@@ -14,7 +14,7 @@
                 
                     <div class="form-group">
                         {{Form::label('title', 'Title')}}
-                        {{Form::text('title', $post->title, ['class' => 'form-control', 'placeholder' => 'Title'])}}
+                        {{Form::text('title', $post->title, ['class' => 'form-control', 'placeholder' => 'Title',"id"=>"disabledTextInput",'disabled'])}}
                     </div>
 
                     <div class="form-group">
@@ -25,17 +25,17 @@
                     <div class="d-flex" style="justify-content: space-between;">
                         <div class="form-group" style="flex: 1; margin-right: 5px;">
                             {{Form::label('quantity', 'Quantity:')}}
-                            {{Form::text ('quantity', $post->quantity , ["class" => "form-control"])}}
+                            {{Form::text ('quantity', $post->quantity , ["class" => "form-control",'disabled'])}}
                         </div>
 
                         <div class="form-group" style="flex: 1; margin-right: 5px;">
                             {{Form::label('price', 'Price per quantity (PHP):')}}
-                            {{Form::text ('price', $post->roi, ["class" => "form-control"])}}
+                            {{Form::text ('price', $post->roi, ["class" => "form-control",'disabled'])}}
                         </div>
 
                         <div class="form-group" style="flex: 1;">
                             {{Form::label('roi', 'Projected ROI per Quantity(%):')}}
-                            {{Form::text ('roi', $post->roi, ["class" => "form-control"])}}
+                            {{Form::text ('roi', $post->roi, ["class" => "form-control",'disabled'])}}
                         </div>
                     </div>
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Image as GalleryImage;
+use App\Models\Fund;
+use DB;
 use Image;
 use File;
 use Auth;
@@ -87,6 +89,18 @@ class PostsController extends Controller
 
         $post->save();
 
+
+        //create funds based on post
+        for ($x = 1; $x <= $post->quantity; $x++) {
+            $fund = new Fund;
+            $fund->post_id = $post->id;
+            $fund->business_owner = $post->user_id;
+            $fund->investor = " ";
+            $fund->amount = $post->price;
+            $fund->status = "Available";
+            $fund->save();
+        }
+
         return redirect()->route('home')->with('success', 'Post Created');
     }
 
@@ -99,7 +113,9 @@ class PostsController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-        return view('posts.show')->with('post',$post);
+        $fund =  DB::table('Funds')->select('id')->where(['post_id' => $post->id,'status' => "Available"])->get()->count();
+
+        return view('posts.show')->with('post',$post)->with('fund',$fund);
     }
 
     /**

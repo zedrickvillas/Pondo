@@ -5,10 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Yoeunes\Rateable\Traits\Rateable;
 use App;
-use App\Models\Favorite;
 use Auth;
-use App\Models\User;
-
 class Post extends Model
 {
 	use Rateable;
