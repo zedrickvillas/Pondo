@@ -75,7 +75,7 @@ class UserController extends Controller
     }
     public function create()
     {
-        return view('pages.admin.fund');
+        //
     }
 
     /**
@@ -86,8 +86,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
-        return view('pages.admin.fund');
+        $post_id = $request->input('post_id');
+        return view('pages.businessowner.business.fund')->with('post',$post_id);
     }
 
     /**

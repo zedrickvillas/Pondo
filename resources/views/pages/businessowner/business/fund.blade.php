@@ -2,6 +2,7 @@
 
 @section('template_title')
     Welcome {{ Auth::user()->name }}
+
 @endsection
 
 @section('head')
@@ -9,4 +10,5 @@
 
 @section('content')
 <h1>Eyyyy</h1>
+{{$post}}
 @endsection
