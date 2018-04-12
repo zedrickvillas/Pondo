@@ -18,7 +18,7 @@ class CommentController extends Controller
     	$this->validate($request, [
     		'user_id' 	=> 'required',
     		'post_id' 	=> 'required',
-    		'comment' 	=> 'required|min:60|max:5000',
+    		'comment' 	=> 'required|min:30|max:1000',
             'rate'      => 'required',
     	]);
 

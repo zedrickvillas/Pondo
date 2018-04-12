@@ -27,7 +27,15 @@
                                 <p>ROI: {{$post->roi}}</p>
 
                                 <div class="d-flex likes-ratings">
-                                    <span class="likes"><i class="fa fa-heart-o"></i> {{ $post->followersCount() }}</span>
+                                    <span class="likes">
+                                        @if ($post->followersCount() > 0)
+                                            <i class="fa fa-heart"></i> 
+                                        @else
+                                            <i class="fa fa-heart-o"></i> 
+                                        @endif
+                                        
+
+                                        {{ $post->followersCount() }}</span>
                                      <div class="rating" style="pointer-events: none;">
                                         <input id="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="{{ $post->averageRating }}" data-size="xs"> 
                                         <small>({{ $post->countRating() }})</small>

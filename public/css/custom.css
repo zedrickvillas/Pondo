@@ -12,12 +12,18 @@
   src: url('../fonts/Montserrat-Bold.ttf') format('truetype');
 }
 
+body {
+  background: #fff;
+}
 
 * {
   text-decoration: none !important;
   font-family: 'Open Sans';
 }
 
+.fa.fa-heart, .fa.fa-heart-o {
+  color: #ff5722;
+}
 
 h1, h2 ,h3 ,h4, h5, h6 {
   font-family: "Montserrat bold";
@@ -63,11 +69,16 @@ h1, h2 ,h3 ,h4, h5, h6 {
 	text-decoration: none !important;
 }
 
+.no-margin {
+  margin: 0;
+}
+
 .wordwrap, .wordwrap *{ 
    white-space: pre-wrap;      /* CSS3 */   
    white-space: -moz-pre-wrap; /* Firefox */   
    white-space: -o-pre-wrap;   /* Opera 7 */    
    word-wrap: break-word;      /* IE */
+   word-break: break-word;
 }
 
 
