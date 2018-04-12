@@ -4,9 +4,8 @@
                         <h2>Investments</h2>
                         <a href="{{ route('posts.create') }}" class="btn btn-primary">Create Invesment</a>
                     </div>
-                   
+    {!! Form::open(['action' => 'UserController@store', 'method' => 'POST']) !!}
                     <div class="panel-body">
-
                         @if(count($data['posts']) > 0)
                             <table class="table table-default">
                                 <tr class="active">
@@ -24,6 +23,7 @@
                                     <td></td>
                                 </tr>
                                 @foreach($data['posts'] as $post)
+
                                     <table class="table table-default">
 
                                     <tr class="investment-table-row">
@@ -49,6 +49,7 @@
                                             <td><span style="font-weight:bold">Investor</span></td>
                                             <td><span style="font-weight:bold">Purchased At</span></td>
                                             <td><span style="font-weight:bold">Status</span></td>
+                                            <td><span style="font-weight:bold">Return Date</span></td>
                                             <td></td>
                                         </span>
 
@@ -57,18 +58,24 @@
                                             @if (empty(DB::table('funds')->select('investor')->where(['id'=>$fund->id,'post_id'=>$post->id])->implode('investor')))
 
                                             @else
+                                                    {{--@foreach($data['funds'] as $fund)--}}
                                                     <tr>
                                                         <td>{{DB::table('posts')->select('title')->where('id',$post->id)->implode('title')}}</td>
                                                         <td>{{DB::table('funds')->select('amount')->where(['id'=>$fund->id,'post_id'=>$post->id])->implode('amount')}}</td>
                                                         <td>{{DB::table('funds')->select('investor')->where(['id'=>$fund->id,'post_id'=>$post->id])->implode('investor')}}</td>
                                                         <td>{{DB::table('funds')->select('created_at')->where(['id'=>$fund->id,'post_id'=>$post->id])->implode('created_at')}}</td>
                                                         <td>{{DB::table('funds')->select('status')->where(['id'=>$fund->id,'post_id'=>$post->id])->implode('status')}}</td>
+                                                        <th>{{DB::table('funds')->select('return_date')->where(['id'=>$fund->id,'post_id'=>$post->id])->implode('return_date')}}</th>
+
                                                         @if (DB::table('funds')->select('status')->where(['id'=>$fund->id,'post_id'=>$post->id])->implode('status') == 'Sold')
-                                                            <td><button type="button" class="btn btn-microsoft btn-sm">Return Investment</button></td>
+                                                            <td>{{Form::submit('Return Investment', ['class'=>'btn btn-primary'])}}</td>
+                                                            {!! Form::close() !!}
+                                                            {{--<td><button type="button" class="btn btn-microsoft btn-sm">Return Investment</button></td>--}}
                                                         @else
                                                             <td></td>
                                                         @endif
                                                     </tr>
+                                                    {{--@endforeach--}}
                                                     <div class="text-center">
                                                         {!! $data['funds']->links() !!}
                                                     </div>
@@ -91,4 +98,3 @@
                     </div>
 </div>
 
-                

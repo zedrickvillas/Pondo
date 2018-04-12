@@ -18,6 +18,9 @@ Route::get('/soon', function () {
   return view('pages.soon');
 }
 );
+//fybd
+Route::resource('fund', 'FundController');
+Route::resource('dashboard', 'UserController');
 
 Route::get('/wallet/addfunds', 'FundsController@index');
 
