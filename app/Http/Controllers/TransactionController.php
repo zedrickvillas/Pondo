@@ -68,7 +68,7 @@ class TransactionController extends Controller
                     //$balance = Wallet::all();
                     $fundsAfterPurchase = $balance - $purchase;
                     $user_id= value(auth()->user()->id);
-                    $data =['purchase' => $purchase,
+                   $data =['purchase' => $purchase,
                         'balance' => $balance,
                         'fundsAfterPurchase' => $fundsAfterPurchase,
                         'user_id' => $user_id];

@@ -65,7 +65,8 @@ class UserController extends Controller
             $data = ['funds' => $funds ,
                     'sold' => $sold ,
                     'completed' => $completed,
-                    'failed' => $failed];
+                    'failed' => $failed,
+            ];
 
             return view('pages.investor.dashboard')->with('data',$data);
         }
