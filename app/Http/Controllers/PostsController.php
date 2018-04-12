@@ -68,6 +68,7 @@ class PostsController extends Controller
         $post->price = $request->input('price');
         $post->roi = $request->input('roi');
         $post->user_id = auth()->user()->id;
+        $post->return_date = $request->input('return_date');
 
         // Save Image
         if ($request->hasFile('featured_image')) {
@@ -98,6 +99,7 @@ class PostsController extends Controller
             $fund->investor = " ";
             $fund->amount = $post->price;
             $fund->status = "Available";
+            $fund->return_date = $post->return_date;
             $fund->save();
         }
 

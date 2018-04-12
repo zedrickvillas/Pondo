@@ -32,6 +32,7 @@
                                 <th>Investment Title</th>
                                 <th>Business Name</th>
                                 <th>Amount</th>
+                                <th>Return Date</th>
                                 {{--<th>Status</th>--}}
                                 <th>Created at</th>
                             </tr>
@@ -42,6 +43,7 @@
                                     <td>{{DB::table('posts')->select('title')->where('id',$fund->post_id)->implode('title')}}</td>
                                     <td>{{DB::table('businesses')->select('name')->where('user_id',$fund->business_owner)->implode('name')}}</td>
                                     <td>{{$fund->amount}}</td>
+                                    <td>{{$fund->return_date}}</td>
                                     {{--<td>{{$fund->status}}</td>--}}
                                     <td>{{$fund->created_at}}</td>
                                 </tr>
@@ -70,6 +72,7 @@
                                 <th>Investment Title</th>
                                 <th>Business Name</th>
                                 <th>Amount</th>
+                                <th>Return Date</th>
                                 {{--<th>Status</th>--}}
                                 <th>Created at</th>
                             </tr>
@@ -80,6 +83,7 @@
                                     <td>{{DB::table('posts')->select('title')->where('id',$fund->post_id)->implode('title')}}</td>
                                     <td>{{DB::table('businesses')->select('name')->where('user_id',$fund->business_owner)->implode('name')}}</td>
                                     <td>{{$fund->amount}}</td>
+                                    <td>{{$fund->return_date}}</td>
                                     {{--<td>{{$fund->status}}</td>--}}
                                     <td>{{$fund->created_at}}</td>
                                 </tr>
@@ -107,6 +111,7 @@
                                 <th>Investment Title</th>
                                 <th>Business Name</th>
                                 <th>Amount</th>
+                                <th>Return Date</th>
                                 {{--<th>Status</th>--}}
                                 <th>Created at</th>
                             </tr>
@@ -117,6 +122,7 @@
                                     <td>{{DB::table('posts')->select('title')->where('id',$fund->post_id)->implode('title')}}</td>
                                     <td>{{DB::table('businesses')->select('name')->where('user_id',$fund->business_owner)->implode('name')}}</td>
                                     <td>{{$fund->amount}}</td>
+                                    <td>{{$fund->return_date}}</td>
                                     {{--<td>{{$fund->status}}</td>--}}
                                     <td>{{$fund->created_at}}</td>
                                 </tr>
@@ -142,6 +148,7 @@
                                 <th>Investment Title</th>
                                 <th>Business Name</th>
                                 <th>Amount</th>
+                                <th>Return Date</th>
                                 {{--<th>Status</th>--}}
                                 <th>Created at</th>
                             </tr>
@@ -152,6 +159,7 @@
                                     <td>{{DB::table('posts')->select('title')->where('id',$fund->post_id)->implode('title')}}</td>
                                     <td>{{DB::table('businesses')->select('name')->where('user_id',$fund->business_owner)->implode('name')}}</td>
                                     <td>{{$fund->amount}}</td>
+                                    <td>{{$fund->return_date}}</td>
                                     {{--<td>{{$fund->status}}</td>--}}
                                     <td>{{$fund->created_at}}</td>
                                 </tr>

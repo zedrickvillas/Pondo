@@ -62,15 +62,25 @@
                 </div>
 
             </div>
-            <div class="form-group">
-                {{Form::label('featured_image', 'Upload Featured Image')}}
-                {{Form::file('featured_image')}}
-                @if ($errors->has('featured_image'))
-                    <span class="text-danger">
-                        <strong>{{ $errors->first('featured_image') }}</strong>
-                    </span>
-                @endif
-            </div>
+
+
+
+                <div class="form-group">
+                    {{Form::label('return_date', 'Investment Return Date:')}}
+                    {{Form::date('return_date', \Carbon\Carbon::now())}}
+                </div>
+
+                <div class="form-group">
+                    {{Form::label('featured_image', 'Upload Featured Image')}}
+                    {{Form::file('featured_image')}}
+                    @if ($errors->has('featured_image'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('featured_image') }}</strong>
+                        </span>
+                    @endif
+                </div>
+
+
 
 
 

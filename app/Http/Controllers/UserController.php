@@ -40,7 +40,7 @@ class UserController extends Controller
             $business = User::find($user->id)->business;
             $posts = Post::where('user_id', $user->id)->paginate(5);
 
-            $funds = Fund::where('business_owner',value(auth()->user()->id))->paginate(5);
+            $funds = Fund::where('business_owner',value(auth()->user()->id))->paginate(50);
             $sold =  Fund::where(['business_owner'=>value(auth()->user()->id),'status'=>"Sold"])->paginate(20);
             $completed =  Fund::where(['business_owner'=>value(auth()->user()->id),'status'=>"Completed"])->paginate(20);
             $data = ['posts' => $posts ,
@@ -65,7 +65,8 @@ class UserController extends Controller
             $data = ['funds' => $funds ,
                     'sold' => $sold ,
                     'completed' => $completed,
-                    'failed' => $failed];
+                    'failed' => $failed,
+            ];
 
             return view('pages.investor.dashboard')->with('data',$data);
         }
