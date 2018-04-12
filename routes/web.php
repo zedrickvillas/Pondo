@@ -14,6 +14,11 @@
 */
 
 
+Route::get('/soon', function () {
+  return view('pages.soon');
+}
+);
+
 Route::get('/wallet/addfunds', 'FundsController@index');
 
 //Transaction Route
@@ -176,5 +181,3 @@ Route::group(['prefix' => 'messages'], function () {
 
 //UserController Investor
 Route::get('favorites', 'UserController@myFavorites')->middleware('auth')->name('investor.favorites');
-
-
