@@ -21,7 +21,7 @@
     .inner {
       margin-left: auto;
       margin-right: auto;
-      width: 400px;
+      width: 100%;
     /*whatever width you want*/
     }
 
