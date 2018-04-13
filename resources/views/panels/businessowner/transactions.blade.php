@@ -57,7 +57,7 @@
                                                         <td>{{DB::table('funds')->select('created_at')->where(['id'=>$fund->id,'post_id'=>$post->id])->implode('created_at')}}</td>
                                                         <td>{{DB::table('funds')->select('status')->where(['id'=>$fund->id,'post_id'=>$post->id])->implode('status')}}</td>
                                                         @if (DB::table('funds')->select('status')->where(['id'=>$fund->id,'post_id'=>$post->id])->implode('status') == 'Sold')
-                                                            <td><button type="button" class="btn btn-microsoft btn-sm">Return Investment</button></td>
+                                                            <td><a href="{{ route('posts.return_investment', ['post' => $post]) }}" type="button" class="btn btn-microsoft btn-sm">Return Investment</a></td>
                                                         @else
                                   
                                                         @endif

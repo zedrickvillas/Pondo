@@ -339,11 +339,9 @@ class PostsController extends Controller
 
     public function investment($id) {
         $post = Post::find($id);
-        $post_id = Post::find($id);
-        $sold = Fund::where(['status'=>'Sold','post_id'=>$id])->paginate(5);
+        $sold = Fund::where(['status'=>'Sold','post_id'=>$post->id])->paginate(5);
         $data = ['post' => $post ,
             'sold' => $sold,
-            'post_id' => $id,
         ];
         return view('pages.businessowner.business.fund')->with($data);
     }

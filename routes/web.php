@@ -177,7 +177,7 @@ Route::post('/search', 'PostsController@search')->name('search');
 Route::get('/posts/{post}/transaction', 'PostsController@transactions')->name('posts.transactions');
 
 
-Route::get('/posts/{post}/return_investment', 'PostsController@investment');
+Route::get('/posts/{post}/return_investment', 'PostsController@investment')->name('posts.return_investment');
 Route::post('/return_investment', 'PostsController@total_investment');
 Route::post('/investment_return','PostsController@request_investment_return');
 Route::get('/investment_return','PostsController@request_investment_return');
