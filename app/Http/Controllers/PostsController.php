@@ -153,21 +153,13 @@ class PostsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'title'             => 'required',
             'body'              => 'required',
-            'quantity'          => 'required|numeric',
-            'price'             => 'required|numeric',
-            'roi'               => 'required|numeric',
             'featured_image'    => 'image',
             'update_msg'        => 'sometimes',
         ]);
 
         $post = Post::find($id);
-        $post->title = $request->input('title');
         $post->body = $request->input('body');
-        $post->quantity = $request->input('quantity');
-        $post->roi = $request->input('roi');
-        $post->price = $request->input('price');
 
         if ($request->featured_image) {
             // add new featured image
