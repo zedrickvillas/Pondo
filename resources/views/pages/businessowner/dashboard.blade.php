@@ -10,13 +10,10 @@
 @section('content')
 
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-            	<h1>Dashboard</h1>
+           	<h1>Business Owner Dashboard</h1>
 
-                @include('panels.businessowner.investments')
+            @include('panels.businessowner.investments')
 
-
-            </div>
         </div>
     
 

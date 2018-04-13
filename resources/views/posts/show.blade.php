@@ -2,178 +2,64 @@
 
 @section('template_linked_css')
     <link rel="stylesheet" href="{{ asset('css/rating/star-rating.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/post.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/hero.css') }}" />
+@endsection
 
-
-<style>
-
- #post-featured-image {
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-#post-featured-image:hover {opacity: 0.7;}
-
-#gallery-images {
-    white-space: nowrap;
-    overflow-y: scroll;
-    width: 300px;
-}
-
-.investment-gallery-image {
-    width: 100%;
-}
-
-#share-links {
-    margin-left: 10px;
-    align-items: center;
-}
-
-#social-links {
-    margin-left: 5px;
-}
-
-#social-links ul {
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
-}
-
-#social-links ul li {
-    padding: 0px 5px;
-    display: inline-block;
-}
-
-</style>
+@section('no-container-content-top')
+    @include('partials.hero')
 @endsection
 
 @section('content')
-    <div class="panel panel-body">
-        <table class="table table-default">
-            <tr class="info"><span style="font-weight:bold">
-                <td><span style="font-weight:bold">Title</span></td>
-                <td><span style="font-weight:bold">Amount</span></td>
-                <td><span style="font-weight:bold">Investor</span></td>
-                <td><span style="font-weight:bold">Purchased At</span></td>
-                <td><span style="font-weight:bold">Status</span></td>
-                <td><span style="font-weight:bold">Return Date</span></td>
-                <td><a href="/posts/{{$post->id}}/return_investment" class="btn btn-microsoft btn-sm" role="button">Return Investment</a></td>
-            </span>
-            </tr>
-            @foreach($data['fundlist'] as $fund1)
-                @if (empty(DB::table('funds')->select('investor')->where(['id'=>$fund1->id,'post_id'=>$post->id])->implode('investor')))
 
-                @else
-                    {{--@foreach($data['funds'] as $fund)--}}
-                    <tr>
-                        <td>{{$fund1->post_id}}</td>
-                        <td>{{$fund1->amount}}</td>
-                        <td>{{$fund1->investor}}</td>
-                        <td>{{$fund1->created_at}}</td>
-                        <td>{{$fund1->status}}</td></td>
-                        <td>{{$post->return_date}}</td></td></td>
-                        <td></td>
+    <div class="post-section top d-flex sm-flex-direction-column">
 
 
+        <div class="section-item image">
 
-
-                        <?php /*
-                        {{--@foreach($data['funds'] as $fund)--}}
-                        <td>{{DB::table('posts')->select('title')->where('id',$post->id)->implode('title')}}</td>
-                        <td>{{DB::table('funds')->select('amount')->where(['id'=>$fund1->id,'post_id'=>$post->id])->implode('amount')}}</td>
-                        <td>{{DB::table('funds')->select('investor')->where(['id'=>$fund1->id,'post_id'=>$post->id])->implode('investor')}}</td>
-                        <td>{{DB::table('funds')->select('created_at')->where(['id'=>$fund1->id,'post_id'=>$post->id])->implode('created_at')}}</td>
-                        <td>{{DB::table('funds')->select('status')->where(['id'=>$fund1->id,'post_id'=>$post->id])->implode('status')}}</td>
-                        <th>{{DB::table('funds')->select('return_date')->where(['id'=>$fund1->id,'post_id'=>$post->id])->implode('return_date')}}</th>
-                        {{ Form::hidden('post_id', $post->id)}}
-                        @if (DB::table('funds')->select('status')->where(['id'=>$fund1->id,'post_id'=>$post->id])->implode('status') == 'Sold')
-                            <td></td>
-
-
-                            {{--<td><button type="button" class="btn btn-microsoft btn-sm">Return Investment</button></td>--}}
-                        @else
-                            <td></td>
-                        @endif
-
-                        {{--@foreach($data['funds'] as $fund)--}}
-                                     <div class="text-center">
-                                        {!! $data['fundlist']->links() !!}
-                                    </div>
-                        */?>
-                    </tr>
-                    {{--@endforeach--}}
-
-                @endif
-            @endforeach
-
-        </table>
-        <div class="text-center">
-            {!! $data['fundlist']->links() !!}
-        </div>
-    </div>
-
-
-
-
-
-
-
-    <div class="panel panel-body">
-        <div class="panel-heading">
-
-    
-                    <div class="d-flex" style="justify-content: space-between;">
-                        <div class="d-flex" style="align-items: center;">
-                            <favorite
-                            :post={{ $post->id }}
-                            :favorited={{ $post->favorited() ? 'true' : 'false'}}
-                            ></favorite>
-                            <small style="margin-left: 3px">Likes: {{ $post->followersCount() }}</small>
-
-                            <div id="share-links" class="d-flex">
-                                <small>Share: </small>
-                                {!! Share::page(url()->current(), 'Take a look at this investment: '.$post->title)->facebook()->twitter()!!}
-     
-                            </div>
-                        </div>
-                        
-
-
-                    </div>
-                  
-
-            <div class="d-flex" style="height: 500px;">
-                
-                <a href="{{ $post->image }}" data-lightbox="featured-image" style="width: 100%">
-                    <div id="post-featured-image" data-src="{{ $post->image }}"   style="width: 100%; 
-                                                        height: 500px; 
+            <a class="p-1" id="featured-image" href="{{ $post->image }}" data-lightbox="featured-image">
+                <div id="post-featured-image" data-src="{{ $post->image }}"   style="
                                                         background-image: url({{ $post->image }});
                                                         background-size: contain;
                                                         background-repeat: no-repeat;
                                                         background-position: center;">
                     
-                    </div>
-                </a>
+                </div>
+            </a>
 
-                @if (count($post->images) > 0)
-                    <div class="" id="gallery-images">
-                            @foreach($post->images as $image)
-                                <div class="investment-gallery-image p-2" >
-                                    <a href="{{ $image->image }}" data-lightbox="investment">
-                                        <div class="g-image"  style="background-image: url({{ $image->image }});"></div>
-                                    </a>
-                                </div>
-                            @endforeach
+            @if (count($post->images) > 0)
+                <div class="" id="gallery-images">
+                        @foreach($post->images as $image)
+                            <div class="investment-gallery-image p-1" >
+                                <a href="{{ $image->image }}" data-lightbox="investment">
+                                    <div class="g-image"  style="background-image: url({{ $image->image }});"></div>
+                                </a>
+                            </div>
+                        @endforeach
 
-                    </div>
-                @endif
+                </div>
+            @endif
 
+        </div>
+
+
+
+        <div class="section-item info">
+            <!--Title, Price , Qty ,Ratings, Likes, Cart, Share-->
+            <div class="d-flex" style="justify-content: space-between;">
+                <h1 class="wordwrap no-margin">{{$post->title}}</h1>
+                <div id="likes">
+                    <favorite
+                            :post={{ $post->id }}
+                            :favorited={{ $post->favorited() ? 'true' : 'false'}}
+                            ></favorite>
+                    <small style="margin-left: 3px">Likes: {{ $post->followersCount() }}</small>
+                </div>
             </div>
 
             
-            <h1>{{$post->title}}</h1>
-
-            <div class="rating">
+            <span class="price-tag wordwrap"><small>₱</small> {{$post->price}}</span>
+            <div class="rating" style="pointer-events: none;">
                     <input id="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="{{ $post->averageRating }}" data-size="xs"> 
                     <small>({{ $post->countRating() }})
                         @if ($post->countRating() > 1)
@@ -184,86 +70,102 @@
                     </small>
             </div>
 
-        </div>
-        <div class="panel-body">
-
-
+            <div id="info-details">
+                    <p>Investment Return Date: <strong>{{$post->return_date}}</strong></p>
+                    <p>Projected ROI per Quantity: <strong>{{$post->roi}}%</strong></p>
+                    <p>Projected Return after Investment: <strong>{{($post->roi * ($post->price/100))+$post->price}}</strong></p>
+            </div>
 
             <form action="{{route('cart.store')}}" method="POST">
                 {{csrf_field()}}
                 <input type="hidden" name="id" value="{{$post->id}}">
                 <input type="hidden" name="title" value="{{$post->title}}">
+                <input type="hidden" name="user_id" value="{{$post->user_id}}">
                 <input type="hidden" name="price" value="{{$post->price}}">
+       
+                
+                <div>
+                    <label for="sel1">Quantity:</label>
+                    <select id="qty" name="quantity">
+                        @for ($x = 1; $x <= $fund; $x++) 
+                            <option>{{$x}}</option>
+                        @endfor
+                    </select>
 
-                <div class="row">
-                    <div class="col-sm-2">
-                        <div class="form-group">
-                            <label for="sel1">Select quantity:</label>
-                            <select class="form-control" id="qty" name="quantity">
-                                <?php for ($x = 1; $x <= $fund; $x++) {?>
-                                    <option>{{$x}}</option>
-                                <?php
-                                }?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-2 mt-3"><strong>({{$fund}}pc/s available!)</strong></div>
-                    <div class="col-sm-2">
-                        <input type="hidden" name="user_id" value="{{$post->user_id}}">
-                        <input type="hidden" name="post_id" value="{{$post->id}}">
-                        <input type="hidden" name="price" value="{{$post->price}}">
-
-                        <button type="submit" class="btn btn-success mt-2">Add to Cart<i class="fa fa-cart-plus"></i></button>
-                    </div>
+                    <strong>
+                        {{ $fund }}
+                        @if ($fund > 1)
+                        pieces
+                        @else
+                        piece
+                        @endif
+                         available
+                    </strong>
                 </div>
+                
+                <div class="mt-3"> 
+                    <button type="submit" class="btn btn-success">Add to Cart<i class="fa fa-cart-plus"></i></button>
 
+                    <!--Messaging-->
+                    @if (Auth::check())
+                        @if(Auth::user()->hasRole('investor'))
+
+                                    
+                            <a href="{{ route('messages.create', ['user' => $post->user, 'investment' => $post])  }}" class="btn btn-info">
+                                Message Business Owner
+                                <i aria-hidden="true" class="fa fa-envelope"></i>
+                            </a>
+                               
+                           
+                        @endif
+                    @endif
+
+
+                </div>
             </form>
 
-            </br>
-            <small>Written on {{$post->created_at}}</small>
-            <p>Written by: <a href="{{ route('business.show', ['business' => $post->user->business->id]) }}">{{ $post->user->business->name }}</a></p>
-            <div class="wordwrap">
-                {!! $post->body!!}
+
+
+            <div class="mt-2">
+                <div id="share-links" class="d-flex">
+                                <small>Share On: </small>
+                                {!! Share::page(url()->current(), 'Take a look at this investment: '.$post->title)->facebook()->twitter()!!}
+     
+                </div>
             </div>
-            <div>
-                <p>Quantity: {{$post->quantity}} </p>
-                <p>Price: {{$post->price}}</p>
-                <p>Investment Return Date: {{$post->return_date}}</p>
-                <p>Projected ROI per Quantity: {{$post->roi}}%</p>
-                <p>Projected Return after Investment: {{($post->roi * ($post->price/100))+$post->price}}</p>
 
-            </div>
-            <hr>
-
-            
-
-
-
-
-            @if(Auth::check())
+             @if(Auth::check())
                 @if(Auth::user()->id == $post->user_id)
-                    <a href="/posts/{{$post->id}}/edit" class="btn btn-default">Edit</a>
-
+                    <a href="/posts/{{$post->id}}/edit" class="btn btn-default pull-right"><i class="fa fa-edit"></i> Edit</a>
 
                 @endif
             @endif
+        </div>
+    </div>
 
-            <!--Messaging-->
-            @if (Auth::check())
-                @if(Auth::user()->hasRole('investor'))
+    <div class="post-section bottom mt-2 mb-2">
+        <ul class="section-item content-menu">
+            <li class="menu active" data-menu="details">Investment Details</li>
+            <li class="menu" data-menu="ratings">Ratings ({{ $post->countRating() }})</li>
+        </ul>
+        <div class="section-item content">
+            <div class="wordwrap p-2 item active" data-item="details">
+                {!! $post->body !!}
 
-                    <div class="d-flex" style="justify-content: flex-end;">     
-                        <a href="{{ route('messages.create', ['user' => $post->user, 'investment' => $post])  }}" class="btn btn-info">
-                            Message Business Owner
-                            <i aria-hidden="true" class="fa fa-envelope"></i>
-                        </a>
+                <div id="investment-details">
+                    <div class="form-group d-flex">
+                        <label>Written on</label>
+                        <div class="form-control">{{$post->created_at}}</div>
                     </div>
-           
-                @endif
-            @endif
 
-            <div class="comments-app">
-                <h1>Ratings</h1>
+                     <div class="form-group d-flex">
+                        <label>Written by:</label>
+                        <div class="form-control"><a href="{{ route('business.show', ['business' => $post->user->business->id]) }}">{{ $post->user->business->name }}</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-2 item" data-item="ratings">
+                <div class="comments-app">
                 @if (Auth::check())
                     @if(Auth::User()->hasRole('investor'))
                         @if ( !$post->isRatedBy(Auth::User()->id) )
@@ -321,7 +223,7 @@
                 <div class="comments">
                     @if (count($post->comments) >= 1)
                         @foreach ($post->comments as $comment)
-                        <div class="comment"><div class="comment-avatar"><img src="{{ $comment->user->profile->avatar }}"></div> 
+                            <div class="comment"><div class="comment-avatar"><img src="{{ $comment->user->profile->avatar }}"></div> 
                             <div class="comment-box">
                                 <div class="rating">
                                     <input class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="{{ $comment->post->averageRatingForUser($comment->user_id) }}" data-size="xs">           
@@ -342,21 +244,38 @@
                                         @endif
                                     @endif
 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        @endforeach
-                    @else
-                        <p>No ratings yet</p>
-                    @endif   
+                            @endforeach
+                        @else
+                            <p>No ratings yet</p>
+                        @endif   
 
+                    </div>
                 </div>
             </div>
-
         </div>
     </div>
+
+
 @endsection
 
 @section('footer_scripts')
     <script src="{{ asset('js/rating/star-rating.min.js') }}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".menu").on("click", function(){
+                var dataMenu = $(this).data("menu");
+                var contentItem = $(".content .item[data-item="+ dataMenu +"]");
+                if (!$(this).hasClass("active") && !contentItem.hasClass("active")) {
+                    $(this).siblings().removeClass("active");
+                    $(this).addClass("active");
+                    contentItem.siblings().removeClass("active");
+                    contentItem.addClass("active");
+                }
+            });
+        });
+    </script>
 @endsection

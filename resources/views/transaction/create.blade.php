@@ -10,7 +10,7 @@
 @section('content')
     {!! Form::open(['action' => 'TransactionController@store', 'method' => 'POST']) !!}
     <div class='container-fluid'>
-        <h1>CREATE</h1>
+        <h1>Checkout</h1>
 
 
         <table class="table table-striped">

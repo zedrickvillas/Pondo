@@ -12,7 +12,7 @@
  
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-            	<h1>Investor Page</h1>
+            	<h1>Investor Dashboard</h1>
                 @include('panels.investor.investments')
 
             </div>

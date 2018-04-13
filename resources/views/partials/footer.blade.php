@@ -1,6 +1,6 @@
 
 
-<div id="footer">
+<div id="footer" class="mt-2">
 	<div class="container d-flex">
 	<div class="d-flex">
 		{{-- Branding Image --}}

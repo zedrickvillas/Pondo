@@ -24,8 +24,12 @@ var handleDropzoneFileUpload = {
 		console.log(response);
 	},
 	handleSuccess: function(response) {
-		var imageList = $('#gallery-images');
-		$(imageList).append("<div class='col-sm-4 p-2'><div class='g-image' style='background-image: url(" +'"'+  response.image +'"'+ ");'></div></div>");
+		//var imageList = $('#gallery-images');
+
+		location.reload();
+		//$(imageList).append("<div class='col-sm-4 p-2'><div class='g-image' style='background-image: url(" +'"'+  response.image +'"'+ ");'></div></div>");
+		//$(imageList).append("<p>"+ response.image +"</p>");
+		
 	},
 }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Image as GalleryImage;
 use App\Models\Fund;
 use App\Models\User;
 use App\Models\Transaction;
@@ -28,7 +29,7 @@ class PostsController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth', ['except' =>['index','show']]);
+        $this->middleware('auth', ['except' =>['index','show','search']]);
         $this->middleware('isInvestor', ['only' =>['favoritePost', 'unFavoritePost']]);
     }
 
@@ -168,7 +169,7 @@ class PostsController extends Controller
             'price'             => 'required|numeric',
             'roi'               => 'required|numeric',
             'featured_image'    => 'image',
-            'update_msg'        => 'required',
+            'update_msg'        => 'sometimes',
         ]);
 
         $post = Post::find($id);
@@ -208,22 +209,23 @@ class PostsController extends Controller
 
         $post->save();
 
-        if ($post->followersCount() > 0) {
-            $followers_emails = $post->followersEmails();
-            $title = $post->title.':';
-            $content = $request->input('update_msg');
+        if ($request->input('update_msg') !== null ) {
+            if ($post->followersCount() > 0) {
+                $followers_emails = $post->followersEmails();
+                $title = $post->title.':';
+                $content = $request->input('update_msg');
 
-            Mail::send('emails.send', ['title' => $title, 'content' => $content], function($message) use($followers_emails) {
+                Mail::send('emails.send', ['title' => $title, 'content' => $content], function($message) use($followers_emails) {
 
-                $message->from($_ENV['MAIL_FROM_ADDRESS'], $_ENV['MAIL_FROM_NAME']);
-                $message->to($followers_emails)->subject('My Pondo Subscription| An invesment has been updated');
-                
-            });
+                    $message->from($_ENV['MAIL_FROM_ADDRESS'], $_ENV['MAIL_FROM_NAME']);
+                    $message->to($followers_emails)->subject('My Pondo Subscription| An investment has been updated');
+                    
+                });
+            }
         }
 
-        
 
-        return redirect()->route('home')->with('success', 'Post Updated');
+        return redirect()->route('posts.show', ['post' => $post->id])->with('success', 'Post Updated');
     }
 
     /**
@@ -291,16 +293,57 @@ class PostsController extends Controller
     }
 
 
-    public function investment($id)
+    public function galleryDelete($id)
     {
+        $image = GalleryImage::find($id);
+
+        // Delete Image from directory
+        unlink(public_path($image->image));
+
+        // Delete image from database
+        $image->delete();
+        
+        return back();
+    }
+
+    public function search(Request $request) {
+        $search = $request->input('search');
+
+        $posts = Post::orderBy('created_at', 'desc')->where('title', 'LIKE', '%'.$search.'%')->orWhere('body', 'LIKE', '%'.$search.'%')->paginate(6);
+
+        return view('index')->with('posts', $posts);
+    } 
+
+
+    public function transactions($id) {
+
+        $user = Auth::user();
+
+        if ($user->hasRole('business.owner')) {
+            $post = Post::find($id);
+
+            $funds = Fund::where('post_id', $post->id)->paginate(10);
+            $sold =  Fund::where(['post_id'=> $post->id,'status'=>"Sold"])->get();
+            $completed =  Fund::where(['post_id'=> $post->id,'status'=>"Completed"])->get();
+
+            $data = ['post' => $post,
+                     'funds' => $funds,
+                     'sold'=>$sold,
+                     'completed'=>$completed
+                    ];
+
+        }
+
+        return view('pages.businessowner.transactions')->with($data);
+    }  
+
+    public function investment($id) {
         $post = Post::find($id);
-        $post_id = Post::find($id);
-        $sold = Fund::where(['status'=>'Sold','post_id'=>$id])->paginate(5);
+        $sold = Fund::where(['status'=>'Sold','post_id'=>$post->id])->paginate(5);
         $data = ['post' => $post ,
             'sold' => $sold,
-            'post_id' => $id,
         ];
-        return view('pages.businessowner.business.fund')->with('data',$data);
+        return view('pages.businessowner.business.fund')->with($data);
     }
 
 
@@ -362,7 +405,11 @@ class PostsController extends Controller
         }
         //return DB::table('wallet')->where('id','=', $row->investor)->update(['balance' => ((int)(DB::table('wallet')->select('balance')->where('user_id', '=', $row->investor))) + $row->amount ]);
         return redirect()->route('home')->with('success', 'Transaction Successful');
+    
     }
 
 
-    }
+
+}
+
+    

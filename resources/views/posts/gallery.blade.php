@@ -24,8 +24,20 @@
 					@foreach($post->images as $image)
 						<div class="col-sm-4 p-2">
 							<a href="{{ $image->image }}" data-lightbox="investment">
-                                <div class="g-image"  style="background-image: url({{ $image->image }});"></div>
+                                <div class="g-image"  style="background-image: url({{ $image->image }});">
+                                </div>
                             </a>
+                            <form class="d-flex" style="justify-content: center;" action="{{ route('posts.gallery.delete', ['image' => $image]) }}" method="POST">
+                                        {{ csrf_field() }}
+                                        <button class="deleteImgBtn pull-left" type="Submit"><i class="fa fa-trash-o"></i></button>
+                            </form>
+
+                            
+
+
+
+
+
 						</div>
 					@endforeach
 				</div>
