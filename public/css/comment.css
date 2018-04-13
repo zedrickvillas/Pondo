@@ -1,4 +1,4 @@
-<style>
+
 
 .text-right{ text-align: right; }
 
@@ -213,4 +213,7 @@
   vertical-align: middle !important;
 }
 
-</style>
+.comment-form .form {
+  width: auto !important;
+}
+

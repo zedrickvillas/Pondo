@@ -280,14 +280,6 @@ h1, h2 ,h3 ,h4, h5, h6 {
 }
 
 
-/*
-#top-brand {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  margin: auto 0;
-}*/
-
 #header {
   justify-content: space-between;
   align-items: center;
@@ -338,6 +330,17 @@ h1, h2 ,h3 ,h4, h5, h6 {
 
 #app-navbar-collapse {
   width: 100%;
+}
+
+
+#cartCount {
+  color: #fff;
+  position: absolute;
+  top: -11px;
+  left: 32px;
+  border: 1px solid;
+  border-radius: 100%;
+  padding: 2px 8px;
 }
 
 /*

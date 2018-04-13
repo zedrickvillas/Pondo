@@ -33,46 +33,35 @@ class UserController extends Controller
         $user = Auth::user();
 
         Cart::restore((value(auth()->user()->id)));
+
         if ($user->isAdmin()) {
+
             return view('pages.admin.dashboard');
+
         } if ($user->hasRole('business.owner')) {
 
-            $business = User::find($user->id)->business;
             $posts = Post::where('user_id', $user->id)->paginate(5);
-
-            $funds = Fund::where('business_owner',value(auth()->user()->id))->paginate(50);
-            $sold =  Fund::where(['business_owner'=>value(auth()->user()->id),'status'=>"Sold"])->paginate(20);
-            $completed =  Fund::where(['business_owner'=>value(auth()->user()->id),'status'=>"Completed"])->paginate(20);
-            $data = ['posts' => $posts ,
-                            'business' => $business ,
-                            'funds' => $funds,
-                            'sold'=>$sold,
-                            'completed'=>$completed];
-
-
-
-            //return $funds->pluck('id');
-
-            return view('pages.businessowner.dashboard') ->with('data',$data);
-        
+            $data = ['posts' => $posts];
+            return view('pages.businessowner.dashboard') ->with($data);
 
         } else {
 
-            $funds = Fund::where('investor',value(auth()->user()->id))->paginate(20);
-            $sold =  Fund::where(['investor'=>value(auth()->user()->id),'status'=>"Sold"])->paginate(20);
-            $completed =  Fund::where(['investor'=>value(auth()->user()->id),'status'=>"Completed"])->paginate(20);
-            $failed =  Fund::where(['investor'=>value(auth()->user()->id),'status'=>"Failed"])->paginate(20);
+            $funds = Fund::where('investor',value(auth()->user()->id))->paginate(10);
+            $sold =  Fund::where(['investor'=>value(auth()->user()->id),'status'=>"Sold"])->paginate(10);
+            $completed =  Fund::where(['investor'=>value(auth()->user()->id),'status'=>"Completed"])->paginate(10);
+            $failed =  Fund::where(['investor'=>value(auth()->user()->id),'status'=>"Failed"])->paginate(10);
             $data = ['funds' => $funds ,
                     'sold' => $sold ,
                     'completed' => $completed,
                     'failed' => $failed,
             ];
 
-            return view('pages.investor.dashboard')->with('data',$data);
+            return view('pages.investor.dashboard')->with($data);
         }
         
-
     }
+
+
 
     public function myFavorites() { 
 

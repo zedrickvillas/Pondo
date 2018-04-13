@@ -24,7 +24,7 @@
 
 
                     <h3>All</h3>
-                    @if(count($data['funds']) > 0)
+                    @if(count($funds) > 0)
                         <table class="table table-striped">
                             <tr>
                                 <th></th>
@@ -36,7 +36,7 @@
                                 {{--<th>Status</th>--}}
                                 <th>Created at</th>
                             </tr>
-                            @foreach($data['funds'] as $fund)
+                            @foreach($funds as $fund)
                                 <tr class="investment-table-row">
                                     <td></td>
                                     <td>{{$fund->id}}</td>
@@ -51,7 +51,7 @@
                         </table>
 
                         <div class="text-center">
-                            {!! $data['funds']->links() !!}
+                            {{ $funds->links() }}
                         </div>
 
                     @else
@@ -64,7 +64,7 @@
 
 
                     <h3>Sold</h3>
-                    @if(count($data['sold']) > 0)
+                    @if(count($sold) > 0)
                         <table class="table table-striped">
                             <tr>
                                 <th></th>
@@ -76,7 +76,7 @@
                                 {{--<th>Status</th>--}}
                                 <th>Created at</th>
                             </tr>
-                            @foreach($data['sold'] as $fund)
+                            @foreach($sold as $fund)
                                 <tr class="investment-table-row">
                                     <td></td>
                                     <td>{{$fund->id}}</td>
@@ -91,7 +91,7 @@
                         </table>
 
                         <div class="text-center">
-                            {!! $data['sold']->links() !!}
+                            {{ $sold->links() }}
                         </div>
 
                     @else
@@ -103,7 +103,7 @@
 
 
                     <h3>Completed</h3>
-                    @if(count($data['completed']) > 0)
+                    @if(count($completed) > 0)
                         <table class="table table-striped">
                             <tr>
                                 <th></th>
@@ -115,7 +115,7 @@
                                 {{--<th>Status</th>--}}
                                 <th>Created at</th>
                             </tr>
-                            @foreach($data['completed'] as $fund)
+                            @foreach($completed as $fund)
                                 <tr class="investment-table-row">
                                     <td></td>
                                     <td>{{$fund->id}}</td>
@@ -130,7 +130,7 @@
                         </table>
 
                         <div class="text-center">
-                            {!! $data['completed']->links() !!}
+                            {{ $completed->links() }}
                         </div>
 
                     @else
@@ -140,7 +140,7 @@
 
                 <div id="menu3" class="tab-pane fade">
                     <h3>Failed</h3>
-                    @if(count($data['failed']) > 0)
+                    @if(count($failed) > 0)
                         <table class="table table-striped">
                             <tr>
                                 <th></th>
@@ -152,7 +152,7 @@
                                 {{--<th>Status</th>--}}
                                 <th>Created at</th>
                             </tr>
-                            @foreach($data['failed'] as $fund)
+                            @foreach($failed as $fund)
                                 <tr class="investment-table-row">
                                     <td></td>
                                     <td>{{$fund->id}}</td>
@@ -167,7 +167,7 @@
                         </table>
 
                         <div class="text-center">
-                            {!! $data['failed']->links() !!}
+                            {{ $failed->links() }}
                         </div>
 
                     @else

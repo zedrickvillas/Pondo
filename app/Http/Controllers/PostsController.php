@@ -201,7 +201,7 @@ class PostsController extends Controller
                 Mail::send('emails.send', ['title' => $title, 'content' => $content], function($message) use($followers_emails) {
 
                     $message->from($_ENV['MAIL_FROM_ADDRESS'], $_ENV['MAIL_FROM_NAME']);
-                    $message->to($followers_emails)->subject('My Pondo Subscription| An invesment has been updated');
+                    $message->to($followers_emails)->subject('My Pondo Subscription| An investment has been updated');
                     
                 });
             }
@@ -297,6 +297,29 @@ class PostsController extends Controller
         return view('index')->with('posts', $posts);
 
   
-    }   
+    } 
+
+
+    public function transactions($id) {
+
+        $user = Auth::user();
+
+        if ($user->hasRole('business.owner')) {
+            $post = Post::find($id);
+
+            $funds = Fund::where('post_id', $post->id)->paginate(10);
+            $sold =  Fund::where(['post_id'=> $post->id,'status'=>"Sold"])->get();
+            $completed =  Fund::where(['post_id'=> $post->id,'status'=>"Completed"])->get();
+
+            $data = ['post' => $post,
+                     'funds' => $funds,
+                     'sold'=>$sold,
+                     'completed'=>$completed
+                    ];
+
+        }
+
+        return view('pages.businessowner.transactions')->with($data);
+    }  
 
 }

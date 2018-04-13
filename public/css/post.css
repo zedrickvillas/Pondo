@@ -110,10 +110,35 @@ a#featured-image #post-featured-image {
     font-size: 20px;
 }
 
+#investment-details label, #investment-details .form-control {
+    border: 1px solid #d2d2d2;
+    padding: 10px;
+}
+
+#investment-details label {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+#investment-details .form-control {
+    flex: 4;
+    height: auto;
+    border-radius: 0;
+    margin-bottom: 0;
+}
+
+#investment-details .form-group {
+    margin-bottom: 0;
+}
+
 
 @media only screen and (max-width: 767px) {
     .sm-flex-direction-column {
         flex-direction: column;
+    }
+
+    .section-item.image, .section-item.info {
+        width: 100%;
     }
 }
 

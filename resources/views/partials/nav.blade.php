@@ -17,7 +17,11 @@
 
             @if(Auth::check())     
                 @if (Auth::User()->hasRole('investor'))
-                    <a href="{{ route('cart.index') }}"><i class="fa fa-shopping-cart" style="font-size: 27px; color: #fff;"></i></a>
+                    <a href="{{ route('cart.index') }}" style="position: relative; margin-right: 40px;"><i class="fa fa-shopping-cart" style="font-size: 27px; color: #fff;"></i>
+                        @if (Cart::count() > 0)
+                            <span id="cartCount">{{Cart::count()}}</span>
+                        @endif   
+                    </a>
                 @endif
             @endif
             <div class="navbar-header">

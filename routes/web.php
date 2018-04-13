@@ -162,6 +162,8 @@ Route::post('/posts/images/{image}', 'PostsController@galleryDelete')->name('pos
 
 Route::post('/search', 'PostsController@search')->name('search');
 
+Route::get('/posts/{post}/transaction', 'PostsController@transactions')->name('posts.transactions');
+
 
 
 // CartController
