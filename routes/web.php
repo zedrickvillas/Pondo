@@ -199,3 +199,31 @@ Route::group(['prefix' => 'messages'], function () {
 
 //UserController Investor
 Route::get('favorites', 'UserController@myFavorites')->middleware('auth')->name('investor.favorites');
+
+
+// *********** BreadCrumbs
+
+// Home
+Breadcrumbs::register('home', function ($breadcrumbs) {
+    $breadcrumbs->push('Home', route('home'));
+});
+
+
+
+// Home > Investments
+Breadcrumbs::register('investments', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Investments', route('home'));
+});
+
+
+// Home > Investments >[Investment]
+Breadcrumbs::register('investment', function ($breadcrumbs, $investment) {
+    $breadcrumbs->parent('investments');
+    $breadcrumbs->push($investment, route('posts.show', ['post' => $investment]));
+});
+
+
+
+
+

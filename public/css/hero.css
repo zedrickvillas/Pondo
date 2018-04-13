@@ -3,9 +3,8 @@
 }
 
 #hero-container {
-	height: 450px;
+	height: 200px;
     background-size: 100%;
-    background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -22,7 +21,11 @@
     flex-direction: column;
 }
 
+.navbar {
+	border: none;
+}
 #overlay {
+	position: relative;
 	background-color:#00000040;
 }
 
@@ -43,4 +46,13 @@
 #msg p {
 	font-size: 18px;
 }
+
+#breadcrumb-container {
+	background-color: #f5f5f5;
+}
+
+.breadcrumb {
+	margin-bottom: 0 !important;
+}
+
 

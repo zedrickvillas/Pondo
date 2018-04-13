@@ -3,8 +3,11 @@
 @section('template_linked_css')
     <link rel="stylesheet" href="{{ asset('css/rating/star-rating.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/post.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/hero.css') }}" />
+@endsection
 
-
+@section('no-container-content-top')
+    @include('partials.hero')
 @endsection
 
 @section('content')

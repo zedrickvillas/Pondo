@@ -2,7 +2,7 @@
 
 <div id="investment-list" class="row">
 
-    <div class="d-flex" style="justify-content: space-between; align-items: center;">
+    <div>
         <h3 class="page-header">Investments</h3> 
     </div>
     
