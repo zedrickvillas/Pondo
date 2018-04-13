@@ -32,13 +32,13 @@ class TransactionController extends Controller
         foreach(Cart::content() as $row) {
 
                 //Cart::content()->get('qty')
-                    if ($row->qty <= DB::table('Funds')->select('id')->where(['post_id' => $row->options['post_id'], 'status' => "Available"])->get()->count()) {
+                    if ($row->qty <= DB::table('funds')->select('id')->where(['post_id' => $row->options['post_id'], 'status' => "Available"])->get()->count()) {
                         array_push($results,'true');
 
 
 
                         //return var_dump(Cart::content()->pluck('qty'));
-                        //return DB::table('Funds')->select('id')->where(['post_id' => 3, 'status' => "Available"])->get()->count();
+                        //return DB::table('funds')->select('id')->where(['post_id' => 3, 'status' => "Available"])->get()->count();
                         //return view ('transaction.create')->with('data',$data);
 
                     } else{

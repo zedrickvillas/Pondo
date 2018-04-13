@@ -20,7 +20,7 @@
                                 <h2 class="investment-item-title">{{$post->title}}</h2>
 
                                 <span class="price-tag .wordwrap"><small>₱</small> {{$post->price}}</span>
-                                <p>Quantity: {{ DB::table('Funds')->select('id')->where(['post_id' => $post->id,'status' => "Available"])->get()->count()}}</p>
+                                <p>Quantity: {{ DB::table('funds')->select('id')->where(['post_id' => $post->id,'status' => "Available"])->get()->count()}}</p>
 
                                 {{--{{//Fund::where(['post_id' => $post->id,'status' => "Available"])->count()}}--}}
 

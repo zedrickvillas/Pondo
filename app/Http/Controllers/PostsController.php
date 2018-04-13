@@ -117,7 +117,7 @@ class PostsController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-        $fund =  DB::table('Funds')->select('id')->where(['post_id' => $post->id,'status' => "Available"])->get()->count();
+        $fund =  DB::table('funds')->select('id')->where(['post_id' => $post->id,'status' => "Available"])->get()->count();
 
         $post = Post::find($id);
         $data = ['post' => $post,
