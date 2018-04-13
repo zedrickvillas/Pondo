@@ -257,7 +257,7 @@ class PostsController extends Controller
 
         // Make the user a folder if nonexistent and set permissions
         if (!file_exists($location)) {
-            mkdir($location, 666, true);
+            mkdir($location, 755, true);
         }
 
         Image::make($image)->save($location.$file_name);
