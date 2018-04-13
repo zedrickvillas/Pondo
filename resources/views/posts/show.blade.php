@@ -70,7 +70,7 @@
                     </small>
             </div>
 
-            <div>
+            <div id="info-details">
                     <p>Investment Return Date: <strong>{{$post->return_date}}</strong></p>
                     <p>Projected ROI per Quantity: <strong>{{$post->roi}}%</strong></p>
                     <p>Projected Return after Investment: <strong>{{($post->roi * ($post->price/100))+$post->price}}</strong></p>

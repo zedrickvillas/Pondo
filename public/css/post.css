@@ -67,6 +67,10 @@ a#featured-image #post-featured-image {
     padding: 0 20px;
 }
 
+#info-details {
+    font-size: 18px;
+}
+
 .section-item.content-menu {
     list-style-type: none;
     padding: 0;
