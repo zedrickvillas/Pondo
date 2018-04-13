@@ -116,23 +116,13 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        $user = Auth::user();
         $post = Post::find($id);
-        $fundlist = Fund::where('post_id',$id)->paginate(5);
-        $business = User::find($user->id)->business;
         $fund =  DB::table('Funds')->select('id')->where(['post_id' => $post->id,'status' => "Available"])->get()->count();
 
-        $funds = Fund::where('business_owner',value(auth()->user()->id))->paginate(5);
-        $sold =  Fund::where(['business_owner'=>value(auth()->user()->id),'status'=>"Sold"])->paginate(20);
-        $completed =  Fund::where(['business_owner'=>value(auth()->user()->id),'status'=>"Completed"])->paginate(20);
-
-        $data = ['business' => $business ,
-            'funds' => $funds,
-            'sold'=>$sold,
-            'completed'=>$completed,
-            'fundlist' =>  $fundlist];
-        return view('posts.show')->with('data',$data)->with('post',$post)->with('fund',$fund);
-        return view('posts.show')->with('post',$post)->with('fund',$fund);
+        $post = Post::find($id);
+        $data = ['post' => $post,
+                 'fund' => $fund];
+        return view('posts.show')->with($data);
     }
 
     /**
