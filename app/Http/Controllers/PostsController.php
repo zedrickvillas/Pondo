@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Fund;
+use App\Models\User;
+use App\Models\Transaction;
 use DB;
 use Image;
 use File;
@@ -113,9 +115,22 @@ class PostsController extends Controller
      */
     public function show($id)
     {
+        $user = Auth::user();
         $post = Post::find($id);
+        $fundlist = Fund::where('post_id',$id)->paginate(5);
+        $business = User::find($user->id)->business;
         $fund =  DB::table('Funds')->select('id')->where(['post_id' => $post->id,'status' => "Available"])->get()->count();
 
+        $funds = Fund::where('business_owner',value(auth()->user()->id))->paginate(5);
+        $sold =  Fund::where(['business_owner'=>value(auth()->user()->id),'status'=>"Sold"])->paginate(20);
+        $completed =  Fund::where(['business_owner'=>value(auth()->user()->id),'status'=>"Completed"])->paginate(20);
+
+        $data = ['business' => $business ,
+            'funds' => $funds,
+            'sold'=>$sold,
+            'completed'=>$completed,
+            'fundlist' =>  $fundlist];
+        return view('posts.show')->with('data',$data)->with('post',$post)->with('fund',$fund);
         return view('posts.show')->with('post',$post)->with('fund',$fund);
     }
 
@@ -125,6 +140,8 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
     public function edit($id)
     {
         $post = Post::find($id);
@@ -273,4 +290,79 @@ class PostsController extends Controller
 
     }
 
-}
+
+    public function investment($id)
+    {
+        $post = Post::find($id);
+        $post_id = Post::find($id);
+        $sold = Fund::where(['status'=>'Sold','post_id'=>$id])->paginate(5);
+        $data = ['post' => $post ,
+            'sold' => $sold,
+            'post_id' => $id,
+        ];
+        return view('pages.businessowner.business.fund')->with('data',$data);
+    }
+
+
+    public function total_investment (Request $request){
+
+        $balance = DB::table('wallet')->select('balance')->where('user_id','=',value(auth()->user()->id))->implode('balance');
+        $amount_return_investment = $request->input('cost_return_investment');
+        $quantity = $sold = Fund::where(['status'=>'Sold','post_id'=>$request->input('post_id')])->count();
+        $purchase = $amount_return_investment * $quantity ;
+        $fundsAfterPurchase = $balance - $purchase;
+        $post_id = $request->input('post_id');
+        $data = ['balance' => $balance,
+                'purchase' => $purchase,
+                'fundsAfterPurchase' => $fundsAfterPurchase,
+                'quantity' => $quantity,
+                'amount_return_investment' => $amount_return_investment,
+                'post_id' => $post_id,
+
+        ];
+
+        return view('pages.businessowner.business.total_request')->with('data',$data);
+    }
+
+    public function request_investment_return (Request $request){
+        $sold = Fund::where(['status'=>'Sold','post_id'=>$request->input('post_id')])->get();
+
+
+        foreach($sold as $row){
+
+                $transaction_investor = new Transaction;
+                $transaction_investor->amount = $row->amount;
+                $transaction_investor->balance_before = DB::table('wallet')->select('balance')->where('user_id', '=', $row->investor)->implode('balance');
+                $transaction_investor->balance_after = ((int)(DB::table('wallet')->select('balance')->where('user_id', '=', $row->investor)->implode('balance'))) + $row->amount;
+                $transaction_investor->type = $request->input('transaction_type');
+                $transaction_investor->user_id =  $row->investor;
+                $transaction_investor->save();
+                //update
+                DB::table('wallet')->where('user_id','=', $row->investor)->update(['balance' => ((int)( DB::table('wallet')->select('balance')->where('user_id', '=', $row->investor)->implode('balance'))) + $row->amount ]);
+
+
+                $transaction_business = new Transaction;
+                $transaction_business->amount = $row->amount;
+                $transaction_business->balance_before = DB::table('wallet')->select('balance')->where('user_id', '=', value(auth()->user()->id))->implode('balance');
+                $transaction_business->balance_after = ((int)DB::table('wallet')->select('balance')->where('user_id', '=', value(auth()->user()->id))->implode('balance')) - $row->amount;
+                $transaction_business->type = $request->input('transaction_type');
+                $transaction_business->user_id = value(auth()->user()->id);
+                $transaction_business->save();
+                //update
+                DB::table('wallet')->where('user_id','=', value(auth()->user()->id))->update(['balance' => ((int)DB::table('wallet')->select('balance')->where('user_id', '=', value(auth()->user()->id))->implode('balance')) - $row->amount]);
+
+                //$l = DB::table('funds')->select('id')
+                //    ->where(['post_id' => $row->id,
+                //        'status' => "Available"])->get()->first();    //
+                Fund::where(['post_id' =>$request->input('post_id'),'status' => "Sold",'investor'=>$row->investor])->first()->update(['status'=>'Completed']);
+
+                //DB::table('funds')->where(['post_id' => $request->input('post_id'),'status' => "Sold",'investor'=>$row->investor])->first()->update(['status' => 'Completed']);
+                //Fund::where(['post_id' => $row->id,'status' => "Available"])->first()->update(['investor' => $user_id,'status'=>'Sold']);
+
+        }
+        //return DB::table('wallet')->where('id','=', $row->investor)->update(['balance' => ((int)(DB::table('wallet')->select('balance')->where('user_id', '=', $row->investor))) + $row->amount ]);
+        return redirect()->route('home')->with('success', 'Transaction Successful');
+    }
+
+
+    }

@@ -168,6 +168,12 @@ Route::get('/posts/{post}/gallery', 'PostsController@galleryIndex')->name('posts
 Route::post('/posts/uploadImages', 'PostsController@galleryUpload')->name('posts.gallery.upload');
 
 
+Route::get('/posts/{post}/return_investment', 'PostsController@investment');
+Route::post('/return_investment', 'PostsController@total_investment');
+Route::post('/investment_return','PostsController@request_investment_return');
+Route::get('/investment_return','PostsController@request_investment_return');
+
+
 
 // CartController
 Route::resource('cart', 'CartController');

@@ -49,6 +49,76 @@
 
 @section('content')
     <div class="panel panel-body">
+        <table class="table table-default">
+            <tr class="info"><span style="font-weight:bold">
+                <td><span style="font-weight:bold">Title</span></td>
+                <td><span style="font-weight:bold">Amount</span></td>
+                <td><span style="font-weight:bold">Investor</span></td>
+                <td><span style="font-weight:bold">Purchased At</span></td>
+                <td><span style="font-weight:bold">Status</span></td>
+                <td><span style="font-weight:bold">Return Date</span></td>
+                <td><a href="/posts/{{$post->id}}/return_investment" class="btn btn-microsoft btn-sm" role="button">Return Investment</a></td>
+            </span>
+            </tr>
+            @foreach($data['fundlist'] as $fund1)
+                @if (empty(DB::table('funds')->select('investor')->where(['id'=>$fund1->id,'post_id'=>$post->id])->implode('investor')))
+
+                @else
+                    {{--@foreach($data['funds'] as $fund)--}}
+                    <tr>
+                        <td>{{$fund1->post_id}}</td>
+                        <td>{{$fund1->amount}}</td>
+                        <td>{{$fund1->investor}}</td>
+                        <td>{{$fund1->created_at}}</td>
+                        <td>{{$fund1->status}}</td></td>
+                        <td>{{$post->return_date}}</td></td></td>
+                        <td></td>
+
+
+
+
+                        <?php /*
+                        {{--@foreach($data['funds'] as $fund)--}}
+                        <td>{{DB::table('posts')->select('title')->where('id',$post->id)->implode('title')}}</td>
+                        <td>{{DB::table('funds')->select('amount')->where(['id'=>$fund1->id,'post_id'=>$post->id])->implode('amount')}}</td>
+                        <td>{{DB::table('funds')->select('investor')->where(['id'=>$fund1->id,'post_id'=>$post->id])->implode('investor')}}</td>
+                        <td>{{DB::table('funds')->select('created_at')->where(['id'=>$fund1->id,'post_id'=>$post->id])->implode('created_at')}}</td>
+                        <td>{{DB::table('funds')->select('status')->where(['id'=>$fund1->id,'post_id'=>$post->id])->implode('status')}}</td>
+                        <th>{{DB::table('funds')->select('return_date')->where(['id'=>$fund1->id,'post_id'=>$post->id])->implode('return_date')}}</th>
+                        {{ Form::hidden('post_id', $post->id)}}
+                        @if (DB::table('funds')->select('status')->where(['id'=>$fund1->id,'post_id'=>$post->id])->implode('status') == 'Sold')
+                            <td></td>
+
+
+                            {{--<td><button type="button" class="btn btn-microsoft btn-sm">Return Investment</button></td>--}}
+                        @else
+                            <td></td>
+                        @endif
+
+                        {{--@foreach($data['funds'] as $fund)--}}
+                                     <div class="text-center">
+                                        {!! $data['fundlist']->links() !!}
+                                    </div>
+                        */?>
+                    </tr>
+                    {{--@endforeach--}}
+
+                @endif
+            @endforeach
+
+        </table>
+        <div class="text-center">
+            {!! $data['fundlist']->links() !!}
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <div class="panel panel-body">
         <div class="panel-heading">
 
     
