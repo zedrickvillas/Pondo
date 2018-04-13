@@ -15,6 +15,18 @@
 
 
 
+Route::get('/soon', function () {
+  return view('pages.soon');
+    }
+);
+
+//fybd
+Route::resource('fund', 'FundController');
+Route::resource('dashboard', 'UserController');
+
+Route::get('/wallet/addfunds', 'FundsController@index');
+
+
 //Transaction Route
 Route::resource('transaction', 'TransactionController');
 
@@ -165,6 +177,12 @@ Route::post('/search', 'PostsController@search')->name('search');
 Route::get('/posts/{post}/transaction', 'PostsController@transactions')->name('posts.transactions');
 
 
+Route::get('/posts/{post}/return_investment', 'PostsController@investment');
+Route::post('/return_investment', 'PostsController@total_investment');
+Route::post('/investment_return','PostsController@request_investment_return');
+Route::get('/investment_return','PostsController@request_investment_return');
+
+
 
 // CartController
 Route::resource('cart', 'CartController');
@@ -181,5 +199,3 @@ Route::group(['prefix' => 'messages'], function () {
 
 //UserController Investor
 Route::get('favorites', 'UserController@myFavorites')->middleware('auth')->name('investor.favorites');
-
-

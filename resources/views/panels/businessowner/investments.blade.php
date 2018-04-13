@@ -4,18 +4,18 @@
                         <h2 class="no-margin">Your Investments</h2>
                         <a href="{{ route('posts.create') }}" class="btn btn-primary">Create Investment <i class="fa fa-plus"></i></a>
                     </div>
-                   
                     <div class="panel-body">
 
                         @if(count($posts) > 0)
                             <table class="table table-default">
                                 <tr class="active">
                                     <th>Image</th>
-                                    <th>Invest Id</th>
+                                    <th>Investment Id</th>
                                     <th>Title</th>
                                     <th>Created At</th>
                                     <th>Actions</th>
                                 </tr>
+
                                 @foreach($posts as $post)
                                     <tr class="investment-table-row">
                                             <td style="width: 200px;">
@@ -38,9 +38,6 @@
 
                             </table>
 
-
-                     
-
                             <div class="text-center">
                                 {!! $posts->links() !!}
                             </div>
@@ -52,4 +49,3 @@
                     </div>
 </div>
 
-                

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use App\Models\Fund;
 use Auth;
 use App\Models\User;
@@ -60,8 +60,68 @@ class UserController extends Controller
         }
         
     }
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $post_id = $request->input('post_id');
+        return view('pages.businessowner.business.fund')->with('post',$post_id);
+    }
 
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Fund  $fund
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Fund $fund)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Fund  $fund
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Fund $fund)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Fund  $fund
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Fund $fund)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Fund  $fund
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Fund $fund)
+    {
+        //
+    }
 
     public function myFavorites() { 
 
