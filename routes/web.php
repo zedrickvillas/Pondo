@@ -24,8 +24,6 @@ Route::get('/soon', function () {
 Route::resource('fund', 'FundController');
 Route::resource('dashboard', 'UserController');
 
-Route::get('/wallet/addfunds', 'FundsController@index');
-
 
 //Transaction Route
 Route::resource('transaction', 'TransactionController');
