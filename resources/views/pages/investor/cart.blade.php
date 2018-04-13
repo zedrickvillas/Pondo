@@ -10,6 +10,8 @@
 @section('content')
     <div class=" container">
         <div class='container-fluid'>
+
+            <h1>My Cart</h1>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -64,7 +66,7 @@
             <hr>
 
 
-                        <a href="{{ route('transaction.create') }}" class="btn btn-success mt-3">BUY</a>
+                        <a href="{{ route('transaction.create') }}" class="btn btn-success mb-2">Proceed</a>
 
             </div>
 

@@ -9,6 +9,7 @@
         "barryvdh/laravel-debugbar": "^3.0",
         "cmgmyr/messenger": "^2.15",
         "creativeorange/gravatar": "~1.0",
+        "davejamesmiller/laravel-breadcrumbs": "4.*",
         "doctrine/dbal": "^2.5",
         "fideloper/proxy": "~3.3",
         "gloudemans/shoppingcart": "^2.5",

@@ -1,0 +1,153 @@
+
+
+#share-links {
+    margin-left: 10px;
+    align-items: center;
+}
+
+#social-links {
+    margin-left: 5px;
+}
+
+#social-links ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+#social-links ul li {
+    padding: 0px 5px;
+    display: inline-block;
+}
+
+
+.post-section.top .rating, .comments .rating{
+  pointer-events: none;
+}
+
+.post-section.top .rating .clear-rating, .comments .rating .clear-rating{
+  display: none !important;
+}
+
+
+.section-item.image {
+    width: 400px;
+}
+
+a#featured-image {
+    border: 1px solid #2fdab8;
+    height: 350px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+
+a#featured-image #post-featured-image {
+    height: 100%;
+}
+
+#gallery-images {
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+.investment-gallery-image {
+    display: inline-block;
+    border: 1px solid #2fdab8;
+    width: 100px;
+}
+
+.investment-gallery-image a {
+    display: block;
+}
+
+
+.section-item.info {
+    width: 740px;
+    padding: 0 20px;
+}
+
+#info-details {
+    font-size: 18px;
+}
+
+.section-item.content-menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.section-item.content-menu .menu {
+    transition: ease 1s;
+}
+
+.section-item.content-menu .menu {
+    display: inline-flex;
+    width: 250px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.section-item.content {
+    border: 1px solid #ddd;
+}
+
+.section-item.content .item {
+    display: none;
+}
+
+.menu.active {
+    color: #27a28a;
+    box-shadow: inset 0px -5px 0px 0px #27a28a;
+}
+
+.item.active {
+    display: block !important;
+}
+
+#likes {
+    white-space: nowrap;
+    font-size: 20px;
+}
+
+#investment-details label, #investment-details .form-control {
+    border: 1px solid #d2d2d2;
+    padding: 10px;
+}
+
+#investment-details label {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+#investment-details .form-control {
+    flex: 4;
+    height: auto;
+    border-radius: 0;
+    margin-bottom: 0;
+}
+
+#investment-details .form-group {
+    margin-bottom: 0;
+}
+
+
+@media only screen and (max-width: 767px) {
+    .sm-flex-direction-column {
+        flex-direction: column;
+    }
+
+    .section-item.image, .section-item.info {
+        width: 100%;
+    }
+}
+
+
+
+
+
+
