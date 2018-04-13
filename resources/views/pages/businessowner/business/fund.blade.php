@@ -26,7 +26,7 @@
 
                             {{--@foreach($data['funds'] as $fund)--}}
 
-                        @foreach($data['sold'] as $sold)
+                        @foreach($sold as $sold)
                             <tr>
                                 <td>{{$sold->investor}}</td>
                                 <td>{{$sold->created_at}}</td>
@@ -41,7 +41,7 @@
              {!! Form::open(['action' => 'PostsController@total_investment', 'method' => 'POST'])!!}
 
             <div class="form-group">
-                {{ Form::hidden('post_id', $data['post_id'])}}
+                {{ Form::hidden('post_id', $post->id )}}
                 {{Form::label('return_label', 'Cost of Return Investment')}}
                 {{Form::text ('cost_return_investment', '' , ["class" => "form-control"] )}}
                 @if ($errors->has('cost_return_investment'))

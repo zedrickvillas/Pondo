@@ -92,7 +92,7 @@
             </div>
 
 
-            {{Form::submit('Create Invesment', ['class'=>'btn btn-primary mt-2'])}}
+            {{Form::submit('Create Investment', ['class'=>'btn btn-primary mt-2'])}}
             {!! Form::close() !!}
 
         </div>

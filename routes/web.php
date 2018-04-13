@@ -14,15 +14,18 @@
 */
 
 
+
 Route::get('/soon', function () {
   return view('pages.soon');
-}
+    }
 );
+
 //fybd
 Route::resource('fund', 'FundController');
 Route::resource('dashboard', 'UserController');
 
 Route::get('/wallet/addfunds', 'FundsController@index');
+
 
 //Transaction Route
 Route::resource('transaction', 'TransactionController');
@@ -167,8 +170,14 @@ Route::post('unfavorite/{post}', 'PostsController@unFavoritePost');
 Route::get('/posts/{post}/gallery', 'PostsController@galleryIndex')->name('posts.gallery.index');
 Route::post('/posts/uploadImages', 'PostsController@galleryUpload')->name('posts.gallery.upload');
 
+Route::post('/posts/images/{image}', 'PostsController@galleryDelete')->name('posts.gallery.delete');
 
-Route::get('/posts/{post}/return_investment', 'PostsController@investment');
+Route::post('/search', 'PostsController@search')->name('search');
+
+Route::get('/posts/{post}/transaction', 'PostsController@transactions')->name('posts.transactions');
+
+
+Route::get('/posts/{post}/return_investment', 'PostsController@investment')->name('posts.return_investment');
 Route::post('/return_investment', 'PostsController@total_investment');
 Route::post('/investment_return','PostsController@request_investment_return');
 Route::get('/investment_return','PostsController@request_investment_return');
@@ -190,3 +199,31 @@ Route::group(['prefix' => 'messages'], function () {
 
 //UserController Investor
 Route::get('favorites', 'UserController@myFavorites')->middleware('auth')->name('investor.favorites');
+
+
+// *********** BreadCrumbs
+
+// Home
+Breadcrumbs::register('home', function ($breadcrumbs) {
+    $breadcrumbs->push('Home', route('home'));
+});
+
+
+
+// Home > Investments
+Breadcrumbs::register('investments', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Investments', route('home'));
+});
+
+
+// Home > Investments >[Investment]
+Breadcrumbs::register('investment', function ($breadcrumbs, $investment) {
+    $breadcrumbs->parent('investments');
+    $breadcrumbs->push($investment, route('posts.show', ['post' => $investment]));
+});
+
+
+
+
+
