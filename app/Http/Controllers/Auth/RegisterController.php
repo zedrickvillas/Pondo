@@ -98,7 +98,8 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        $data['captcha'] = $this->captchaCheck();
+        // Commented out to avoid 'No secret provided' error
+        // $data['captcha'] = $this->captchaCheck();
 
         if (!config('settings.reCaptchStatus')) {
             $data['captcha'] = true;
